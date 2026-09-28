@@ -1,0 +1,86 @@
+{
+  "scope": "arithmetic/model audit only, not new quota or TTL observations",
+  "shared_counterexample_audit": [
+    {
+      "label": "original-full-cold",
+      "K": 150.0,
+      "q": 0.2,
+      "h": 0.1,
+      "qstar": 0.1801125703564728,
+      "hstar_expire": 0.0582010582010582,
+      "original_action": "PARK",
+      "original_cost": 27.35,
+      "dp_action": "WARM",
+      "dp_cost": 24.075000000000003
+    },
+    {
+      "label": "same-probabilities-shared-cold",
+      "K": 126.375,
+      "q": 0.2,
+      "h": 0.1,
+      "qstar": 0.21892816419612315,
+      "hstar_expire": 0.06984126984126984,
+      "original_action": "WARM",
+      "original_cost": 21.7125,
+      "dp_action": "WARM",
+      "dp_cost": 21.7125
+    },
+    {
+      "label": "new-shared-cold-counterexample",
+      "K": 126.375,
+      "q": 0.24,
+      "h": 0.12,
+      "qstar": 0.21892816419612315,
+      "hstar_expire": 0.06984126984126984,
+      "original_action": "PARK",
+      "original_cost": 28.02,
+      "dp_action": "WARM",
+      "dp_cost": 24.404999999999998
+    }
+  ],
+  "regret_free_first_interval": {
+    "immediate_park_regret": 32.5,
+    "wait_free_interval_then_park_regret": 24.25
+  },
+  "regret_deadline_consistent_best_enumerated_deterministic": {
+    "pings": 0,
+    "terminal": "PARK",
+    "max_regret": 24.25
+  },
+  "regret_deadline_consistent_closed_form": {
+    "offline_first_interval_min": 16.5,
+    "park_max_regret": 24.25,
+    "expire_max_regret": 133.5
+  },
+  "small_context_summary_correction": [
+    {
+      "model": "opus",
+      "C": 50.0,
+      "Lambda": 20.0,
+      "park_regret": 47.0,
+      "expire_regret": 47.25
+    },
+    {
+      "model": "fable",
+      "C": 50.0,
+      "Lambda": 20.0,
+      "park_regret": 40.4,
+      "expire_regret": 48.9
+    }
+  ],
+  "api_input_equivalent_5m": {
+    "cold_full": 187.5,
+    "cold_shared": 158.75,
+    "shared_loss": 28.749999999999996
+  },
+  "api_input_equivalent_1h": {
+    "cold_full": 300,
+    "cold_shared": 252.5,
+    "shared_loss": 47.5
+  },
+  "parent_generation_write_equivalent": {
+    "warm": 24.0,
+    "cold_full": 165.75,
+    "delta": 141.75
+  }
+}

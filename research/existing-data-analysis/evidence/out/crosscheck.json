@@ -1,0 +1,81 @@
+{
+  "breakEven": {
+    "eventualReturnGivenOpenAt50": 0.7021,
+    "note": "LET_EXPIRE pays coldFullEq on each late return; one keep-warm ping costs warmEq per 50 min",
+    "openAt50min": 0.2843,
+    "warmOverCold": {
+      "high": 0.0248,
+      "low": 0.0266
+    }
+  },
+  "cif": {
+    "A_endsCensored": {
+      "120": 0.7748,
+      "1440": 0.8824,
+      "240": 0.8272,
+      "30": 0.6146,
+      "480": 0.8464,
+      "5": 0.2996,
+      "60": 0.693
+    },
+    "A_endsCompeting": {
+      "120": 0.7216,
+      "1440": 0.8027,
+      "240": 0.7646,
+      "30": 0.5801,
+      "480": 0.7795,
+      "5": 0.2858,
+      "60": 0.6505
+    },
+    "B_P1": {
+      "120": 0.8535,
+      "1440": 0.9746,
+      "240": 0.905,
+      "30": 0.7301,
+      "480": 0.9304,
+      "5": 0.3918,
+      "60": 0.8107
+    },
+    "B_P2": {
+      "120": 0.7789,
+      "1440": 0.8854,
+      "240": 0.8149,
+      "30": 0.6147,
+      "480": 0.8281,
+      "5": 0.2513,
+      "60": 0.6905
+    },
+    "B_P3": {
+      "120": 0.9141,
+      "1440": 0.9714,
+      "240": 0.9427,
+      "30": 0.7423,
+      "480": 0.9714,
+      "5": 0.204,
+      "60": 0.8568
+    }
+  },
+  "gauge": {
+    "firstRun": {
+      "lag0": false,
+      "lag1_T": [
+        80500,
+        89500
+      ],
+      "lag1_wmin": 1.559,
+      "lag2": false
+    },
+    "rerunMaxPrefix": {
+      "lag0": 11,
+      "lag1": 176,
+      "lag2": 40
+    }
+  },
+  "successorRegime": {
+    "policy-effect#1": "successor_rewrites_each_call",
+    "policy-effect#2": "successor_rewrites_each_call",
+    "policy-effect#3": "successor_rewrites_each_call",
+    "restore-decomposition#1": "successor_rewrites_each_call",
+    "restore-decomposition#2": "successor_conversation_cached"
+  }
+}

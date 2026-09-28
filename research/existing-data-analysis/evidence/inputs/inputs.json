@@ -1,0 +1,2337 @@
+{
+  "counts": {
+    "firstRun": 10,
+    "quota0919": 10,
+    "rerun": 108,
+    "rolloverEventLog": 126,
+    "senpiTranscripts": 133
+  },
+  "excludedSessions": [
+    "01a0e42b-24f8-7226-a4f6-04c2b45cf607"
+  ],
+  "files": {
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-09T08-38-30-937Z_01a08551-9319-7b57-b755-0bb648e79cf3.jsonl": {
+      "bytes": 761033,
+      "group": "senpiTranscripts",
+      "lines": 329,
+      "sha256": "073d5791421c5e18fe402e95e611efe46c15e85d45223bd7851343a4ac3667e4"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-09T17-08-07-943Z_01a08724-2487-7a70-917c-78756e481245.jsonl": {
+      "bytes": 1245217,
+      "group": "senpiTranscripts",
+      "lines": 396,
+      "sha256": "b18c7957ac660d98d15b8b069e906a6e1cd475c0f1e0df7ffed283f8e62818ef"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-10T04-05-39-465Z_01a0897e-2009-7a10-809e-d3714dd3a782.jsonl": {
+      "bytes": 1296903,
+      "group": "senpiTranscripts",
+      "lines": 202,
+      "sha256": "3dfa5af3901a42018e3ec4972417bc298eeb5b29b2cc67026dceaf5d1a28f43b"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-10T15-55-47-663Z_01a08c08-464f-7984-8d8c-1671df303821.jsonl": {
+      "bytes": 78717,
+      "group": "senpiTranscripts",
+      "lines": 36,
+      "sha256": "818c38756e1ed6dcd335e258bed2294b9b3226a6ef645c6b0a195025b6963d30"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-10T16-04-10-267Z_01a08c0f-f19b-77fe-93e5-b1f235bf2c93.jsonl": {
+      "bytes": 4435785,
+      "group": "senpiTranscripts",
+      "lines": 717,
+      "sha256": "b3c9d122aa0da14391f7e0b27faa01bf4722cef591be662ade245a234846948a"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-11T15-11-09-304Z_01a09105-c3f8-7630-897e-9a2d633a062a.jsonl": {
+      "bytes": 1792496,
+      "group": "senpiTranscripts",
+      "lines": 379,
+      "sha256": "a98c1196f4ca838afc03e44fd68bf9f52d757b6bb0daab076bc9bbac60ff9c14"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-11T19-58-58-795Z_01a0920d-46eb-77ad-92e0-3c98efe94b44.jsonl": {
+      "bytes": 3769951,
+      "group": "senpiTranscripts",
+      "lines": 867,
+      "sha256": "2b634b70cd924be98e3bf28f198f809d997d6ab83a6cd63029f61b865c812f55"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-12T09-04-22-232Z_01a094dc-52d8-7eba-9108-37e9d3e99a57.jsonl": {
+      "bytes": 5635,
+      "group": "senpiTranscripts",
+      "lines": 20,
+      "sha256": "418cbc9dc6114da3e0af7f4fd922bd5bc94c06732319b43ac4b90f342d709ff4"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-12T11-24-09-044Z_01a0955c-4bd4-7c3e-9758-e09a514afc46.jsonl": {
+      "bytes": 1047921,
+      "group": "senpiTranscripts",
+      "lines": 111,
+      "sha256": "c493f4b17ce2dd499fd67b7b0e33676d480ab6b9a51ea7a7812cebe512aa3cb0"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-12T12-06-39-466Z_01a09583-3669-7adc-a788-0f4a49e76ed2.jsonl": {
+      "bytes": 771642,
+      "group": "senpiTranscripts",
+      "lines": 299,
+      "sha256": "cce35285cfbc573a650d20215e16ebd1f92f33d3468bd3e1225560df9a89e115"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-12T13-07-50-289Z_01a095bb-3991-7251-9ff6-67413a70dae9.jsonl": {
+      "bytes": 427224,
+      "group": "senpiTranscripts",
+      "lines": 131,
+      "sha256": "592bd42f528a570a63ddf92237d3510510972beedda504cd00a778fbcaf04260"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-14T17-10-57-392Z_01a0a0e6-8670-71e3-85b0-1d3ce4b43d7e.jsonl": {
+      "bytes": 676340,
+      "group": "senpiTranscripts",
+      "lines": 173,
+      "sha256": "8e551db23c71ff825cf2180c05201a7443d82ff3f12f0b67ed05165bbfcc6dd3"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-ai-native-sdlc-sdlc-skill--/2026-09-14T17-30-55-696Z_01a0a0f8-cf50-7f24-85f4-9d9478c565d3.jsonl": {
+      "bytes": 727731,
+      "group": "senpiTranscripts",
+      "lines": 376,
+      "sha256": "610a8c1a2ea6adbe60614f3b72a5bd36130ccaadd60852bf35ba680f3b1001fd"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--Users-yjack-orca-workspaces-study-develop--/2026-09-08T12-02-56-005Z_01a080e6-5d85-7538-8f6f-2dee8c733152.jsonl": {
+      "bytes": 120898,
+      "group": "senpiTranscripts",
+      "lines": 79,
+      "sha256": "c3f54be8c281b819f5f1a9619a94fc75e6b5d23e26796ae4de2e267404d656e0"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-health--/2026-09-23T19-01-31-298Z_01a0cfa4-fc22-7b42-a67f-4ca5c0e1fc75.jsonl": {
+      "bytes": 7038101,
+      "group": "senpiTranscripts",
+      "lines": 1576,
+      "sha256": "34c829465472fae83635bf9483e94e9dd63ac5094adebb59fdc19617c2ac3d12"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-health--/2026-09-23T22-15-17-135Z_01a0d056-618f-725f-b7cd-2e0dccf338b9.jsonl": {
+      "bytes": 7644,
+      "group": "senpiTranscripts",
+      "lines": 17,
+      "sha256": "121ee37610bcc40d96939383147929d8db89b5894da65bbdd1040b2aa635e0a8"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-health--/2026-09-24T20-16-12-433Z_01a0d50f-b891-7113-bfc4-3e27d2653cad.jsonl": {
+      "bytes": 4514226,
+      "group": "senpiTranscripts",
+      "lines": 1606,
+      "sha256": "80677f33a12c0b9c865cc4d8c784c480e55c7885906d5f15c7b3c8625ffca75c"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-16T11-08-07-474Z_01a0a9e7-0fb2-70fe-9c2c-ce4ccdc72856.jsonl": {
+      "bytes": 880682,
+      "group": "senpiTranscripts",
+      "lines": 255,
+      "sha256": "2eb5ae6d9721ca1ed8936c8c4055672212da35ab68cdff1d0429b3c59104976b"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-16T13-41-05-353Z_01a0aa73-1ac9-7078-a855-071e3fa5e44f.jsonl": {
+      "bytes": 354235,
+      "group": "senpiTranscripts",
+      "lines": 112,
+      "sha256": "e34237b264c023b320f4b7aeedcd79e9617de42501ea2bb801caeeb26a6a62b1"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-16T23-16-15-950Z_01a0ac81-b1ce-7227-9936-cab272112158.jsonl": {
+      "bytes": 1758551,
+      "group": "senpiTranscripts",
+      "lines": 633,
+      "sha256": "a237f15be8481c2cc4dacb958107000ca276ab95c75ba4c9c3d482d46397c8c3"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-17T01-06-58-931Z_01a0ace7-0ef3-706c-b124-c17337916abc.jsonl": {
+      "bytes": 1671795,
+      "group": "senpiTranscripts",
+      "lines": 442,
+      "sha256": "a706b787ae36ebab0aff23065d345505dc3c25e418feff5aec228f875f69f027"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-17T09-41-05-255Z_01a0aebd-bc67-7f8e-be7c-69c14d248543.jsonl": {
+      "bytes": 615943,
+      "group": "senpiTranscripts",
+      "lines": 199,
+      "sha256": "c77e31cfbc2179bf9e7edc1a85b8db037b0d58ec5f221afed3b28486430fc83d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-17T11-47-47-780Z_01a0af31-bdc4-780b-ad17-d09c9a71067a.jsonl": {
+      "bytes": 415337,
+      "group": "senpiTranscripts",
+      "lines": 201,
+      "sha256": "c0276cdcd9d503b917d43e1063a36205e9ae7d50e71edd91abcf6139592327bc"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-17T18-24-23-624Z_01a0b09c-d648-78df-afa2-3edc9d34946f.jsonl": {
+      "bytes": 974754,
+      "group": "senpiTranscripts",
+      "lines": 371,
+      "sha256": "f9d4af0cc2910c9db0c9ba9b5e696c87024cb14d4de2998de28387f717a2bebf"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-18T16-03-57-900Z_01a0b542-a14c-72aa-bd70-e5e7162558f5.jsonl": {
+      "bytes": 423241,
+      "group": "senpiTranscripts",
+      "lines": 121,
+      "sha256": "11475c06af88424ecdc2f2efe490e1d2680856544921fb312ef5a2d8c9369ba3"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-18T18-19-32-743Z_01a0b5be-c207-72c0-bedc-0c41398b7a55.jsonl": {
+      "bytes": 622047,
+      "group": "senpiTranscripts",
+      "lines": 296,
+      "sha256": "45a4fd4c9ab5aa372aa81164b284cff9757645569bc126ddf3914f753952a5f2"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-18T19-18-27-585Z_01a0b5f4-b201-7be6-ba72-4810ba73c2c8.jsonl": {
+      "bytes": 22065,
+      "group": "senpiTranscripts",
+      "lines": 28,
+      "sha256": "8604738d42482bbdf8aa6e884aa9e9e6ee9d085700a68c87d52022db5dbcb42d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-19T11-28-24-511Z_01a0b96c-b5be-76fd-a48c-fb3484441e34.jsonl": {
+      "bytes": 212534,
+      "group": "senpiTranscripts",
+      "lines": 50,
+      "sha256": "66623cb02da3c3a21894b5bae94c80a19a5b0c79da00a074169e942715369e7e"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-19T17-55-39-401Z_01a0bacf-3f09-780d-85d5-d10c4790b612.jsonl": {
+      "bytes": 3560921,
+      "group": "senpiTranscripts",
+      "lines": 718,
+      "sha256": "c7f929c8ce5124e5910796a4962db4500633d6b3e81d0cf9f2a7c0e787b34087"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-20T01-29-33-165Z_01a0bc6e-cced-7826-9919-bf9e57321132.jsonl": {
+      "bytes": 853888,
+      "group": "senpiTranscripts",
+      "lines": 338,
+      "sha256": "560980ccacb7d9530d47ac8451a2940aaa12762ae4e8968baabe8943c1ffe14e"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-22T13-28-22-862Z_01a0c94d-a04e-7361-9e79-abfc41358a11.jsonl": {
+      "bytes": 92725,
+      "group": "senpiTranscripts",
+      "lines": 38,
+      "sha256": "7de1ca08e79aa58c8bfb837b2d6bf4c13c0c3086ec0200c4b6717169c4b43327"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-22T17-18-17-448Z_01a0ca20-1d68-7a1f-b94a-6cf01412bc00.jsonl": {
+      "bytes": 829064,
+      "group": "senpiTranscripts",
+      "lines": 165,
+      "sha256": "718bf8dcc21fb60093ba68e784dbb4d11107eb76a6aacd4525933e1c2fc32156"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-22T18-24-38-789Z_01a0ca5c-dd85-7d98-982c-c83a594dfa1b.jsonl": {
+      "bytes": 756333,
+      "group": "senpiTranscripts",
+      "lines": 247,
+      "sha256": "27d7e3b0a95cb0aed8753d23baa435cf2a6843905bb261caab6b5724f550e7f1"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-22T19-17-57-731Z_01a0ca8d-ad63-7b58-922c-de67b8ca3d4b.jsonl": {
+      "bytes": 3387387,
+      "group": "senpiTranscripts",
+      "lines": 876,
+      "sha256": "0c0f049c542eceac818290ceb25a5d0967049a9f9271bf24574f102170e711d8"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-23T06-29-57-672Z_01a0ccf4-e928-7122-b4ff-200dc30dbdc5.jsonl": {
+      "bytes": 4025,
+      "group": "senpiTranscripts",
+      "lines": 13,
+      "sha256": "aaa29b75f419965c2d218deabf1a8e9509cce187b34385fcc63602eb9e8683f1"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-23T09-34-45-438Z_01a0cd9e-18be-7b85-8c85-6127f3816238.jsonl": {
+      "bytes": 1582175,
+      "group": "senpiTranscripts",
+      "lines": 297,
+      "sha256": "a22335be5076a2f41d4382ab572139a7a34e1e6c9ae5596c16a7eb1e446ea4d6"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-23T11-27-03-154Z_01a0ce04-e7f2-74a4-bc28-c6b2c98fb442.jsonl": {
+      "bytes": 2237845,
+      "group": "senpiTranscripts",
+      "lines": 571,
+      "sha256": "45f467ac694e1b1101ce0217c807d88cb29b6761b455ad90a8487be16c61a95c"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-23T12-48-58-113Z_01a0ce4f-e701-7b15-b040-a9509b9392aa.jsonl": {
+      "bytes": 826785,
+      "group": "senpiTranscripts",
+      "lines": 263,
+      "sha256": "208904919cd710d7aa62e2ce5f759aa359ea11253e8196ee42e1a35065199b1a"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-23T18-28-56-527Z_01a0cf87-284f-7871-b947-86ca570136f8.jsonl": {
+      "bytes": 531191,
+      "group": "senpiTranscripts",
+      "lines": 160,
+      "sha256": "261faa6c0d3d73fe2ddbc815201ddbae0e1d68001e4005baaec562bb3a22e4d7"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-23T18-57-58-432Z_01a0cfa1-bca0-7417-a748-ea70007558ae.jsonl": {
+      "bytes": 2034897,
+      "group": "senpiTranscripts",
+      "lines": 580,
+      "sha256": "ef7b7b90292f6f03345880ea76b6cbc6a710ee7cfa2fe07b136b9975bd510db2"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-24T18-07-24-299Z_01a0d499-cc8b-77e7-90ab-109bc8107652.jsonl": {
+      "bytes": 1214768,
+      "group": "senpiTranscripts",
+      "lines": 310,
+      "sha256": "06163a5dfaadf61185522d9c8a659cbaba007b906974518f889c60fe5444d696"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-24T18-08-52-396Z_01a0d49b-24ac-7060-a6dc-4b5c1d837368.jsonl": {
+      "bytes": 616277,
+      "group": "senpiTranscripts",
+      "lines": 146,
+      "sha256": "dbd49017c98f4ff556bfe86b7160d49a5bcaad8aaff0c4ca93db6668b07be77d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-24T20-15-30-036Z_01a0d50f-12f4-72e7-ab5f-1d1e9aceb7e1.jsonl": {
+      "bytes": 2376940,
+      "group": "senpiTranscripts",
+      "lines": 580,
+      "sha256": "6bfc13f2b36511c9f2916a0bae4f97750a13b5f23e8a703cc351d8a1570fdbc5"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-25T09-38-20-195Z_01a0d7ee-17a3-70c9-886e-bc01b419ea6e.jsonl": {
+      "bytes": 803151,
+      "group": "senpiTranscripts",
+      "lines": 231,
+      "sha256": "e2e62e03004ff19b4ba446da42869fc9b1512848c98d2a81158a359ab27a8152"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-25T11-08-15-673Z_01a0d840-6bb9-79ae-9ff9-3aefe74cda20.jsonl": {
+      "bytes": 1273323,
+      "group": "senpiTranscripts",
+      "lines": 197,
+      "sha256": "4f169ed86bbd593ebe1a7db70132a7143a79cabcd3417fd9ffbe77a742949221"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-25T11-31-59-904Z_01a0d856-2720-7734-a79d-af1c50d58b60.jsonl": {
+      "bytes": 1109349,
+      "group": "senpiTranscripts",
+      "lines": 211,
+      "sha256": "72700915ce18ad2e6d7ecba6c3650a8cfda28b4d05c3eefdc9b8d5970d6c944c"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-25T12-14-56-852Z_01a0d87d-7954-745e-a23f-6a70415096b0.jsonl": {
+      "bytes": 1080631,
+      "group": "senpiTranscripts",
+      "lines": 211,
+      "sha256": "8a1b171c2e73ef3d3c61c68857c5abc4414e82dca4642c86b9617d05da3df5ad"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-25T18-14-38-681Z_01a0d9c6-c959-7a82-99f8-948f67989ee3.jsonl": {
+      "bytes": 2798296,
+      "group": "senpiTranscripts",
+      "lines": 704,
+      "sha256": "929d0bed662c11d4b6f861898b6378310353dd07d6cc3cd1bf2b46cfb1edc015"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-26T19-19-39-300Z_01a0df28-aa24-7cb7-933c-1970c724d3e5.jsonl": {
+      "bytes": 1820268,
+      "group": "senpiTranscripts",
+      "lines": 330,
+      "sha256": "45d5473b2ce33d3dca1c3c1f6ed09c0ce461612c44e29b1698160b909b68f287"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-27T03-10-18-377Z_01a0e0d7-8f09-70a3-b8cf-17dc77ed1b56.jsonl": {
+      "bytes": 2165926,
+      "group": "senpiTranscripts",
+      "lines": 589,
+      "sha256": "11df7829ee870bf27bd6273c9ad8b8202ac61d61d2b74de4937fa97322e5f2ab"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-rollover--/2026-09-27T12-00-49-517Z_01a0e2bd-436d-7c9a-acaf-2d5d1cc7ddf8.jsonl": {
+      "bytes": 4070870,
+      "group": "senpiTranscripts",
+      "lines": 595,
+      "sha256": "972c19a39dd390ac37a116adcdb69eb06014103477ca4ebc85ff9d68b4103f01"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-16T11-08-07-472Z_01a0a9e7-0fb0-77aa-8ae8-8ed8195cb760.jsonl": {
+      "bytes": 293442,
+      "group": "senpiTranscripts",
+      "lines": 80,
+      "sha256": "99607feb9df3fbcdc83da4d19319edc876b7d80909f2f52d9a3a0d5f236c3246"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-16T11-52-25-299Z_01a0aa0f-9dd3-7add-8404-536cbcb93363.jsonl": {
+      "bytes": 505806,
+      "group": "senpiTranscripts",
+      "lines": 178,
+      "sha256": "573a1d83215c758a76982ce0ee2ceede6da1f08d112026bc84a32fcdb6db10ef"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-17T09-57-55-601Z_01a0aecd-2711-7064-b17c-845d1ebc2c8e.jsonl": {
+      "bytes": 228508,
+      "group": "senpiTranscripts",
+      "lines": 113,
+      "sha256": "48620df2285d321d07246c99227e11dda28bfdb6963779a6b0f71b6288c5587d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-19T12-09-38-770Z_01a0b992-76d2-77f9-bfcf-c28f5243513e.jsonl": {
+      "bytes": 1852528,
+      "group": "senpiTranscripts",
+      "lines": 362,
+      "sha256": "e0b675bf2b8c3dbf0ef804d2f6f3c73a93a5bc24233862c9063d4c2848a57825"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-19T13-36-26-727Z_01a0b9e1-ee67-7bf6-8867-6c7ea0b6006b.jsonl": {
+      "bytes": 4777,
+      "group": "senpiTranscripts",
+      "lines": 10,
+      "sha256": "8aeded81d6b2d2be51e271b967b060104c6597fb428fb01841541fff58e9c429"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-19T15-02-55-701Z_01a0ba31-1bd5-7422-be69-a7b54784fa40.jsonl": {
+      "bytes": 13635,
+      "group": "senpiTranscripts",
+      "lines": 15,
+      "sha256": "40b81a938e007e0aea82ce22923848f5c0350ebd248eb0fe3200905b69887058"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-19T17-28-04-871Z_01a0bab6-0007-73fc-bed1-aea7a7a7f3c8.jsonl": {
+      "bytes": 643446,
+      "group": "senpiTranscripts",
+      "lines": 135,
+      "sha256": "dfea7ab80b8537c75368dfe51fbe631657c1535babbf9e2307624b0d05f5bc95"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-19T23-46-50-140Z_01a0bc10-c29c-76c0-a578-d1eb6221f8ac.jsonl": {
+      "bytes": 7781,
+      "group": "senpiTranscripts",
+      "lines": 26,
+      "sha256": "ab4de2202836875f50bc5c45b8d47be0cb52ac3c02122a8d34dfcfb5c249b3c6"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-22T11-52-06-274Z_01a0c8f5-7b82-7c0c-be25-82601c227d94.jsonl": {
+      "bytes": 276291,
+      "group": "senpiTranscripts",
+      "lines": 50,
+      "sha256": "aff86c21d55f8f053b590364170b5f86f7370f5f30dfd913a712854c8afb92b0"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-22T12-19-18-308Z_01a0c90e-62a4-70f8-8721-3ed5f3bdd1dc.jsonl": {
+      "bytes": 457733,
+      "group": "senpiTranscripts",
+      "lines": 119,
+      "sha256": "cc0318301cd2a470ff0f1d64a52a91e648e5d46d0257f6304c4b0e32039a8875"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-22T14-19-26-806Z_01a0c97c-60d6-7ec7-98d4-0db74d014588.jsonl": {
+      "bytes": 742831,
+      "group": "senpiTranscripts",
+      "lines": 272,
+      "sha256": "97f5a143b0da446a0fac3d2ece3fe70ba45601db0c48dee583631ad3e973137f"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-22T17-15-07-992Z_01a0ca1d-3958-785d-8ac2-b22ab5638981.jsonl": {
+      "bytes": 57360,
+      "group": "senpiTranscripts",
+      "lines": 46,
+      "sha256": "25a7bb2c9f9ed9b3c8d5da25d8454f29de7a111a121f692498d26f533756f14a"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-23T06-33-21-670Z_01a0ccf8-0606-72c8-bba2-7df81648a9c6.jsonl": {
+      "bytes": 166064,
+      "group": "senpiTranscripts",
+      "lines": 58,
+      "sha256": "86ee0d71a4951631abdd9083acfa7235c48d5ce6055170e889ac067bff274d74"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-23T18-29-49-016Z_01a0cf87-f558-761d-885a-47230fbd2579.jsonl": {
+      "bytes": 621820,
+      "group": "senpiTranscripts",
+      "lines": 179,
+      "sha256": "60f2bd59a3e3247b0fe2a166800a69179fe2d94bc41f30e78bae4a6f12bea89d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-24T14-33-30-408Z_01a0d3d5-f828-74c4-8983-18d2fa65e884.jsonl": {
+      "bytes": 1663776,
+      "group": "senpiTranscripts",
+      "lines": 374,
+      "sha256": "ab92b7d46175aa2f41edb19330eaf69154d4a670931672c458de1e30dfdf7374"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-24T17-10-34-563Z_01a0d465-c543-74bf-9db4-74c511285cb5.jsonl": {
+      "bytes": 5048718,
+      "group": "senpiTranscripts",
+      "lines": 1130,
+      "sha256": "aacf60c2136add55809bfd73d1ae7fac0456bb3df7ddc34ebb4fc4d243ee8a4e"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-omo-omo-routing--/2026-09-24T17-38-06-068Z_01a0d47e-f874-7716-a43d-fed6e14e4cb7.jsonl": {
+      "bytes": 839829,
+      "group": "senpiTranscripts",
+      "lines": 262,
+      "sha256": "0f9c0b46d74814a1df26f34a97a369f2d995b55a5a544b6f13931988844acb2f"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-01T15-18-56-328Z_01a05d8d-4c48-75d6-87ce-dfa9391269a8.jsonl": {
+      "bytes": 171509,
+      "group": "senpiTranscripts",
+      "lines": 73,
+      "sha256": "fc8f8ed2e6b864204fdf66cf870ca8794517a25eb25cf7dfac1f5330f799a570"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-01T15-56-34-252Z_01a05daf-c04c-7b35-86f8-bf20a77711e7.jsonl": {
+      "bytes": 5927636,
+      "group": "senpiTranscripts",
+      "lines": 1779,
+      "sha256": "42cae359e2a512209e7c636f235c0ad084eaa82b047ddf82a5b20b7c842dd17e"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-04T20-36-18-301Z_01a06e22-eefd-7b89-9a68-20f1650b9922.jsonl": {
+      "bytes": 3662352,
+      "group": "senpiTranscripts",
+      "lines": 1095,
+      "sha256": "58203045d3b3b61352eddcd755a082fd239ab242786a83469ce5394eb5e8165c"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-07T06-58-18-121Z_01a07aa9-1b89-7ef8-97d6-67fb4a437e72.jsonl": {
+      "bytes": 3035299,
+      "group": "senpiTranscripts",
+      "lines": 508,
+      "sha256": "bf5317838e0d63c672fa97348e3371e800d60441bf40665aa7072841512102af"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-07T17-45-48-880Z_01a07cf9-ec50-746c-a881-ebbe090aab2b.jsonl": {
+      "bytes": 15140695,
+      "group": "senpiTranscripts",
+      "lines": 3178,
+      "sha256": "bf1a0ca311c6f4baeda345f61d7000afb9bdd58e087f09b5477d6590f8d65df5"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-08T05-45-39-648Z_01a07f8c-f640-7249-a906-fbf4e45b6c26.jsonl": {
+      "bytes": 330004,
+      "group": "senpiTranscripts",
+      "lines": 57,
+      "sha256": "2d406079c193f4a1377f7d108224f85aca01d8ede9b4dd4d5d6ce9207af8e6c4"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-09T01-00-46-740Z_01a083ae-8114-7899-bff2-ca88d4f75a9d.jsonl": {
+      "bytes": 1375248,
+      "group": "senpiTranscripts",
+      "lines": 612,
+      "sha256": "1f4701aa089c60e47076ca0c0686ac685a12d7ab2ce54f5e9f8118c987a5d126"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-10T16-29-12-089Z_01a08c26-dc18-7b10-bcd8-44fbac45aca2.jsonl": {
+      "bytes": 20584,
+      "group": "senpiTranscripts",
+      "lines": 13,
+      "sha256": "3d41b14b229a4e32cc1b928136c7ded5329c481da58f1b8a260027cb9426f868"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-10T16-46-13-387Z_01a08c36-718b-71f7-8dfb-3b9c358c1aee.jsonl": {
+      "bytes": 13376888,
+      "group": "senpiTranscripts",
+      "lines": 2490,
+      "sha256": "ae6af379e621188a0049e9d2918dbbe56cd8cd63f89bb6146a5c78b944709905"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-11T17-46-35-003Z_01a09194-107b-76a2-82fa-840b18e24334.jsonl": {
+      "bytes": 983367,
+      "group": "senpiTranscripts",
+      "lines": 150,
+      "sha256": "6ddf938cc14c794a1347e2dc6c0110b30675c52acd8c64cf81abe5790f0a8523"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-11T19-38-08-130Z_01a091fa-3182-7a7d-8fcb-72735a4b11c8.jsonl": {
+      "bytes": 1748833,
+      "group": "senpiTranscripts",
+      "lines": 383,
+      "sha256": "3123c7799b126bc2146938ce0cfbe5ee01522f698bbd5e715caae0f2401350a6"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-11T21-44-50-366Z_01a0926e-31be-77e9-bb49-af55b07a6952.jsonl": {
+      "bytes": 2902146,
+      "group": "senpiTranscripts",
+      "lines": 358,
+      "sha256": "494f297354ab982de241834fed9a0170cc978840db3158ff193faad85270412e"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-11T23-33-27-559Z_01a092d1-a386-7081-b4b9-871c57f81082.jsonl": {
+      "bytes": 9197497,
+      "group": "senpiTranscripts",
+      "lines": 1611,
+      "sha256": "9baaf45735050d018126c6a630a6842d127235805e6e41ec8037704eae2e8a7a"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-12T16-34-28-557Z_01a09678-684d-7750-baef-8784162c9b93.jsonl": {
+      "bytes": 3061385,
+      "group": "senpiTranscripts",
+      "lines": 456,
+      "sha256": "4f1b7b39298c1f919a1d35468dddd44453ccf99963064e1c42b1aa3a0116d1f5"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-12T19-18-48-025Z_01a0970e-d9d9-7b8f-bb3a-47972abe39d9.jsonl": {
+      "bytes": 175242,
+      "group": "senpiTranscripts",
+      "lines": 18,
+      "sha256": "605609103a189563f47994dd0674abb873a23ef7893e228c84be885ddea9d332"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-12T19-27-40-351Z_01a09716-f93f-7c11-829f-d94f423bec60.jsonl": {
+      "bytes": 4113832,
+      "group": "senpiTranscripts",
+      "lines": 588,
+      "sha256": "243428022a273be1e260c3c30126c2716e55d9186ea57b952525ea80887a7475"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T17-33-11-353Z_01a09bd4-8539-7df2-a2dc-69b487ffb8bc.jsonl": {
+      "bytes": 2192527,
+      "group": "senpiTranscripts",
+      "lines": 162,
+      "sha256": "120fd95e522205525f36718d5ea616f6442f08d45cfdc5dede2774e2ab582318"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T18-16-30-798Z_01a09bfc-2f4e-756d-aeb8-cfc5466de21d.jsonl": {
+      "bytes": 525858,
+      "group": "senpiTranscripts",
+      "lines": 49,
+      "sha256": "2d643da32409938b96723d503f4923dffca72212a64a83e685b83d0991635e63"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T18-22-52-741Z_01a09c02-0345-742b-b25b-0e157ac2f1f1.jsonl": {
+      "bytes": 343208,
+      "group": "senpiTranscripts",
+      "lines": 46,
+      "sha256": "4700d5916c4f9838cc13dff9c7bfcf4ff437f9995023ee7d4957f27a5c4e71a5"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T18-25-20-654Z_01a09c04-450e-749d-abbf-05262383fc6f.jsonl": {
+      "bytes": 366853,
+      "group": "senpiTranscripts",
+      "lines": 70,
+      "sha256": "0742ca0bf94e34a25aaa60036e524a344e7e593c75a4267339540566f6d4cacd"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T18-28-31-449Z_01a09c07-2e59-7500-a7ce-b2cc65b02da9.jsonl": {
+      "bytes": 1614419,
+      "group": "senpiTranscripts",
+      "lines": 104,
+      "sha256": "534942833cc446c6db4230310f0d35a75a4b6007ff73d4bfaee0204d91a0b0e6"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T19-03-44-689Z_01a09c27-6d31-7b31-a64d-544be2bee8e2.jsonl": {
+      "bytes": 1336218,
+      "group": "senpiTranscripts",
+      "lines": 110,
+      "sha256": "5e8b37a983506e45fd00673ea6d5fd8bf920be2bb66e00eb376631f0c6ea8884"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-13T19-39-09-514Z_01a09c47-d94a-761d-90a0-08cc61c7e8e1.jsonl": {
+      "bytes": 2385360,
+      "group": "senpiTranscripts",
+      "lines": 371,
+      "sha256": "264eb8fefcd1f47a05039735df245282709ac531b5afa3b3a58847e87c390ff8"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-14T03-02-22-203Z_01a09ddd-9efb-70eb-af6d-17288c65ba4b.jsonl": {
+      "bytes": 646970,
+      "group": "senpiTranscripts",
+      "lines": 225,
+      "sha256": "648598d4fd4707fea79633b8981319936bd17f1686b30e2d0265897de060524f"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-14T16-04-53-442Z_01a0a0aa-0a42-7d6d-99a3-414f577509fa.jsonl": {
+      "bytes": 90255,
+      "group": "senpiTranscripts",
+      "lines": 49,
+      "sha256": "12a1bc5fec4a4d1461f421c1295d044fc68faa1500d8dfcd9930a471604a50db"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-14T16-26-01-758Z_01a0a0bd-649e-78cf-99cb-a8efc024ed21.jsonl": {
+      "bytes": 628675,
+      "group": "senpiTranscripts",
+      "lines": 173,
+      "sha256": "6fd824b1bb2bb8e48651ee9f389f25360af18db15b0790bd130986dcf4003bc0"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-14T17-10-50-120Z_01a0a0e6-6a08-7d11-91e6-5ef71a055be2.jsonl": {
+      "bytes": 42139,
+      "group": "senpiTranscripts",
+      "lines": 33,
+      "sha256": "700374f0f400d7c30770bb3aa25b369b4c0aacedc242d689007d5ceb2a48cac3"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-14T17-33-59-692Z_01a0a0fb-9e0c-7f54-b5e9-2fc5da7c1cd6.jsonl": {
+      "bytes": 1238389,
+      "group": "senpiTranscripts",
+      "lines": 506,
+      "sha256": "50d2570af610935ce0e0bbeb4435b98e6af44ba712de0f33ef7d13f2126af9ee"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-14T20-59-27-859Z_01a0a1b7-baf2-78c3-aa58-a4f3d28bc32d.jsonl": {
+      "bytes": 458074,
+      "group": "senpiTranscripts",
+      "lines": 117,
+      "sha256": "bd486a8b5a881777ccb38d11f3547de867bc1f9a50d41d0f85430d6238d03406"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-15T16-26-38-633Z_01a0a5e4-50a9-7a81-bc4e-a9a5e83bb5b5.jsonl": {
+      "bytes": 846037,
+      "group": "senpiTranscripts",
+      "lines": 304,
+      "sha256": "000616e1537a2cd8d349f5af6a527ee6af334deff263f759b594171a2da30a09"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-15T16-39-25-273Z_01a0a5f0-0359-7adb-94e3-dff53e7f71c9.jsonl": {
+      "bytes": 7876,
+      "group": "senpiTranscripts",
+      "lines": 22,
+      "sha256": "0d98031e3a2b7b2ea00d18103d13eefdc498faa244852a8c7e49687bcb33f3f3"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-15T17-55-30-896Z_01a0a635-add0-79b1-bd18-7f2033e25957.jsonl": {
+      "bytes": 927946,
+      "group": "senpiTranscripts",
+      "lines": 448,
+      "sha256": "a6c76cedb1df8cfb9ab473524fbe932ae1bae8ef30d4562784d4e6a54d8a27fb"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-15T23-55-12-512Z_01a0a77e-fd00-74c1-9dcb-9f39d45e593f.jsonl": {
+      "bytes": 1995496,
+      "group": "senpiTranscripts",
+      "lines": 333,
+      "sha256": "4e67766a23781c9e45da64e921b81a6afca3d9f06a012bf76ac34fa277bef3b0"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-16T01-45-10-375Z_01a0a7e3-a9e7-7e67-92ed-2bda28c3cbd9.jsonl": {
+      "bytes": 186993,
+      "group": "senpiTranscripts",
+      "lines": 90,
+      "sha256": "66d158f59af00b7fa4eab6d4a59754c9696a225c5db2770f14770dc1614421b2"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-16T11-00-24-383Z_01a0a9df-febf-7db2-8e67-daff0bb88a9d.jsonl": {
+      "bytes": 1133810,
+      "group": "senpiTranscripts",
+      "lines": 190,
+      "sha256": "10049c931b008b987d02bd19aa8fd3844a19138907b8af148137ee5dc08fe6d7"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-16T12-24-09-514Z_01a0aa2c-ac2a-7ae2-a9e9-020945b2e6b6.jsonl": {
+      "bytes": 890115,
+      "group": "senpiTranscripts",
+      "lines": 225,
+      "sha256": "f91a2a7135be348bfb8bbdb0868c2134a29eb73a40cc85c2e31c320106786c78"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-16T16-35-56-502Z_01a0ab13-2fd6-7b5d-a36f-b1832113d186.jsonl": {
+      "bytes": 973629,
+      "group": "senpiTranscripts",
+      "lines": 295,
+      "sha256": "70e3c979c09a915affb95222f4acfc1ea941f577c1ae2d54600ed7c2cfebf3b4"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-16T17-47-01-548Z_01a0ab54-442c-7069-b96a-ebe71873d722.jsonl": {
+      "bytes": 1371459,
+      "group": "senpiTranscripts",
+      "lines": 280,
+      "sha256": "a4af948fa61c4edd063c3173005ed9d067062adb2380daea017a70d74ec432bf"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-16T18-47-24-262Z_01a0ab8b-8b66-7563-b96e-8583dbe194fb.jsonl": {
+      "bytes": 177658,
+      "group": "senpiTranscripts",
+      "lines": 58,
+      "sha256": "5f001038c51152daac5f735ffccc5cb35cfa41d61a7386793d1f25e9975f7d71"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-17T11-50-55-014Z_01a0af34-9926-79bf-8725-26c791e0fff5.jsonl": {
+      "bytes": 1264782,
+      "group": "senpiTranscripts",
+      "lines": 287,
+      "sha256": "1674c0ac32738081ac177bb832dc8cebdf6bddfc69fbdd0ce6c45fbfd1869295"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-17T18-00-21-499Z_01a0b086-d4fb-7854-8ea2-d48d0d915853.jsonl": {
+      "bytes": 715143,
+      "group": "senpiTranscripts",
+      "lines": 331,
+      "sha256": "616f76bbc68c3af3d538df58abfd19613a82af99e2bc021ace913bc4866c2e7a"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-17T21-43-09-291Z_01a0b152-ceeb-79d3-9f16-bd0e66c741f6.jsonl": {
+      "bytes": 803295,
+      "group": "senpiTranscripts",
+      "lines": 304,
+      "sha256": "6f25ff473c3b2cb2a64abb4365c4d72fd86ecf11d85c9dea151e65b569ea2d4d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-18T00-09-38-885Z_01a0b1d8-ed45-76c1-a984-a393d5b447f7.jsonl": {
+      "bytes": 415752,
+      "group": "senpiTranscripts",
+      "lines": 191,
+      "sha256": "e3caf1f2e8fe6917dd3ae1930e2f313885761d0be4c81966ebb6d4cc78b2f903"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-18T01-01-25-692Z_01a0b208-553c-7ab9-bb7a-f28a0b5af273.jsonl": {
+      "bytes": 1196400,
+      "group": "senpiTranscripts",
+      "lines": 391,
+      "sha256": "886a3a5d0f4ebc345545c6aa2660833a2764130a6b25d722cba24f3c53c5a7de"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-18T12-06-18-628Z_01a0b469-0d04-7524-ac01-4a5bb2300c8a.jsonl": {
+      "bytes": 81513,
+      "group": "senpiTranscripts",
+      "lines": 20,
+      "sha256": "1cb875db5d34f5c652bd8e8bfb7f4f9c83aa6bc580590528f357959adb971e54"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-22T16-20-47-772Z_01a0c9eb-7a1c-71ef-8ace-c069faee4a23.jsonl": {
+      "bytes": 3512,
+      "group": "senpiTranscripts",
+      "lines": 12,
+      "sha256": "8c78c7fb505eeebf873161dee0deb1fb576348cd1fc19c6e855695cc572f62aa"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-22T17-44-24-746Z_01a0ca38-07aa-704c-adb5-e1d5e1908751.jsonl": {
+      "bytes": 1001305,
+      "group": "senpiTranscripts",
+      "lines": 249,
+      "sha256": "9f1cc07fa7d6835bd6adc0caa6d6fb0b1a251418b0618fff412dd2fde1091758"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-22T19-04-47-170Z_01a0ca81-9d42-7905-b519-718d4bb21306.jsonl": {
+      "bytes": 3654554,
+      "group": "senpiTranscripts",
+      "lines": 578,
+      "sha256": "901c072e77ccc5a72628734ff4af159317737618c48f54d14e9db533b7677737"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-23T18-58-42-654Z_01a0cfa2-695e-7168-bb9c-c575ea19ff7e.jsonl": {
+      "bytes": 1849305,
+      "group": "senpiTranscripts",
+      "lines": 532,
+      "sha256": "7896534bee728b189478b534c4f4eeaa9b52e0c394a0dd6fb58b730dd7dde60f"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-24T20-16-57-177Z_01a0d510-6759-7b8a-9c19-cd70d52c75cf.jsonl": {
+      "bytes": 4805580,
+      "group": "senpiTranscripts",
+      "lines": 1604,
+      "sha256": "e6253a016b46a8a039a2f837e38e286b95c8f868ed3b854364e78e7943982e14"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-searchad--/2026-09-27T18-42-02-870Z_01a0e42c-97f5-77c9-9a2d-b0649350f2d4.jsonl": {
+      "bytes": 404160,
+      "group": "senpiTranscripts",
+      "lines": 136,
+      "sha256": "d6279f617c36e55747f8d05d5b592743fb7930cefb3f9b1be360d53d2be52c4f"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study--/2026-09-18T12-00-21-056Z_01a0b463-9840-722b-ac20-65a1cf64c8e0.jsonl": {
+      "bytes": 1244776,
+      "group": "senpiTranscripts",
+      "lines": 128,
+      "sha256": "1dae7fe151c4c0557b16a53dab0182b0e0209ff44551161ca5d9cbc27a9e9552"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study--/2026-09-18T15-24-07-010Z_01a0b51e-25e2-7c12-8ca6-d5556b9cd673.jsonl": {
+      "bytes": 39428,
+      "group": "senpiTranscripts",
+      "lines": 25,
+      "sha256": "2b88fd7e1f40a6441df647bb7852c9e413928ed52716d4e767f3eb29bfae3d0e"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-19T11-40-00-569Z_01a0b977-54b9-7317-a227-adcf241f6f10.jsonl": {
+      "bytes": 63662,
+      "group": "senpiTranscripts",
+      "lines": 34,
+      "sha256": "57b1574c21f374f94e82c816c57fda6ef062938a58b203069c91b557b1cd55d4"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-19T12-09-05-835Z_01a0b991-f62b-7e50-838f-3e4b6edeb2ac.jsonl": {
+      "bytes": 12110,
+      "group": "senpiTranscripts",
+      "lines": 41,
+      "sha256": "1065891aae2a5b02194587492c481ea6cbe0239aadb731b22c499b4635a507a8"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-19T17-58-35-809Z_01a0bad1-f021-7ce4-8d08-5ac437abe562.jsonl": {
+      "bytes": 1079176,
+      "group": "senpiTranscripts",
+      "lines": 164,
+      "sha256": "5fa93983a34b93b7150b1daf3fe00db60121d6e149f4fad40b0716b49b144274"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-19T19-19-54-735Z_01a0bb1c-626f-78df-a663-07f9cfd69cd0.jsonl": {
+      "bytes": 644531,
+      "group": "senpiTranscripts",
+      "lines": 140,
+      "sha256": "4e9c2d0a33fbc756025615042a9a7c2ec0b25a75667245bc6ebcd31514ed884b"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-19T19-47-14-197Z_01a0bb35-6695-73dd-a509-0974268f2f0b.jsonl": {
+      "bytes": 1546531,
+      "group": "senpiTranscripts",
+      "lines": 474,
+      "sha256": "abc56de5667a80cbe251040837b663838734ff7627df0446184f78a0f96a6fea"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-20T01-31-37-922Z_01a0bc70-b442-72f7-acac-446292f8f7d9.jsonl": {
+      "bytes": 751523,
+      "group": "senpiTranscripts",
+      "lines": 301,
+      "sha256": "30523f2b478609d49566d0e5115cb0ba1d7440e7e7e88b1a0ef7a6c8cb231d75"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-20T04-04-34-035Z_01a0bcfc-b873-7057-a8f5-d76b2428f7ea.jsonl": {
+      "bytes": 950478,
+      "group": "senpiTranscripts",
+      "lines": 376,
+      "sha256": "298e8d82b405307cdd11307fdf809b364b90acce8c23e6c132f69324d81ae1bc"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-study-0.46--/2026-09-22T17-28-22-067Z_01a0ca29-5733-7579-ad79-fe4ad411432f.jsonl": {
+      "bytes": 459076,
+      "group": "senpiTranscripts",
+      "lines": 170,
+      "sha256": "f106993fc0217ceb667e8180a1b070fb9635b86ec371bb8103ecb40464e43cfe"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-unstyler--/2026-09-08T11-55-42-598Z_01a080df-c086-758f-8be3-abf70ff63cde.jsonl": {
+      "bytes": 1142295,
+      "group": "senpiTranscripts",
+      "lines": 451,
+      "sha256": "dde662cf990c0102742056b4591840ad0c4209b1be2172bfa4af389b743dc5db"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-unstyler--/2026-09-09T11-49-34-204Z_01a08600-7d7c-77c5-b9d8-4e365a648620.jsonl": {
+      "bytes": 87327,
+      "group": "senpiTranscripts",
+      "lines": 37,
+      "sha256": "7a831b7e14acb3f2a58074a0c4ae360e5f40a027ac8abf4d26c30306e5842a4d"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-vlay-notify--/2026-09-08T09-40-37-876Z_01a08064-1574-7756-be99-c5408f67b8d5.jsonl": {
+      "bytes": 1593600,
+      "group": "senpiTranscripts",
+      "lines": 757,
+      "sha256": "fc531e22b4fa55cc92187e954277d532a55f106c4d0786f21ce4871c7c0d8461"
+    },
+    "C:/Users/yjack/.omo/agent/sessions/--C--dev-yjacket-oci-ops--/2026-09-17T17-24-42-356Z_01a0b066-30f4-7180-8dbe-0e282a65ae66.jsonl": {
+      "bytes": 40474,
+      "group": "senpiTranscripts",
+      "lines": 36,
+      "sha256": "d0960e3424f7f1ea013754f97e952b73d788981946a5f1027ac9027fd3658510"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0955c-4bd4-7c3e-9758-e09a514afc46.jsonl": {
+      "bytes": 7026,
+      "group": "rolloverEventLog",
+      "lines": 31,
+      "sha256": "93278b030d8beade7c02d2b69e620d68a1f063b0942d120255b8164dead50d0c"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09583-3669-7adc-a788-0f4a49e76ed2.jsonl": {
+      "bytes": 2172,
+      "group": "rolloverEventLog",
+      "lines": 10,
+      "sha256": "67903f1da0efde96333c2f28d6728854f2c6054d0f1aff0026d61549f2233fb8"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a095bb-3991-7251-9ff6-67413a70dae9.jsonl": {
+      "bytes": 7432,
+      "group": "rolloverEventLog",
+      "lines": 33,
+      "sha256": "d823b0aedbab0e8d75d0454f8292f961bbe87642efec4349c799549189b225ed"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09716-f93f-7c11-829f-d94f423bec60.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "fbe91460b64a759e435d315659e4f9ddd42ab083bda727f0e9ba8dca03728aa6"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09bd3-9963-79ec-83b0-fdc165b50478.jsonl": {
+      "bytes": 2878,
+      "group": "rolloverEventLog",
+      "lines": 10,
+      "sha256": "1ebd27961032f0e13e20e8c37611ff2db7a0b3badf15c33ac1e52688d7e770df"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09bd4-8539-7df2-a2dc-69b487ffb8bc.jsonl": {
+      "bytes": 14349,
+      "group": "rolloverEventLog",
+      "lines": 74,
+      "sha256": "1b52c4d9ba59719ec5c5851d31493f2972ffb285de8330fdf8e00cf633a9f971"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09bf7-a347-7f49-b6fb-0c1d3fb7a394.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "c7c5ec18191e2cfe897d9c6fa3bd6a4256f5e7670adc8f512024075e962d9872"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09bfc-2f4e-756d-aeb8-cfc5466de21d.jsonl": {
+      "bytes": 3864,
+      "group": "rolloverEventLog",
+      "lines": 20,
+      "sha256": "ca9ecb1e54a46cd71a256e0de84be9aab8a124e29c02cef3310f8363ab864c03"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09c02-0345-742b-b25b-0e157ac2f1f1.jsonl": {
+      "bytes": 4309,
+      "group": "rolloverEventLog",
+      "lines": 22,
+      "sha256": "2f15c45ecfe18f298f693a5e2ad49eb479c4c69fa7b40494dc722c9c670b5a61"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09c04-450e-749d-abbf-05262383fc6f.jsonl": {
+      "bytes": 4916,
+      "group": "rolloverEventLog",
+      "lines": 25,
+      "sha256": "84dc99078dd336f8aabff725c4333dcb317641c63b656a70f3cfd3a51d4b91c6"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09c07-2e59-7500-a7ce-b2cc65b02da9.jsonl": {
+      "bytes": 11663,
+      "group": "rolloverEventLog",
+      "lines": 61,
+      "sha256": "627482f0c432550c5e7f2181f9ca9a4da199b9933d96cbac31fd73688a1f2e50"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09c27-6d31-7b31-a64d-544be2bee8e2.jsonl": {
+      "bytes": 9153,
+      "group": "rolloverEventLog",
+      "lines": 45,
+      "sha256": "5cc665d96ce113dd44cbb2b7c375fc21defa7309342dea73f27bb880c994dcc2"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09c47-d94a-761d-90a0-08cc61c7e8e1.jsonl": {
+      "bytes": 38701,
+      "group": "rolloverEventLog",
+      "lines": 192,
+      "sha256": "c965beece67568dbfe1af2c4ccd9473b767e8616e7f8d5a9dae7221ee84b4019"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09ddd-9efb-70eb-af6d-17288c65ba4b.jsonl": {
+      "bytes": 20355,
+      "group": "rolloverEventLog",
+      "lines": 105,
+      "sha256": "d6acd588bc01b0e0f151002741640981daccd913106f73d71655a75c0e67c34c"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a09de5-c6e4-75df-9c9f-1474b33ca5d1.jsonl": {
+      "bytes": 1534,
+      "group": "rolloverEventLog",
+      "lines": 9,
+      "sha256": "0415638f459ffa727dfb05ee87cf028b5f1aac5ebe966f9a1673e44af819c113"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0aa-0a42-7d6d-99a3-414f577509fa.jsonl": {
+      "bytes": 2949,
+      "group": "rolloverEventLog",
+      "lines": 15,
+      "sha256": "9f37e05989dc760ca0a7a867c4302babbfb01aab51828ef668a070ced8ecf5ee"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0bd-649e-78cf-99cb-a8efc024ed21.jsonl": {
+      "bytes": 16046,
+      "group": "rolloverEventLog",
+      "lines": 83,
+      "sha256": "33cac671d860845bd129c2bebeffea0086dc8eb96626fd0458ee5041f7d1f38a"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0df-7c7b-773f-88a5-59bcd2ff1dc8.jsonl": {
+      "bytes": 1086,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "051e1a556e8b6d828ed7b39379e9810c51fc1a3c67ccbb150ed1d88ddbb3f0b1"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0e0-9510-7c0a-8cfc-2e1043670074.jsonl": {
+      "bytes": 891,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "bc69ce89eb34dd25ad6d675cc2c10f7910cf46a7150d12ba6be3c193157c52c5"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0e1-61e3-720f-8875-65ec60fdcca0.jsonl": {
+      "bytes": 1086,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "03151c84bb70a5cd03dffa968d6afecb2fa5af72581adbe23a5f719e93da591f"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0e6-6a08-7d11-91e6-5ef71a055be2.jsonl": {
+      "bytes": 4711,
+      "group": "rolloverEventLog",
+      "lines": 28,
+      "sha256": "19003b039b516749077f8ef0c773d58c6d8c9ad8e9c0b3ca98ab4aecef01fbd2"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0e6-8670-71e3-85b0-1d3ce4b43d7e.jsonl": {
+      "bytes": 17831,
+      "group": "rolloverEventLog",
+      "lines": 70,
+      "sha256": "67466d7a8f096987e7c21395c1dcb3402064821779839b6f6d15024822e1a562"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0f8-cf50-7f24-85f4-9d9478c565d3.jsonl": {
+      "bytes": 42073,
+      "group": "rolloverEventLog",
+      "lines": 167,
+      "sha256": "abe73799be4a945a8d5c4451ee3c212186c887c52e3901a95204815d8323def9"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a0fb-9e0c-7f54-b5e9-2fc5da7c1cd6.jsonl": {
+      "bytes": 65870,
+      "group": "rolloverEventLog",
+      "lines": 345,
+      "sha256": "b3f60bf4063635ed2c83b11affe5ecfaeb0572fcfabfad34ccc910d01187fd51"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a123-ab9f-7d72-ac5a-a8a781b7f6d0.jsonl": {
+      "bytes": 4242,
+      "group": "rolloverEventLog",
+      "lines": 25,
+      "sha256": "b8eb951d0bdcddeb004b544e8231aa969c7cdda290461dd7c0de9a78ab9dabfd"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a14f-60ef-74d7-9855-be62d0bf9d6c.jsonl": {
+      "bytes": 1640,
+      "group": "rolloverEventLog",
+      "lines": 8,
+      "sha256": "aff77fbcfe8dc35082d1bcd24b2603294dfa6126abe5969edf4f5c8836fbab31"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a156-7fda-7e9f-9855-4d996155243b.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "08323ab9a8fd021f2b689dc2e9938ea90e865fbbb849ee9d962d2992f5aefc19"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a157-b27d-7fee-b7a1-2bf1db8628c4.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "6b906f6a1e28f375825e0c1b11fda73230d743371d6d36e76fe441b710325bf2"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a159-46d1-7504-b52a-aa0e8045b30e.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "8284c71f59a3336ce88420f0305f46f0a91e9e16a9d52aa6b2ebd6418a5d3b95"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a15b-7fa6-7b5f-8216-dec02d7557a8.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "589445c9af8b1fc36ec5d90ddf72a414a5797a32ff0eebba11de89519f2f82f1"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a15f-8628-7467-b137-30882ad45462.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "0caf3eb54855251f3306f75a9f5c82e2e6d9672512fd48f2da9442562e8181dd"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a16f-4c23-7b7b-8c53-c241656a3cbd.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "fe1d0e55678dc860840e5180249de4df6d2793092092492b0fbdfac2cbbefc21"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a17a-6e18-73b1-8996-6770a48d9435.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "b94756b1337eeabaff425820959fbef54c3870b288ab93497e32a7965171f342"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a189-a532-73a5-971d-a049788a9c01.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "6728efe62fabb79a4879804bb57d89e17fb06a37549f11aee72b80dd696b29de"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a19f-fd19-79a9-bdb2-6f18e69b2477.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "0e098f79c23e8532e9857c91d64e264f3776f20ca2c89ab86c1536cde483ca57"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a1b7-baf2-78c3-aa58-a4f3d28bc32d.jsonl": {
+      "bytes": 9679,
+      "group": "rolloverEventLog",
+      "lines": 48,
+      "sha256": "f5c859004528d40b1628365f9bb847963f7634b8db2d0dcead3c7e9e433ca154"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a22b-8979-7944-987c-7057b491f630.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "2f9e0a688657857512dc62d6124d8c98b252faf20017172c392576119659939a"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a5e4-50a9-7a81-bc4e-a9a5e83bb5b5.jsonl": {
+      "bytes": 29595,
+      "group": "rolloverEventLog",
+      "lines": 153,
+      "sha256": "c296dd7ba3972e4c99eab535db9281b354fff666ffcbf955d61c662cde1a3324"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a5f0-0359-7adb-94e3-dff53e7f71c9.jsonl": {
+      "bytes": 1082,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "10b99845eefb5161908c391549e52a33dab2f6fa3b85492e9bcafebf2b2dae25"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a635-add0-79b1-bd18-7f2033e25957.jsonl": {
+      "bytes": 38627,
+      "group": "rolloverEventLog",
+      "lines": 196,
+      "sha256": "0e9db0acc4f8c94149e28e0892b4d53352e3cb0f885a48c16eb78ef7f96b081e"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a77e-fd00-74c1-9dcb-9f39d45e593f.jsonl": {
+      "bytes": 37688,
+      "group": "rolloverEventLog",
+      "lines": 184,
+      "sha256": "37aeaef1af4aae332bc8f0e533e76ccb1cc5ad3b47e2d710b57c92b9fbc9a091"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a785-d669-7ddb-8724-2c19aa9c3471.jsonl": {
+      "bytes": 2310,
+      "group": "rolloverEventLog",
+      "lines": 11,
+      "sha256": "13700753f1226078a38ebec971c5f7319de5ba8afad35078ffc57061a3a0f56c"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a7db-eff6-7f47-b68e-96e932efd634.jsonl": {
+      "bytes": 1086,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "d899e325d576c784461ced057a637a7af7b37e77810a923e4aaa964834c1e4ed"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a7dd-4e14-7920-a69b-bd7c9e6d7732.jsonl": {
+      "bytes": 133,
+      "group": "rolloverEventLog",
+      "lines": 1,
+      "sha256": "e7ea6bc063f81b7742666b0725d880d2af773c1553cab4b1fbd6c3cc13dd0707"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a7e3-a9e7-7e67-92ed-2bda28c3cbd9.jsonl": {
+      "bytes": 8883,
+      "group": "rolloverEventLog",
+      "lines": 43,
+      "sha256": "9c764f76ca1b2f157b914a2210e95508cb15faa41e1703982f35f33e03e29b81"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a809-bb3f-7151-b9ad-05999fd74aa5.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "88802f4bee3f1941d6cb4a48bac740886a0c59e47d954bb3ad3b1b8f4f20ca51"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a9df-febf-7db2-8e67-daff0bb88a9d.jsonl": {
+      "bytes": 14573,
+      "group": "rolloverEventLog",
+      "lines": 73,
+      "sha256": "0a88301c6e5821106d06bafed3008ac908905d424e22d813bc4f5dac87be20f6"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a9e7-0fb0-77aa-8ae8-8ed8195cb760.jsonl": {
+      "bytes": 6686,
+      "group": "rolloverEventLog",
+      "lines": 34,
+      "sha256": "01b72630783bc04433b22ef6f32743d8b497cae7b510791fa9b1c7dd18bf1263"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0a9e7-0fb2-70fe-9c2c-ce4ccdc72856.jsonl": {
+      "bytes": 21782,
+      "group": "rolloverEventLog",
+      "lines": 107,
+      "sha256": "4d8b722f8c1bf645f8fd457f515a4fea750e6e08b405abdab89d92ea025661c4"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aa0f-9dd3-7add-8404-536cbcb93363.jsonl": {
+      "bytes": 15296,
+      "group": "rolloverEventLog",
+      "lines": 77,
+      "sha256": "6de9e454983c1af863d9159529b2487fc1e7cc8356baa31cf5f5abbc8152238b"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aa2c-ac2a-7ae2-a9e9-020945b2e6b6.jsonl": {
+      "bytes": 21660,
+      "group": "rolloverEventLog",
+      "lines": 109,
+      "sha256": "3358c2f3cd55aa2d2fa17d4b84ad91e50ea5b66e75ea7f482aa27d514e021bf1"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aa49-9578-7b0c-b557-977291680bea.jsonl": {
+      "bytes": 1010,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "ecca691440dec2ace8e6a6b935f41f3d1579a656a8cfa43ebfa3711260dd9e5c"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aa73-1ac9-7078-a855-071e3fa5e44f.jsonl": {
+      "bytes": 11624,
+      "group": "rolloverEventLog",
+      "lines": 55,
+      "sha256": "fa812810333da20a373e07fb31cb829b818748a3a7d740060b46c400ee72cb55"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aaf1-4de9-734a-a8d9-cdfe2eb4bce7.jsonl": {
+      "bytes": 2038,
+      "group": "rolloverEventLog",
+      "lines": 8,
+      "sha256": "a5905f33a1c1b77c50b3256dd5242af790832b238b60d926839ad5fbb2dba186"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab01-afe2-7171-b905-6b0c43b8e630.jsonl": {
+      "bytes": 1086,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "9a93f957f87da1736f8caef9efae07294e3b3917a9846b142680e8a397dc64e3"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab01-ca8d-7617-9f48-f453fb1ef07e.jsonl": {
+      "bytes": 906,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "2eceb9c108646839d80ae7e41e230ecc385d0288f42ab3e9abecc48a55e9bfa4"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab01-da30-7ad9-9c99-4223bb5f3592.jsonl": {
+      "bytes": 901,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "d651496409e8520bfa2cd8176a4063dd2dde674303e8f21ae6804628da50bac0"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab01-ea2d-7c4a-8c3c-753dbd838af1.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "9d9572f89a3cdf0d7ea7862fb25de909fc3b6278db6cc539b36c2dc86af079e6"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab05-4ba1-7554-9ce2-df8c6ee683b5.jsonl": {
+      "bytes": 906,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "dbc1b9428a6cc61db90730437fe2825917abe0d5db6b8425d9cf6c46cdc4df8d"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab05-5bbc-7f90-82fa-7fa200752248.jsonl": {
+      "bytes": 901,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "718836b2e09eb7562f0ebf8b7d71d134deab19e959aa9c9b2294d6249f23cfec"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab05-66f6-7b14-93be-38c001d615d1.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "5708a2eafc2895423bd159a8f808b4db2ad97d5a5c34199026b7b785047d8693"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab13-2fd6-7b5d-a36f-b1832113d186.jsonl": {
+      "bytes": 26993,
+      "group": "rolloverEventLog",
+      "lines": 139,
+      "sha256": "edf8be9b2b0cd9428ea03aac888ea90cd9abd307dcd2601f8aaaa5d8275c59a0"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab54-442c-7069-b96a-ebe71873d722.jsonl": {
+      "bytes": 32054,
+      "group": "rolloverEventLog",
+      "lines": 163,
+      "sha256": "dd6ad1bda165fadc058f7c663a10bf440e8440b01f217f9a173a0267a4aff8fc"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab8b-8b66-7563-b96e-8583dbe194fb.jsonl": {
+      "bytes": 5353,
+      "group": "rolloverEventLog",
+      "lines": 26,
+      "sha256": "cc1a658de1921a7528cdcf109ac9f18646b69bb53c150449e8fd5664572ae6c9"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ab9c-be48-7963-9623-824dc0dab7a9.jsonl": {
+      "bytes": 1209,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "dda6ce114bb517eea7c9a1c64886f2105e51623722c701b235af9180d7878a00"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ac81-b1ce-7227-9936-cab272112158.jsonl": {
+      "bytes": 70701,
+      "group": "rolloverEventLog",
+      "lines": 326,
+      "sha256": "fc781fb85f7b479233ccdaba858e236ffda20d9550f3de5b4dd61d0283452b73"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ace7-0ef3-706c-b124-c17337916abc.jsonl": {
+      "bytes": 49387,
+      "group": "rolloverEventLog",
+      "lines": 226,
+      "sha256": "e1c42a27fbb8b721ca3be4b7660f6af1d9b1d26e1cfef00101123b437f303ac7"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0acf1-110b-7156-86ff-cd207e725941.jsonl": {
+      "bytes": 3727,
+      "group": "rolloverEventLog",
+      "lines": 17,
+      "sha256": "aa9d4a15cde27e4b9b576e6e149b8f71f2fa34cf29f359e3de102f898be8b586"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ad11-8ea1-7808-8b21-3215c3fd838f.jsonl": {
+      "bytes": 1271,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "9e91042066e0a61d86327047cd450ec1e74cc2cd9b99bf743626b8fb1aa1de1a"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ad1d-aa6f-7cff-b997-3bbc459f3858.jsonl": {
+      "bytes": 1271,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "41e5ff7b92cf5dc2b41270454f60698c5f84009a375aad9baa64ae06a5d54b87"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aebd-bc67-7f8e-be7c-69c14d248543.jsonl": {
+      "bytes": 16943,
+      "group": "rolloverEventLog",
+      "lines": 81,
+      "sha256": "931675bb9069ad988dd76cbecadd43fc60e47ddbcd5daa2dbfc6d96bd718c3b0"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aeca-6c57-7382-91da-27faf8094979.jsonl": {
+      "bytes": 128,
+      "group": "rolloverEventLog",
+      "lines": 1,
+      "sha256": "93eec57a5cfef98679b2f250f5bba2de8cfad3432423b27062386cd99ffae998"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0aecd-2711-7064-b17c-845d1ebc2c8e.jsonl": {
+      "bytes": 7076,
+      "group": "rolloverEventLog",
+      "lines": 34,
+      "sha256": "86b551a08a18d09877c009f9ad345730d4f90e36ad5557bd74d03fbf3df877ad"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0af05-0ce5-7660-a880-0880ac22a8eb.jsonl": {
+      "bytes": 861,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "b61c8a33ae95fbe307bc43d6eaff02f8c3a09f8b5c5293af83fc054591d0a892"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0af31-bdc4-780b-ad17-d09c9a71067a.jsonl": {
+      "bytes": 18796,
+      "group": "rolloverEventLog",
+      "lines": 91,
+      "sha256": "0f40ea7cc647000fb2a87f41dde0394a7c08f800608ec342de151b3c6612eb74"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0af34-9926-79bf-8725-26c791e0fff5.jsonl": {
+      "bytes": 33514,
+      "group": "rolloverEventLog",
+      "lines": 181,
+      "sha256": "77128a025c850260920379fa85b8a186239b0f8435f7bdd618502f57186a44de"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b066-30f4-7180-8dbe-0e282a65ae66.jsonl": {
+      "bytes": 3223,
+      "group": "rolloverEventLog",
+      "lines": 16,
+      "sha256": "c8cabfedecf20a0bf3781d02b50a04efa23dba9dd437df110fb9f53296fd4be8"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b086-d4fb-7854-8ea2-d48d0d915853.jsonl": {
+      "bytes": 27149,
+      "group": "rolloverEventLog",
+      "lines": 136,
+      "sha256": "3264e2a0bd59e7783ca88a9770027662c010e689b9166408c7f9a67b20496eda"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b09c-d648-78df-afa2-3edc9d34946f.jsonl": {
+      "bytes": 37547,
+      "group": "rolloverEventLog",
+      "lines": 184,
+      "sha256": "38279e60850ee9c42ec85a548a6e70d38367bc4f81f98aab08db476f7559443e"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b152-ceeb-79d3-9f16-bd0e66c741f6.jsonl": {
+      "bytes": 29815,
+      "group": "rolloverEventLog",
+      "lines": 151,
+      "sha256": "39e7fb0d3c5c8931f1ecd154e0627dc148579cf389637cdff8bc56186c7391a8"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b1d8-ed45-76c1-a984-a393d5b447f7.jsonl": {
+      "bytes": 19673,
+      "group": "rolloverEventLog",
+      "lines": 101,
+      "sha256": "df548522e7e063469edb9a56c79c473069cd6347a48db9ff4adcf3497bb00989"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b208-553c-7ab9-bb7a-f28a0b5af273.jsonl": {
+      "bytes": 37203,
+      "group": "rolloverEventLog",
+      "lines": 189,
+      "sha256": "8280e013b1974abd57e8ec99f4e78426be40836d9c5c2be9f18bf21b48e1dc8f"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b463-9840-722b-ac20-65a1cf64c8e0.jsonl": {
+      "bytes": 14386,
+      "group": "rolloverEventLog",
+      "lines": 77,
+      "sha256": "0ef2d6d9dd2811ec2555f83e5aaee0b72845ee590071c45e9aa9dc519486f91d"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b469-0d04-7524-ac01-4a5bb2300c8a.jsonl": {
+      "bytes": 1972,
+      "group": "rolloverEventLog",
+      "lines": 10,
+      "sha256": "145648ad323e0571611ccbdb68cf53bc5a39b8c6593a306b0bc2bad0b594ad59"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b51e-25e2-7c12-8ca6-d5556b9cd673.jsonl": {
+      "bytes": 2469,
+      "group": "rolloverEventLog",
+      "lines": 13,
+      "sha256": "0d6156144489bd9f1aa4be85e0050c9d736104122b73a75d5c2e66793c384677"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b542-a14c-72aa-bd70-e5e7162558f5.jsonl": {
+      "bytes": 7454,
+      "group": "rolloverEventLog",
+      "lines": 35,
+      "sha256": "ca2b9920ca3767e17437c9d14a1774711700cc9b5e8f6b385aaefa09e2a28e1a"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b5be-c207-72c0-bedc-0c41398b7a55.jsonl": {
+      "bytes": 29885,
+      "group": "rolloverEventLog",
+      "lines": 142,
+      "sha256": "28817ce9d8d72fb896718d84c1ac6182aa16d588ba7937e655a4b9a178f2bb83"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b5eb-57cc-7cda-8f99-cc63164c9167.jsonl": {
+      "bytes": 1662,
+      "group": "rolloverEventLog",
+      "lines": 8,
+      "sha256": "0497ef8c9b291233c7138787150a3f1215e123b4c07777b90ef3537deba33ada"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b5f4-b201-7be6-ba72-4810ba73c2c8.jsonl": {
+      "bytes": 2905,
+      "group": "rolloverEventLog",
+      "lines": 14,
+      "sha256": "b58b048da43f40885e82a67a5419893982cc3213d2ab3127e16d39940e4d4dcc"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b96c-b5be-76fd-a48c-fb3484441e34.jsonl": {
+      "bytes": 5300,
+      "group": "rolloverEventLog",
+      "lines": 27,
+      "sha256": "d618914fffcf5189652b9329f2a85706d453df772e9d602ff541eefeb7dc61b8"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b977-54b9-7317-a227-adcf241f6f10.jsonl": {
+      "bytes": 3148,
+      "group": "rolloverEventLog",
+      "lines": 18,
+      "sha256": "7813e25a8d49f4b985571a1d0c9f0cef7d1239e5161699c01f98120c023fe968"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b98d-f2bc-7f23-924a-867a02b1209a.jsonl": {
+      "bytes": 901,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "e489c786fd806b6131907c6fa46afdd03b945ca6d9436a658fe13751f692ac23"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b98e-3265-7650-a346-9b10f336ffc8.jsonl": {
+      "bytes": 906,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "20cd0ef2a21f619b97d8dc11feb6620a4f8cc2693ecf27adbba856ad555c1b83"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b98e-df98-7c96-bd84-dbf830bd6a37.jsonl": {
+      "bytes": 174,
+      "group": "rolloverEventLog",
+      "lines": 1,
+      "sha256": "4bf525a89c525fc8d4ad85d179319a44c2069ae2dfe0f10cdb476336e77dc3c2"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b991-f62b-7e50-838f-3e4b6edeb2ac.jsonl": {
+      "bytes": 10790,
+      "group": "rolloverEventLog",
+      "lines": 64,
+      "sha256": "d9101ce1ea7261e07371a944f59562bfa9811b21b3006e20851cf3895ef6d372"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b992-76d2-77f9-bfcf-c28f5243513e.jsonl": {
+      "bytes": 54194,
+      "group": "rolloverEventLog",
+      "lines": 274,
+      "sha256": "66ca1a5744d618dfa9789d17996259ced22f1dee3f797ac5f43de06e00c291fc"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0b9e1-ee67-7bf6-8867-6c7ea0b6006b.jsonl": {
+      "bytes": 1450,
+      "group": "rolloverEventLog",
+      "lines": 8,
+      "sha256": "cc3ec3a943fd33462d34fdd990832161aceb8a26a0832b951ffc70fa50605967"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ba31-1bd5-7422-be69-a7b54784fa40.jsonl": {
+      "bytes": 4240,
+      "group": "rolloverEventLog",
+      "lines": 21,
+      "sha256": "937896975701ab7aa5188e97b86f0c47400daea226d9ce3d0e316dd75914c6b0"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ba57-036d-7ff7-8e62-bc4af5a76277.jsonl": {
+      "bytes": 1075,
+      "group": "rolloverEventLog",
+      "lines": 6,
+      "sha256": "cbebdfe87738e453222879d05b8e37602ff4043f838c51024c84c227b2cc157b"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ba57-236e-719b-b59c-0af9feb92170.jsonl": {
+      "bytes": 901,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "91bbb0b054f821ad0f0b3fe18f22e0f97d7229f8fd83d5c56a31f9f73f1a4e8f"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bab3-8450-79e4-aad0-c68bded9bc6d.jsonl": {
+      "bytes": 901,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "d5830532ea96a1c6cc3cf0646e94d0eeaf3d86851c8209fb4ee9a3d7bbeed254"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bab6-0007-73fc-bed1-aea7a7a7f3c8.jsonl": {
+      "bytes": 19449,
+      "group": "rolloverEventLog",
+      "lines": 99,
+      "sha256": "475cb472ce8d7c3f123d521b67ad67f97b2f7b1a51f434a6fbcc9ccb5c696747"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bacf-3f09-780d-85d5-d10c4790b612.jsonl": {
+      "bytes": 103573,
+      "group": "rolloverEventLog",
+      "lines": 504,
+      "sha256": "13e0c120062d870522f7ea6cef8becf69763e4f59c1448ec7dfdf45c5f022308"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bad1-f021-7ce4-8d08-5ac437abe562.jsonl": {
+      "bytes": 19674,
+      "group": "rolloverEventLog",
+      "lines": 98,
+      "sha256": "03f5ca1d314499f0f84a8764e630d7a55bc35f1a24db62de1133bba6b2fc80bf"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bb1c-626f-78df-a663-07f9cfd69cd0.jsonl": {
+      "bytes": 16620,
+      "group": "rolloverEventLog",
+      "lines": 84,
+      "sha256": "087dbe66ec0ba618358968f8ba4151d0a001843d44b35c85538ab1f14b958eae"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bb35-6695-73dd-a509-0974268f2f0b.jsonl": {
+      "bytes": 63783,
+      "group": "rolloverEventLog",
+      "lines": 323,
+      "sha256": "b77fbf0e648cd53d1ea2379cf26e6a0a37893c6bffec77e45328ee663fcede39"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bc10-c29c-76c0-a578-d1eb6221f8ac.jsonl": {
+      "bytes": 2828,
+      "group": "rolloverEventLog",
+      "lines": 16,
+      "sha256": "f51866b096d1e262248cc03c833e92eca8ee4b8d088627a9f32769a30757caff"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bc6e-cced-7826-9919-bf9e57321132.jsonl": {
+      "bytes": 33841,
+      "group": "rolloverEventLog",
+      "lines": 162,
+      "sha256": "59dddef88f74e41003ddf24526ba4dddb81d7f9fd23d472611530b89722eefa1"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bc70-b442-72f7-acac-446292f8f7d9.jsonl": {
+      "bytes": 27291,
+      "group": "rolloverEventLog",
+      "lines": 138,
+      "sha256": "dd4e68b3d22295186b3ed01a18e1b4e3be4f8b1087ae6a6dd412fbad72d784ed"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0bcfc-b873-7057-a8f5-d76b2428f7ea.jsonl": {
+      "bytes": 37603,
+      "group": "rolloverEventLog",
+      "lines": 189,
+      "sha256": "3f6ac153f0a51629b56a2aa2c606402a7eeaccc14a3b757998743a8a08c9048a"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c8f5-7b82-7c0c-be25-82601c227d94.jsonl": {
+      "bytes": 4442,
+      "group": "rolloverEventLog",
+      "lines": 22,
+      "sha256": "41a539dc8c424bfb58485058a0211f273c2eb77891d51e02246cf433ef318c1e"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c90c-d99e-7d1a-8a1c-4430d72468c3.jsonl": {
+      "bytes": 901,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "5662197e2a1709e3fd232799659d1b8f0e0ff92df0189c1ce7ae0b37bb0373b9"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c90e-62a4-70f8-8721-3ed5f3bdd1dc.jsonl": {
+      "bytes": 12421,
+      "group": "rolloverEventLog",
+      "lines": 62,
+      "sha256": "b7bbbfb8bb7a8242d9fdc67fa31c2376296b36289801143879fb1d63137e6d46"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c94d-a04e-7361-9e79-abfc41358a11.jsonl": {
+      "bytes": 4553,
+      "group": "rolloverEventLog",
+      "lines": 24,
+      "sha256": "accd7d1d4dd816db65d19a069dd3f8e9fb5b9d04394f27382850064aea9da7f1"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c97c-60d6-7ec7-98d4-0db74d014588.jsonl": {
+      "bytes": 27080,
+      "group": "rolloverEventLog",
+      "lines": 129,
+      "sha256": "d8d66de75a9116f880c47c4d5bb5d45e4e2704cc0abf6a02eb12876994ff813e"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c9e2-abd1-7dac-8565-32c78549a70d.jsonl": {
+      "bytes": 871,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "775e7702184445a2608a1976dba61f512527f850782d4162d5c7a554d6a0c8d6"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0c9eb-7a1c-71ef-8ace-c069faee4a23.jsonl": {
+      "bytes": 1386,
+      "group": "rolloverEventLog",
+      "lines": 8,
+      "sha256": "c12f47951b7804c3125688d221cac73c58e36b97dfaa085ae727b27ce3679895"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca1d-3958-785d-8ac2-b22ab5638981.jsonl": {
+      "bytes": 4508,
+      "group": "rolloverEventLog",
+      "lines": 22,
+      "sha256": "d1c5ce613e10e89f23c504498c9eb2c0d4d39679d7be496601fb12582a06bc2e"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca20-1d68-7a1f-b94a-6cf01412bc00.jsonl": {
+      "bytes": 19096,
+      "group": "rolloverEventLog",
+      "lines": 97,
+      "sha256": "505487d2ff0672eeaa5cba4a657ac135ea17e11569fefd2b415529a46ee26a4e"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca29-5733-7579-ad79-fe4ad411432f.jsonl": {
+      "bytes": 9315,
+      "group": "rolloverEventLog",
+      "lines": 46,
+      "sha256": "6b077b9f3090fb03faae319fb05df361eb84d03d0828afc5e77c0f50236e09ac"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca38-07aa-704c-adb5-e1d5e1908751.jsonl": {
+      "bytes": 21745,
+      "group": "rolloverEventLog",
+      "lines": 105,
+      "sha256": "5ee3e9591aaacf853a70a8abb8b43bdf1740a3653220a6963114805310057239"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca5c-dd85-7d98-982c-c83a594dfa1b.jsonl": {
+      "bytes": 26884,
+      "group": "rolloverEventLog",
+      "lines": 129,
+      "sha256": "a71c93700729af131cf4ece7c3728e5e4e64a6f62aa697cc7fa1139ec3617553"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca81-9d42-7905-b519-718d4bb21306.jsonl": {
+      "bytes": 4155,
+      "group": "rolloverEventLog",
+      "lines": 21,
+      "sha256": "2c22822a2bba4cf8d10959c0c3eaddc4d52a866a078af0cc850e4094955d2f25"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ca8d-ad63-7b58-922c-de67b8ca3d4b.jsonl": {
+      "bytes": 5140,
+      "group": "rolloverEventLog",
+      "lines": 25,
+      "sha256": "1404bdd1e7e4fb3e61b5709f6771cd2d0affed0bdf2b371a548d28dfa0942d03"
+    },
+    "C:/Users/yjack/.omo/rollover/sessions/01a0ccf1-78a9-7b20-9c21-e55a87002eca.jsonl": {
+      "bytes": 906,
+      "group": "rolloverEventLog",
+      "lines": 5,
+      "sha256": "5e30d2ef834f57fa6a4ef4aee415e92aac3fd33cbb856b3b3e0556fcc000e994"
+    },
+    "C:/Users/yjack/.omo/rollover/summary.jsonl": {
+      "bytes": 52619,
+      "group": "rolloverEventLog",
+      "lines": 170,
+      "sha256": "bbc7d338f15a95296b4ae90635332475d483f5bdd704c7a5b5f2ceef5086a0ac"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/analysis.json": {
+      "bytes": 26841,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "93d09cc871d32b7c7b333db5bc103582122b85f1f3951742a80c385600f61975"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/cli/policy-effect_shadow_candidate_policy_1.json": {
+      "bytes": 7442,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "a8b3c9459b1f3748b870b8fa139667388e1e383e0cef61f5a74588dc82aa99dd"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/cli/restore-decomposition_park_path_101.json": {
+      "bytes": 8961,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "a956ff6249b32166fb718edeef639eb8a5ea7b10618f65e72af956b7a9bf6ebc"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/cli/restore-decomposition_park_path_2.json": {
+      "bytes": 9767,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "cba68a59ddc89df5ac7fe7a22bad8480c1f01a491001e0aab893f1be12be510e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/events.jsonl": {
+      "bytes": 48203,
+      "group": "firstRun",
+      "lines": 62,
+      "sha256": "0ba89423479b803f737132621b3691f6a66226af3f431baf8a404d7f7fa39e84"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/label.txt": {
+      "bytes": 30,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "4fd72074b9bfb3565bccf66913660780fa490bebd8e445e6f0e99d7ef7145ac2"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/proxy.jsonl": {
+      "bytes": 40396,
+      "group": "firstRun",
+      "lines": 44,
+      "sha256": "aeaa79ec23df70f5a0eef3c4498d2ed7e8dec639973dd89d1cdd07ed0f7b8035"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/requests.jsonl": {
+      "bytes": 77748,
+      "group": "firstRun",
+      "lines": 22,
+      "sha256": "05ea9e7aca8203bece685c8c277a6bf936bbbff61ef1a4ab1782e941f37a8886"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/run.json": {
+      "bytes": 1033,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "3a56cfd6cd12374071efd9f2a71035e0cba38b5b603a4081fedda3c87a2c9104"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/live/20260925-161302/summary.json": {
+      "bytes": 1729,
+      "group": "firstRun",
+      "lines": null,
+      "sha256": "c8545d564c12b481abe2bb0f1d361f2f106f768a291ee1b9939c640b08bd41ec"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_17.json": {
+      "bytes": 2489,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "d384c422870fdd4da06a537f225f88e3a0f0ddd0a8b5c0d0557facfb97cf5064"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_18.json": {
+      "bytes": 2602,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "77d856b7debf04c0d01c50ef0608c4cb4d66b1f373e1094fa338361ce106ce9a"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_19.json": {
+      "bytes": 2668,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "203cbc57ab0df2fc66446efe7ef53b2038b14a84526487123a3e33d5561f5984"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_20.json": {
+      "bytes": 2626,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "0906b54febc23a8fe6b77622d6ecdc0f0fc04dc5f23fd6244a96c847ce66c2ef"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_21.json": {
+      "bytes": 2624,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "296c6f9f850cd90464c7b9da2767c1a62a868f589a56cbc6a46b01239434d86a"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_22.json": {
+      "bytes": 2712,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "56027a8121df191d76f6816421f43df4b08c9c75a3c5612da286666b41af2662"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_23.json": {
+      "bytes": 2632,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "ee6d178b8fb8c7070aa0e332df99208f5d6ed251465cc357c6da67031df50053"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_24.json": {
+      "bytes": 2636,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "499e1f32694cb208305df31406c69d0591191e9a59f3fb651f660995e0a34220"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_25.json": {
+      "bytes": 2664,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "b916d221066b95ff3b4ceb66a4f6d95a1dc5450e4a68b33074942611a90bde2e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_44.json": {
+      "bytes": 2481,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "79b811e7bbd7260b971e469dc8289286f75b9ddb3ab7832c3c0b587e2a1c478e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_45.json": {
+      "bytes": 2425,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "5846ab2598cd7f9a2904ff4973079d91fc7e6c9422a6cc0c907281c9429b217d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_46.json": {
+      "bytes": 2425,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "f11db5fe53fda2b4d2196b7a78fee033d728992ed452f6326120a57d30ac5003"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_47.json": {
+      "bytes": 2423,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "46574c174f6b33fec8056806b50806490d5eaaac0976d244277a44a8ec5df69e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_48.json": {
+      "bytes": 2423,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "6883aa71ed17e5ee7e069fd64092391a3ee92afc9f53fc7fee14f2d682ca44d3"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_49.json": {
+      "bytes": 2405,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "03342031cfa5a5aa9c8b99beaaaaf42d512226b636d780090c222d03312e6c9a"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_50.json": {
+      "bytes": 2425,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "bd5f64092d790d52e0d3c687f9b79a247bb41e777a4a941e0240d286309a4671"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_51.json": {
+      "bytes": 2425,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "2b0fc582becf1cf503c96e94c7ba4a874eeb26b869af08114600da1db26cac5c"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_52.json": {
+      "bytes": 2425,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "4874f37bedcbddb4fa3c21498bbc31b8bd96c8f48ac4876b8216105cc6a06ace"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_71.json": {
+      "bytes": 2483,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "a1dc2fb158f7b1d5dd268bedb72c6b6600ae827cdc5704900c3d2fb4c1b1bcce"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_72.json": {
+      "bytes": 2608,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "9f5c30897316f00f02f84811ea18e8836f63f11db3c0fa984026985969ea0289"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_73.json": {
+      "bytes": 2600,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "27f9d61c8ef12c0da958b262458abfa4937aa42b327f6500c2647878f3c60800"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_74.json": {
+      "bytes": 2756,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "6176e864c2e1b335ef2e3119c56d887eace74e155d829f1e2c8a4558c999b0f4"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_75.json": {
+      "bytes": 2564,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "72874f42a62fb9d469152e52eb2e62dd3f5167ca71e813c891d03f44dc829334"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_76.json": {
+      "bytes": 2668,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "0c7d076925e59a2528e7f51badb6f71ed66f13345eaa5bf4f77d18e8a143ebc5"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_77.json": {
+      "bytes": 2684,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "538cc970db36f00c3b996c6b555227ffa0464280fd1633e1d859fce24ee69968"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_78.json": {
+      "bytes": 2742,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "fa0939a3f79d5363f65636113c9a5b3d1036c5fbfc9afde97d0dbd17827056b1"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_current_policy_79.json": {
+      "bytes": 2686,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "342884ad4c394e5462737cb4ffbb07d2219a9cecbd011284ba4d8702ed102c10"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_1.json": {
+      "bytes": 7240,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "bbcf32fb012d53d74e8998f2a7070deacf1a863f40b117553efc31b547b364f8"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_10.json": {
+      "bytes": 2742,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "bab66a2c68d27070a62d3d1aa6cfbc2308b59c62f3be8278269d58e2c305f262"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_11.json": {
+      "bytes": 2740,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "1aa59ca1c01e8fdfb631713f1dc4efd3ffedba90be5fb0e7e1f0b7d7c3a1722a"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_12.json": {
+      "bytes": 2794,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "63d23f0fca60e510d352ebb8da89a36de1de68ed135d73984c339d2fd9f32fec"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_2.json": {
+      "bytes": 4215,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "48f48bc36445b1f12aa3e62e7d35d702eaf8da748b44acaae4ee93764055bd0d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_28.json": {
+      "bytes": 7117,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "b84566eef7cc7a6c8340441c6d36dfd22f770593fcdcaf877b788ee5e6d9291f"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_29.json": {
+      "bytes": 4446,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "bf7bb9357be85a34bd71fe4e1295710e808d90d6d803c1b5e27a46b52dbfacde"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_3.json": {
+      "bytes": 3618,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "6babd5003ab73d22d585c870f0ddd62fc9198289dd19c2ac144c321cc675dfd7"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_30.json": {
+      "bytes": 3869,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "234eabe7ae27023496bc49e981587be80a14c6bebfbbdc5d8729bc3a0674b009"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_31.json": {
+      "bytes": 2463,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "4716133c5fe81a02c439661304b04e4fcc57711280e7376388f342b89fa2ecb1"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_32.json": {
+      "bytes": 2883,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "5471204a9f8d1c309beddb9b95c484a6c4bd8a4609356a840e2d31abd00b2694"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_33.json": {
+      "bytes": 2862,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "fb1653d62d4df775a30a223bbeb8deaf1cf60526a2c41b4ac2acbdafa9306a5d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_34.json": {
+      "bytes": 2934,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "eff60120147e92abfef37f365c759ec4fcf3520e2e298d7d7cc8fe45b40959e4"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_35.json": {
+      "bytes": 2877,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "3f6d4030124cbda6b95a5d65da1a9c8eebe9743f7c222d128aa50f84d244d072"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_36.json": {
+      "bytes": 2780,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "3018ec92fea88ec08bc46e5f8a29958eb7fc70f61b41c325b19daafb639ab440"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_37.json": {
+      "bytes": 2756,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "940a0fca779116c08af154617b588f881d1e5f55fef7ea72f0bae8eb82c363de"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_38.json": {
+      "bytes": 2700,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "1cfc0c923def7f9dc240d571c184d8c16fdb2c282f4879dd63e7039929a61076"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_39.json": {
+      "bytes": 2830,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "c10fd356d829ebf0594fa0dd9c35c4b60553f2be9b0810bb5457d9219a372f37"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_4.json": {
+      "bytes": 2470,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "1b8c44925be557ddd587e5ce5a481d225f57e67f2b09124405f3d87cf1958fc4"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_5.json": {
+      "bytes": 2643,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "849733ab15122b5f1d319056b13ee275d0822fa1b9616356c52f694ea9b3e83d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_55.json": {
+      "bytes": 6931,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "3eb67e131bb531aaab078d8ad46ed8891169086e2f0ec62bfc5c33e8f04b9e1e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_56.json": {
+      "bytes": 4754,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "d0ce338ee3cb6b1b7b87d699b5c7ea730e6a497bad698a9f41647cbbdfee2d02"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_57.json": {
+      "bytes": 4009,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "077e28e1e5b0ba6040306a077c012e21d06cac88b52d5e0206e328e42e7b4976"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_58.json": {
+      "bytes": 2467,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "435ff0665fa10dc16c879f583ed0229a46dbbcc27944c4025a6d4c968bcabadc"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_59.json": {
+      "bytes": 2804,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "82f15b0d4ebe0b0832f8a7ac4718c4bbceab616b31ea2f1599d2bcd96af301ac"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_6.json": {
+      "bytes": 2722,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "e988a0294aad841b48436837d4ebf7208533fe14d507453d7941ed1da5c7da37"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_60.json": {
+      "bytes": 2835,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "2378b7ca2466a6617042280101e25dbf557f7c10ec41d11c11447904bfc34bbc"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_61.json": {
+      "bytes": 3127,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "78840162f32d5bbad5367c247773806a90bfca28d22705289785fe980a7f044d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_62.json": {
+      "bytes": 3023,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "16a6b9c5daa51effdc90221bcb9540a08c2142aeca0a781bbfa61480f0d66e81"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_63.json": {
+      "bytes": 3321,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "5e75e04fbb644e6782e26c88444bb525afcde549ebf0741b099fb3beb67d3d85"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_64.json": {
+      "bytes": 3321,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "71d66901e773807ee02eae5a17974e43daecf38ea180ad5b3fc50ce9f32db95b"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_65.json": {
+      "bytes": 3371,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "9a936b8285f65460e9f82fa6d7ca33aede9ae82300c088bc1181b957f19d575d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_66.json": {
+      "bytes": 3305,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "7e80146e9661db985e237acd9e79ea6390066126c86bc23c62870a9acc548242"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_7.json": {
+      "bytes": 2702,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "c2cbd40753c03aca71acd71649e9f0b326316ad7aec6c5f1145cf3733f0dae1e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_8.json": {
+      "bytes": 2702,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "c8cfff1b463a64960ca195ce9daad3fb1befa2e14edae807f3e1db9c3582ead5"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/policy-effect_shadow_candidate_policy_9.json": {
+      "bytes": 2855,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "5a7b39c391ecd61db490371acf4296606c76f68afbb5a203d909df9876bf2a26"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_10.json": {
+      "bytes": 3013,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "05ffddf47ff591c8f2e9a045f9e6e20687edda0a4829bea94458626872a126ba"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_101.json": {
+      "bytes": 6906,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "9dc4972b0d5309d13d8ae2b135156e4a6c72ecdb4cbee1055b6afa213aa79618"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_102.json": {
+      "bytes": 4825,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "2f3af6efe6089281abb4f59826e26318aa1e4692072376fb210df92bc297d466"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_103.json": {
+      "bytes": 4295,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "092017a386c555af18c11e19bb7d849258b8df2c4cf29d07b4bc057cbf60e5eb"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_104.json": {
+      "bytes": 2488,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "c99dc8e06c0c936288d569c588a51a81baf215be396e1f5f90870bb65e138754"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_105.json": {
+      "bytes": 2613,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "d2ce75948e21c9bc6208b0947a44e2b316f454002cef408abd30fc20ece23987"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_106.json": {
+      "bytes": 2578,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "9c177a6388b6cc091101909c395e13621b3c7019b779900dfac5a2ec5dc11753"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_107.json": {
+      "bytes": 2613,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "2c9aaebf9e431cdafd7bc070141f578dd3fb9cf376ebb09db584734f427a28ee"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_108.json": {
+      "bytes": 2675,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "27edf2b7412d5e9d98532a0f0ca04ea1f6893116016a53ee4e81f0de109d0033"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_109.json": {
+      "bytes": 2520,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "e296b005dd59ef9a84343ce9c38bb82be172138272bfa64fc11e36246958e917"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_11.json": {
+      "bytes": 3065,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "f258ae6e2d8fd56eb4b7f9c757b1910dcb19de2158e45d4e6583de6e8b331255"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_110.json": {
+      "bytes": 2591,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "ebc5b34fbd1be3efd140e4f987eb2b82cb78ca6fbb36bfde86f44f7f6ee4d34e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_2.json": {
+      "bytes": 7307,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "6482d6c9c3935c2f446c711588e730101ff55f87901605ea080bea2551d52c2c"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_3.json": {
+      "bytes": 4253,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "1fea41f65e8e9642edecff733312b07aff8685e31329c16ed90c00312ac1afd0"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_4.json": {
+      "bytes": 4178,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "51b53bb24a97dab27f501e167cd15d357a3f2061d806a740309ad8a48ec3a6e5"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_5.json": {
+      "bytes": 2466,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "58809ece755da24d822d25cd5b04f66f13f9699003f7248d49beebfd89997941"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_6.json": {
+      "bytes": 3146,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "b30879770eddfc11b9955f4e7fc6c23506906aa13ee261dd82fb321832f4827f"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_7.json": {
+      "bytes": 3099,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "e9d10b8564d4e6520deae566d2657c07a0485bfd6fcffb82782ae6e2db6fb854"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_8.json": {
+      "bytes": 3252,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "532f12c00728dd45b11b822740acaf6252c040fc0061dcdc2334c13281c40d44"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_park_path_9.json": {
+      "bytes": 3200,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "a4054ae13b1012258e468167afa241cd8efeef5bedc6234efa2733ee8ba6fc20"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_111.json": {
+      "bytes": 2501,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "b1d90b30f54965f053dca16c86c5c782b1fac59b8383c6a3b3623437e309dc8c"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_112.json": {
+      "bytes": 2597,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "d1df33bb28e3eac13628a8282e0a81657f6c4e021d6fad0c688b08260c21242f"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_113.json": {
+      "bytes": 2560,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "9519d56f1033ea2c7ff9f08ab027d14c98eda0eeb7aa5b5966dd4f12b37a1413"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_114.json": {
+      "bytes": 2576,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "f66254591e097427f59e614102762d199eb3ac41ea2652a5e44a065b7b6a005d"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_115.json": {
+      "bytes": 2646,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "a498731c99d0eed143bbd455c1087b8fa941a8a1a2c43787df90fb5fdbee4267"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_116.json": {
+      "bytes": 2495,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "87f0871fbd32e928e4a14d923f21d7a546ccbee8d499d6b827ec58791b31dc18"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_117.json": {
+      "bytes": 2541,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "812679b3355a9a28aaeee10ac47d6ffd90ec0b6d7ccce417ef973953d95f998f"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_12.json": {
+      "bytes": 2480,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "709de638217079a815ca482d0f085fb387ef57bb906c92e52ae5b734ad5a9938"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_13.json": {
+      "bytes": 2424,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "93c3a3436dedf166b6481e0d9bf9bb4575875baab84ca44d53bcbd18bd6cfd09"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_14.json": {
+      "bytes": 2426,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "a178f4b18b2ffd2a46b421800e8effb30b5dde0dd50aa1c04677f5596db19c7f"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_15.json": {
+      "bytes": 2430,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "149e6b9709eb2fe8f14b003b26b9e033f4a768ff131461b3302d5cbd397192d9"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_16.json": {
+      "bytes": 2435,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "e97296cf4ce2273091f7922c13fac390e2fcff87a6cdd30f6ec1eaa99f5f1b69"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_17.json": {
+      "bytes": 2435,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "0321c5dd1b00542fce8109fc3495cb4076d59ef33f1c07117f0131ef7fee40ca"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/cli/restore-decomposition_raw_path_18.json": {
+      "bytes": 2435,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "3486ac90943e8a433f81c615b04192f149b7984760a61b6d99cea6e706ffe25a"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/ctx/P-1196026084.txt": {
+      "bytes": 204479,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "1a9f5b04de1474363a2b97592b4308a1e175177836892960c07f83b599e9adbf"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/ctx/P-1208553661.txt": {
+      "bytes": 204455,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "5ae58590c891ed52ef00379cd0742d4ef09c909a5243b384cc3a4a7678facb2f"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/ctx/P-1941042524.txt": {
+      "bytes": 204430,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "06235db13eb6b84de8a0efbfac66d8daac2ea67b9935fd9a7d5fa58837711f91"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/ctx/P-301903378.txt": {
+      "bytes": 204456,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "556e2ea9bebfe853e05210fb1511f4bb0569fa307c80e75452d6ad5f0d137b4e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/ctx/P-677450089.txt": {
+      "bytes": 204444,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "7e48d690d4581e6fc2fca785ea8a11f950805de6bad6fd9538093fbf3bc34bf4"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/events.jsonl": {
+      "bytes": 425584,
+      "group": "rerun",
+      "lines": 514,
+      "sha256": "7e6d17dad7b5f847d8b70799c3cb864b09bae50bff0327842730ee449808fb8e"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/label.txt": {
+      "bytes": 18,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "aa3254b65af790a580eb815dccbb649ec006a3f328d69139434d5358007c5a02"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/proxy.jsonl": {
+      "bytes": 456144,
+      "group": "rerun",
+      "lines": 496,
+      "sha256": "a99f49efd0ab35af32389d3dbf7239f402ac25ff898d6a0e8e2fd0692e3e04cf"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/requests.jsonl": {
+      "bytes": 903310,
+      "group": "rerun",
+      "lines": 248,
+      "sha256": "df39a125431893862db4b3036816d938fe5c08387caac84e36e384adc51868df"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/run.json": {
+      "bytes": 1474,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "2e53b4919a44c2ec4463beb735dce87b3e2b709f701246a92cffdaa7a5d9b528"
+    },
+    "C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/rerun/20260927-052028/summary.json": {
+      "bytes": 2678,
+      "group": "rerun",
+      "lines": null,
+      "sha256": "5ce20936382bd6a35f965bc60d4c1d38a4dfa397759d0328d5f0b9aadff2c2a9"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/REPORT.md": {
+      "bytes": 5765,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "d1427d723f170455fdfc10f3f8b6ad46553e59883cf4e998974d09549b0f30d5"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/analyze.py": {
+      "bytes": 1102,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "5e49e5ca6533bdfd65351a80dcac8e42e4457a016c7ee4306ccdab8411b6cabd"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/claude-help.txt": {
+      "bytes": 21401,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "ae85d661e9c086f05637ebcd868f5702b477ff6e55e2e65b8ada7807cd51a4b6"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/label.txt": {
+      "bytes": 0,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/last-session.claude-fable-5-1.txt": {
+      "bytes": 36,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "3dc4d4c14a317db4edb73a8483bca9c06fb4a4fc87c71aa96c66e91c825295f4"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/last-session.claude-opus-5.txt": {
+      "bytes": 36,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "03b71d2ed400407c090386af4cc71fb09eddb47efc9c9cac2a65abc633f735e0"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/proxy.mjs": {
+      "bytes": 4277,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "d57bf78b81fae5810b8cbeffc38af29800532461aa8c02375f8243a478f90826"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/raw.jsonl": {
+      "bytes": 458295,
+      "group": "quota0919",
+      "lines": 603,
+      "sha256": "39fc7eb7356614d4d568d70347e88b5ddc5bfd062c0fc318bc43df3e83d57467"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/run.mjs": {
+      "bytes": 8507,
+      "group": "quota0919",
+      "lines": null,
+      "sha256": "bebb3c73f66f942adbb4851e1396f2f9d7a361c84614b373ca020329ead55576"
+    },
+    "C:/dev/omo/omo-rollover/quota-test/2026-09-19/trials.jsonl": {
+      "bytes": 311281,
+      "group": "quota0919",
+      "lines": 304,
+      "sha256": "ed52eb71e2ec3b8ef4bf3b5f307dd20641b90e5b69a4969d8bb39eb247c32e75"
+    }
+  },
+  "v": "idle-existing-data-analysis/inputs/1"
+}

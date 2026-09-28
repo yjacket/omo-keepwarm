@@ -1,0 +1,20 @@
+opus        C= 30K Λ= 0K  park_now= 25.90  breakeven_warm= 37.20  expire_now= 28.35  n̂=16
+opus        C= 30K Λ=20K  park_now= 45.90  breakeven_warm= 29.70  expire_now= 28.35  n̂=18
+opus        C= 50K Λ= 0K  park_now= 27.00  breakeven_warm= 40.50  expire_now= 47.25  n̂=10
+opus        C= 50K Λ=20K  park_now= 47.00  breakeven_warm= 62.50  expire_now= 47.25  n̂=18
+opus        C=100K Λ= 0K  park_now= 29.75  breakeven_warm= 51.50  expire_now= 94.50  n̂=6
+opus        C=100K Λ=20K  park_now= 49.75  breakeven_warm= 73.50  expire_now= 94.50  n̂=10
+opus        C=150K Λ= 0K  park_now= 32.50  breakeven_warm= 57.00  expire_now=141.75  n̂=4
+opus        C=150K Λ=20K  park_now= 52.50  breakeven_warm= 81.75  expire_now=141.75  n̂=7
+opus        C=190K Λ= 0K  park_now= 34.70  breakeven_warm= 70.20  expire_now=179.55  n̂=4
+opus        C=190K Λ=20K  park_now= 54.70  breakeven_warm= 91.10  expire_now=179.55  n̂=6
+fable(2.5)  C= 30K Λ= 0K  park_now= 19.96  breakeven_warm= 29.28  expire_now= 29.34  n̂=31
+fable(2.5)  C= 30K Λ=20K  park_now= 39.96  breakeven_warm= 29.70  expire_now= 29.34  n̂=45
+fable(2.5)  C= 50K Λ= 0K  park_now= 20.40  breakeven_warm= 30.60  expire_now= 48.90  n̂=19
+fable(2.5)  C= 50K Λ=20K  park_now= 40.40  breakeven_warm= 50.40  expire_now= 48.90  n̂=37
+fable(2.5)  C=100K Λ= 0K  park_now= 21.50  breakeven_warm= 33.90  expire_now= 97.80  n̂=10
+fable(2.5)  C=100K Λ=20K  park_now= 41.50  breakeven_warm= 53.70  expire_now= 97.80  n̂=19
+fable(2.5)  C=150K Λ= 0K  park_now= 22.60  breakeven_warm= 37.20  expire_now=146.70  n̂=7
+fable(2.5)  C=150K Λ=20K  park_now= 42.60  breakeven_warm= 57.00  expire_now=146.70  n̂=13
+fable(2.5)  C=190K Λ= 0K  park_now= 23.48  breakeven_warm= 40.94  expire_now=185.82  n̂=6
+fable(2.5)  C=190K Λ=20K  park_now= 43.48  breakeven_warm= 61.84  expire_now=185.82  n̂=11

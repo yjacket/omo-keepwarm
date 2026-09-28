@@ -1,0 +1,1002 @@
+{
+  "firstRun": {
+    "calls": 22,
+    "models": {
+      "lag0": {
+        "jointAllWindows": {
+          "feasibleCells": 0
+        },
+        "region": {
+          "cells": 0
+        },
+        "windowCalls": 22
+      },
+      "lag1": {
+        "jointAllWindows": {
+          "feasibleCells": 1128
+        },
+        "region": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            80500,
+            89500
+          ],
+          "cells": 1128,
+          "impliedTicksPerOutputToken": [
+            0.000019366,
+            0.00011684
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            null,
+            null
+          ],
+          "w": [
+            1.559,
+            10.457
+          ]
+        },
+        "windowCalls": 22
+      },
+      "lag2": {
+        "jointAllWindows": {
+          "feasibleCells": 0
+        },
+        "region": {
+          "cells": 0
+        },
+        "windowCalls": 22
+      }
+    },
+    "windows": 1
+  },
+  "grids": {
+    "Rprior": [
+      5390000,
+      5470000,
+      5550000
+    ],
+    "Rwide": [
+      1000000,
+      50000000,
+      "geometric 60"
+    ],
+    "T": [
+      60000,
+      200000,
+      500
+    ],
+    "w": [
+      0,
+      0.05,
+      12,
+      "geometric 240 + zero"
+    ]
+  },
+  "measuredT": {
+    "hi": 133519.75,
+    "lo": 119246.66
+  },
+  "model": "floor(phase + sum of visible linear charges); phase solved exactly per window",
+  "reading": [
+    "A feasible region is a set of (R, T, w) the readings cannot rule out under that visibility model; it is not a measurement.",
+    "No region here is promoted to a coefficient: several models fit the same prefixes."
+  ],
+  "rerun": {
+    "bigWriteOwnHeaderUnchanged": {
+      "count": 5,
+      "pairs": [
+        {
+          "gapToNextS": 20.5,
+          "nextHeaderDelta": 1,
+          "nextStep": "restore-decomposition/shared/1",
+          "ownHeaderDelta": 0,
+          "step": "restore-decomposition/shared/0",
+          "write1hPlusInput": 146498
+        },
+        {
+          "gapToNextS": 20.5,
+          "nextHeaderDelta": 1,
+          "nextStep": "policy-effect/shadow_candidate_policy/1",
+          "ownHeaderDelta": 0,
+          "step": "policy-effect/shared/0",
+          "write1hPlusInput": 146492
+        },
+        {
+          "gapToNextS": 20.5,
+          "nextHeaderDelta": 1,
+          "nextStep": "policy-effect/shadow_candidate_policy/28",
+          "ownHeaderDelta": 0,
+          "step": "policy-effect/shared/27",
+          "write1hPlusInput": 146380
+        },
+        {
+          "gapToNextS": 20.5,
+          "nextHeaderDelta": 1,
+          "nextStep": "policy-effect/shadow_candidate_policy/55",
+          "ownHeaderDelta": 0,
+          "step": "policy-effect/shared/54",
+          "write1hPlusInput": 146417
+        },
+        {
+          "gapToNextS": 20.5,
+          "nextHeaderDelta": 2,
+          "nextStep": "restore-decomposition/park_path/101",
+          "ownHeaderDelta": 0,
+          "step": "restore-decomposition/shared/100",
+          "write1hPlusInput": 146408
+        }
+      ],
+      "rule": "write >= 133519.75 tokens (>= 1 tick at the measured T upper end) and own header unchanged"
+    },
+    "calls": 248,
+    "experimentSegmentsPriorR": {
+      "fable-write-tick#1": {
+        "calls": 66,
+        "first": "fable-write-tick/fable-write-1h/0",
+        "lag0": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            122500,
+            133000
+          ],
+          "cells": 8694,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.000096386
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.000096386
+          ],
+          "maxFeasiblePrefix": 66,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag1": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            122500,
+            133000
+          ],
+          "cells": 8694,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.000096386
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.000096386
+          ],
+          "maxFeasiblePrefix": 66,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag2": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            122500,
+            133000
+          ],
+          "cells": 8694,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.000096386
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.000096386
+          ],
+          "maxFeasiblePrefix": 66,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "last": "preflight/settle/1"
+      },
+      "output-quota#1": {
+        "calls": 42,
+        "first": "output-quota/out-8k/0",
+        "lag0": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60000,
+            200000
+          ],
+          "cells": 1539,
+          "impliedTicksPerOutputToken": [
+            0.000033332,
+            0.000034829
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0.000033397,
+            0.000034763
+          ],
+          "maxFeasiblePrefix": 42,
+          "w": [
+            2.006,
+            6.921
+          ]
+        },
+        "lag1": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60000,
+            200000
+          ],
+          "cells": 1820,
+          "impliedTicksPerOutputToken": [
+            0.000032313,
+            0.00003399
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0.000032374,
+            0.000033935
+          ],
+          "maxFeasiblePrefix": 42,
+          "w": [
+            1.961,
+            6.764
+          ]
+        },
+        "lag2": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60000,
+            200000
+          ],
+          "cells": 1304,
+          "impliedTicksPerOutputToken": [
+            0.000031295,
+            0.00003248
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0.000031313,
+            0.000032414
+          ],
+          "maxFeasiblePrefix": 42,
+          "w": [
+            1.916,
+            6.461
+          ]
+        },
+        "last": "preflight/settle/2"
+      },
+      "policy-effect#1": {
+        "calls": 82,
+        "first": "policy-effect/shared/0",
+        "lag0": {
+          "cells": 0,
+          "maxFeasiblePrefix": 27
+        },
+        "lag1": {
+          "cells": 0,
+          "maxFeasiblePrefix": 44
+        },
+        "lag2": {
+          "cells": 0,
+          "maxFeasiblePrefix": 1
+        },
+        "last": "preflight/settle/3"
+      },
+      "preflight#1": {
+        "calls": 3,
+        "first": "preflight/baseline-w2/0",
+        "lag0": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60000,
+            200000
+          ],
+          "cells": 203163,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.0002
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 3,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag1": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60000,
+            200000
+          ],
+          "cells": 203163,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.0002
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 3,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag2": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60000,
+            200000
+          ],
+          "cells": 203163,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.0002
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 3,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "last": "preflight/baseline-w2/2"
+      },
+      "restore-decomposition#1": {
+        "calls": 21,
+        "first": "restore-decomposition/shared/0",
+        "lag0": {
+          "cells": 0,
+          "maxFeasiblePrefix": 8
+        },
+        "lag1": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            82000,
+            200000
+          ],
+          "cells": 137890,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.00012632
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 21,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag2": {
+          "cells": 0,
+          "maxFeasiblePrefix": 1
+        },
+        "last": "preflight/settle/0"
+      },
+      "restore-decomposition#2": {
+        "calls": 20,
+        "first": "restore-decomposition/shared/100",
+        "lag0": {
+          "cells": 0,
+          "maxFeasiblePrefix": 1
+        },
+        "lag1": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            60500,
+            146000
+          ],
+          "cells": 120871,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.00016667
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 20,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag2": {
+          "cells": 0,
+          "maxFeasiblePrefix": 1
+        },
+        "last": "preflight/settle/4"
+      },
+      "ttl-1h-unique-prefix#1": {
+        "calls": 11,
+        "first": "ttl-1h-unique-prefix/treatment/0",
+        "lag0": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            91500,
+            122500
+          ],
+          "cells": 44828,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.00013115
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 11,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag1": {
+          "R": [
+            5390000,
+            5550000
+          ],
+          "T": [
+            101500,
+            152000
+          ],
+          "cells": 73746,
+          "impliedTicksPerOutputToken": [
+            0,
+            0.00011823
+          ],
+          "impliedTicksPerOutputTokenAtMeasuredT": [
+            0,
+            0.00010084
+          ],
+          "maxFeasiblePrefix": 11,
+          "w": [
+            0,
+            12
+          ]
+        },
+        "lag2": {
+          "cells": 0,
+          "maxFeasiblePrefix": 1
+        },
+        "last": "preflight/settle/5"
+      }
+    },
+    "freshWindowCalls": 245,
+    "interCallGapSeconds": {
+      "max": 2997.7,
+      "median": 3.5,
+      "min": 0.5
+    },
+    "lag1BreakContext": [
+      {
+        "gapBeforeS": null,
+        "headerTicks": 15,
+        "output": 54,
+        "read": 3035,
+        "step": "policy-effect/shadow_candidate_policy/38",
+        "write": 12321
+      },
+      {
+        "gapBeforeS": 3.5,
+        "headerTicks": 15,
+        "output": 80,
+        "read": 3035,
+        "step": "policy-effect/shadow_candidate_policy/39",
+        "write": 13634
+      },
+      {
+        "gapBeforeS": 3.5,
+        "headerTicks": 15,
+        "output": 4,
+        "read": 146489,
+        "step": "policy-effect/current_policy/40",
+        "write": 1166
+      },
+      {
+        "gapBeforeS": 58,
+        "headerTicks": 15,
+        "output": 4,
+        "read": 147653,
+        "step": "policy-effect/current_policy/41",
+        "write": 64
+      },
+      {
+        "gapBeforeS": 57.9,
+        "headerTicks": 15,
+        "output": 4,
+        "read": 147715,
+        "step": "policy-effect/current_policy/42",
+        "write": 64
+      },
+      {
+        "gapBeforeS": 57.8,
+        "headerTicks": 15,
+        "output": 4,
+        "read": 147777,
+        "step": "policy-effect/current_policy/43",
+        "write": 64
+      },
+      {
+        "gapBeforeS": 3.5,
+        "headerTicks": 16,
+        "output": 20,
+        "read": 147839,
+        "step": "policy-effect/current_policy/44",
+        "write": 81
+      }
+    ],
+    "models": {
+      "delay0s": {
+        "priorR": {
+          "breaksAt": "policy-effect/current_policy/44",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 176,
+          "regionAtMaxPrefix": {
+            "R": [
+              5550000,
+              5550000
+            ],
+            "T": [
+              124500,
+              124500
+            ],
+            "cells": 1,
+            "impliedTicksPerOutputToken": [
+              0.000033566,
+              0.000033566
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0.000033566,
+              0.000033566
+            ],
+            "w": [
+              4.179,
+              4.179
+            ]
+          }
+        }
+      },
+      "delay10s": {
+        "priorR": {
+          "breaksAt": "restore-decomposition/park_path/8",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 11,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              82000,
+              200000
+            ],
+            "cells": 167803,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.00012766
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0,
+              0.00010084
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        }
+      },
+      "delay120s": {
+        "priorR": {
+          "breaksAt": "restore-decomposition/park_path/8",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 11,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              60000,
+              200000
+            ],
+            "cells": 203163,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.0002
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0,
+              0.00010084
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        }
+      },
+      "delay15s": {
+        "priorR": {
+          "breaksAt": "fable-write-tick/fable-write-1h/64",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 88,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              126500,
+              134500
+            ],
+            "cells": 2751,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.00001561
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0,
+              0.00001561
+            ],
+            "w": [
+              0,
+              2.053
+            ]
+          }
+        }
+      },
+      "delay2s": {
+        "priorR": {
+          "breaksAt": "policy-effect/current_policy/44",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 176,
+          "regionAtMaxPrefix": {
+            "R": [
+              5550000,
+              5550000
+            ],
+            "T": [
+              124500,
+              124500
+            ],
+            "cells": 1,
+            "impliedTicksPerOutputToken": [
+              0.000033566,
+              0.000033566
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0.000033566,
+              0.000033566
+            ],
+            "w": [
+              4.179,
+              4.179
+            ]
+          }
+        }
+      },
+      "delay30s": {
+        "priorR": {
+          "breaksAt": "restore-decomposition/shared/1",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 4,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              60000,
+              200000
+            ],
+            "cells": 203163,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.0002
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0,
+              0.00010084
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        }
+      },
+      "delay5s": {
+        "priorR": {
+          "breaksAt": "output-quota/out-8k/4",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 94,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              125500,
+              131000
+            ],
+            "cells": 1235,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.000012701
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0,
+              0.000012701
+            ],
+            "w": [
+              0,
+              1.632
+            ]
+          }
+        }
+      },
+      "delay60s": {
+        "priorR": {
+          "breaksAt": "restore-decomposition/shared/1",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 4,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              60000,
+              200000
+            ],
+            "cells": 203163,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.0002
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0,
+              0.00010084
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        }
+      },
+      "lag0": {
+        "priorR": {
+          "breaksAt": "restore-decomposition/park_path/8",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 11,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              147000,
+              200000
+            ],
+            "cells": 77361,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.000081633
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              null,
+              null
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        },
+        "wideR": {
+          "breaksAt": "restore-decomposition/park_path/8",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 11,
+          "regionAtMaxPrefix": {
+            "R": [
+              1000000,
+              50000000
+            ],
+            "T": [
+              147000,
+              200000
+            ],
+            "cells": 1542885,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.000081633
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              null,
+              null
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        }
+      },
+      "lag1": {
+        "priorR": {
+          "breaksAt": "policy-effect/current_policy/44",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 176,
+          "regionAtMaxPrefix": {
+            "R": [
+              5550000,
+              5550000
+            ],
+            "T": [
+              124500,
+              124500
+            ],
+            "cells": 1,
+            "impliedTicksPerOutputToken": [
+              0.000033566,
+              0.000033566
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0.000033566,
+              0.000033566
+            ],
+            "w": [
+              4.179,
+              4.179
+            ]
+          }
+        },
+        "wideR": {
+          "breaksAt": "policy-effect/current_policy/44",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 176,
+          "regionAtMaxPrefix": {
+            "R": [
+              5606588,
+              5990937
+            ],
+            "T": [
+              120000,
+              124500
+            ],
+            "cells": 3,
+            "impliedTicksPerOutputToken": [
+              0.000033263,
+              0.000033615
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              0.000033263,
+              0.000033615
+            ],
+            "w": [
+              3.992,
+              4.179
+            ]
+          }
+        }
+      },
+      "lag2": {
+        "priorR": {
+          "breaksAt": "fable-write-tick/fable-write-1h/16",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 40,
+          "regionAtMaxPrefix": {
+            "R": [
+              5390000,
+              5550000
+            ],
+            "T": [
+              164500,
+              195000
+            ],
+            "cells": 6908,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.000063492
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              null,
+              null
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        },
+        "wideR": {
+          "breaksAt": "fable-write-tick/fable-write-1h/40",
+          "feasibleAllCalls": false,
+          "maxFeasiblePrefix": 64,
+          "regionAtMaxPrefix": {
+            "R": [
+              4595263,
+              4910282
+            ],
+            "T": [
+              165500,
+              197500
+            ],
+            "cells": 1568,
+            "impliedTicksPerOutputToken": [
+              0,
+              0.000062992
+            ],
+            "impliedTicksPerOutputTokenAtMeasuredT": [
+              null,
+              null
+            ],
+            "w": [
+              0,
+              12
+            ]
+          }
+        }
+      }
+    },
+    "windows": [
+      3,
+      245
+    ]
+  },
+  "v": "idle-existing-data-analysis/gauge-lag-scan/1"
+}

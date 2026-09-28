@@ -1,0 +1,49 @@
+PASS A endsCompeting CIF@5
+PASS A endsCensored CIF@5
+PASS B P1 CIF@5
+PASS B P2 CIF@5
+PASS B P3 CIF@5
+PASS A endsCompeting CIF@30
+PASS A endsCensored CIF@30
+PASS B P1 CIF@30
+PASS B P2 CIF@30
+PASS B P3 CIF@30
+PASS A endsCompeting CIF@60
+PASS A endsCensored CIF@60
+PASS B P1 CIF@60
+PASS B P2 CIF@60
+PASS B P3 CIF@60
+PASS A endsCompeting CIF@120
+PASS A endsCensored CIF@120
+PASS B P1 CIF@120
+PASS B P2 CIF@120
+PASS B P3 CIF@120
+PASS A endsCompeting CIF@240
+PASS A endsCensored CIF@240
+PASS B P1 CIF@240
+PASS B P2 CIF@240
+PASS B P3 CIF@240
+PASS A endsCompeting CIF@480
+PASS A endsCensored CIF@480
+PASS B P1 CIF@480
+PASS B P2 CIF@480
+PASS B P3 CIF@480
+PASS A endsCompeting CIF@1440
+PASS A endsCensored CIF@1440
+PASS B P1 CIF@1440
+PASS B P2 CIF@1440
+PASS B P3 CIF@1440
+PASS gauge first run lag0 infeasible
+PASS gauge first run lag2 infeasible
+PASS gauge first run lag1 T range [80500, 89500]
+PASS gauge first run lag1 w min
+PASS gauge rerun lag0 max prefix 11
+PASS gauge rerun lag1 max prefix 176
+PASS gauge rerun lag2 max prefix 40
+PASS successor regime restore-decomposition#1 successor_rewrites_each_call
+PASS successor regime restore-decomposition#2 successor_conversation_cached
+PASS successor regime policy-effect#1 successor_rewrites_each_call
+PASS successor regime policy-effect#2 successor_rewrites_each_call
+PASS successor regime policy-effect#3 successor_rewrites_each_call
+break-even: open at 50 min 0.2843, eventual return given open 0.7021, warm/cold {'low': 0.0266, 'high': 0.0248}
+python 3.13.14 numpy 2.3.3

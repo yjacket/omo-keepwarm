@@ -1,0 +1,20 @@
+opus {'a': 8.25, 'G': 24.0, 'B': 16.75, 'P': 40.75, 'K': 150.0, 'K_shared': 126.375}
+fable(1.25) {'a': 3.3, 'G': 10.35, 'B': 11.8, 'P': 22.15, 'K': 150.0, 'K_shared': 125.55}
+fable(2.5)  {'a': 3.3, 'G': 14.1, 'B': 11.8, 'P': 25.9, 'K': 150.0, 'K_shared': 125.55}
+
+[counterexample] epoch values: [24.075, 16.667, 8.824, 3.659, 0.0] ['WARM', 'EXPIRE', 'EXPIRE', 'EXPIRE', 'EXPIRE']
+my rule: q0=0.200 q*=0.1801 alt=PARK W=40.75 h*=0.2538 h0=0.1 -> PARK
+cost of my action (park now) = 27.350  vs DP optimum 24.075
+fixed-alt PARK optimum: 27.35 -> park now (27.35) is optimal if alternative is frozen; failure is the alt switch
+with K_shared=126.375: optimum 21.712 action WARM ; park-now 27.350
+
+[OSLA vs DP, constant W, decreasing hazard] mismatches: 0/2000
+increasing-hazard sanity: OSLA 40.75 DP 34.716
+
+[q=1] worst multiplicative ratio over return times: 1.810  (n_hat=4)
+[never returns] ALG spends 57.00, OPT 0 -> ratio unbounded; additive regret bound P+G = 64.75
+[q=1] worst additive regret over return times: 33.000 (<= n_hat*a = 33.00)
+
+[Lambda] N*(lam_mine)=4.571 (should be 6); N*(lam_fix)=6.000
+
+[timing] P/a=4.939; n_cross=4; t_cross=220min; first park deadline=(n_hat+1)*55=275min

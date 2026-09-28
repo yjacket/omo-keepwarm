@@ -1,0 +1,5404 @@
+{
+  "actionCounts": {
+    "atFirstReview_parkingAllowed": {
+      "NO_DECISION": 5,
+      "PARK": 40
+    },
+    "atFirstReview_parkingNotAllowed": {
+      "KEEP_WARM": 45
+    },
+    "atIdleStart_parkingAllowed": {
+      "WAIT": 45
+    },
+    "atIdleStart_parkingNotAllowed": {
+      "WAIT": 45
+    }
+  },
+  "costModels": {
+    "high": {
+      "coldFullEq": 0.012286930466251856,
+      "coldSharedEq": 0.012286930466251856,
+      "coldWarmEq": 0.012286930466251856,
+      "futureWorkDifferentialEq": 0,
+      "parkNowEq": 0.0008798509580453262,
+      "parkQualityEq": 0,
+      "rawWarmEq": 0.0007513236245166564,
+      "restoreWarmEq": 0.0008444460773891329,
+      "sharedLossEq": 0,
+      "skillRestoreEq": 0,
+      "warmEq": 0.00030413361183736354
+    },
+    "low": {
+      "coldFullEq": 0.010972009599858622,
+      "coldSharedEq": 0.010972009599858622,
+      "coldWarmEq": 0.010972009599858622,
+      "futureWorkDifferentialEq": 0,
+      "parkNowEq": 0.00039582901614099435,
+      "parkQualityEq": 0,
+      "rawWarmEq": 0.0007051451973014764,
+      "restoreWarmEq": 0.0005379387290590765,
+      "sharedLossEq": 0,
+      "skillRestoreEq": 0,
+      "warmEq": 0.0002915188434242659
+    },
+    "notes": [
+      "skillRestoreEq, sharedLossEq, parkQualityEq are 0 baselines (not measured)",
+      "futureWorkDifferentialEq V = 0",
+      "context of the experiment (~146K tokens), one model, 1h lane"
+    ],
+    "source": "docs/idle-live-results.json policyAnswer.evaluatedAt.{low,high}.costs (d8a4abd)"
+  },
+  "engine": "planIdle from extension/rollover.ts (d8a4abd), unchanged",
+  "notAControlledComparison": true,
+  "outputCoefficientScenario": {
+    "atFirstReview_parkingAllowed": {
+      "action": "PARK",
+      "high": {
+        "action": "PARK",
+        "costs": {
+          "KEEP_WARM": 0.00132322,
+          "LET_EXPIRE": 0.00517141,
+          "PARK": 0.00116985,
+          "WAIT": 0.00259744
+        }
+      },
+      "low": {
+        "action": "PARK",
+        "costs": {
+          "KEEP_WARM": 0.00123113,
+          "LET_EXPIRE": 0.00462018,
+          "PARK": 0.00107025,
+          "WAIT": 0.00234213
+        }
+      }
+    },
+    "kOutTicksPerOutputToken": {
+      "hi": 0.000034763,
+      "lo": 0.000031313
+    },
+    "label": "model-conditional (linear floor meter, any per-call lag 0-2, read prior); not a measured coefficient",
+    "models": {
+      "high": {
+        "coldFullEq": 0.012286682205431563,
+        "coldSharedEq": 0.012286682205431563,
+        "coldWarmEq": 0.012286682205431563,
+        "futureWorkDifferentialEq": 0,
+        "parkNowEq": 0.0008022073864983845,
+        "parkQualityEq": 0,
+        "rawWarmEq": 0.0007498340595948926,
+        "restoreWarmEq": 0.000803420976835553,
+        "sharedLossEq": 0,
+        "skillRestoreEq": 0,
+        "warmEq": 0.00030388535101706957
+      },
+      "low": {
+        "coldFullEq": 0.010973112329286739,
+        "coldSharedEq": 0.010973112329286739,
+        "coldWarmEq": 0.010973112329286739,
+        "futureWorkDifferentialEq": 0,
+        "parkNowEq": 0.0007407076447845829,
+        "parkQualityEq": 0,
+        "rawWarmEq": 0.0007117615738701784,
+        "restoreWarmEq": 0.0007201647670554091,
+        "sharedLossEq": 0,
+        "skillRestoreEq": 0,
+        "warmEq": 0.00029262157285238295
+      }
+    },
+    "publishedModelsReproduced": true
+  },
+  "plannerOptions": {
+    "intervalMs": 3000000,
+    "remainingTtlMs": 3600000,
+    "requestArrivalDelayMs": 0,
+    "safetyMarginMs": 0,
+    "sharedCachePersists": true,
+    "ttlMs": 3600000
+  },
+  "qualityGates": "not applied here: parking admissibility (quality loss, resume delay) is an operator decision; see parkingNotAllowed rows",
+  "runs": [
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00147629,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": 0.00134327,
+              "WAIT": 0.00275008
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094235,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": 0.00069104,
+              "WAIT": 0.00205522
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00338225,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": "Infinity",
+              "WAIT": 0.00629204
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00311121,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": "Infinity",
+              "WAIT": 0.00562002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00127073,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": 0.00158573,
+              "WAIT": 0.0009666
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099154,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": 0.0008455,
+              "WAIT": 0.00070002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00201225,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": "Infinity",
+              "WAIT": 0.00170812
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00187168,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": "Infinity",
+              "WAIT": 0.00158017
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1641,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00147629,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": 0.00134327,
+              "WAIT": 0.00275008
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094235,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": 0.00069104,
+              "WAIT": 0.00205522
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00338225,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": "Infinity",
+              "WAIT": 0.00629204
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00311121,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": "Infinity",
+              "WAIT": 0.00562002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00127073,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": 0.00158573,
+              "WAIT": 0.0009666
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099154,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": 0.0008455,
+              "WAIT": 0.00070002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00201225,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": "Infinity",
+              "WAIT": 0.00170812
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00187168,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": "Infinity",
+              "WAIT": 0.00158017
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1641,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00147629,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": 0.00134327,
+              "WAIT": 0.00275008
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094235,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": 0.00069104,
+              "WAIT": 0.00205522
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00338225,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": "Infinity",
+              "WAIT": 0.00629204
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00311121,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": "Infinity",
+              "WAIT": 0.00562002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00127073,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": 0.00158573,
+              "WAIT": 0.0009666
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099154,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": 0.0008455,
+              "WAIT": 0.00070002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00201225,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": "Infinity",
+              "WAIT": 0.00170812
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00187168,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": "Infinity",
+              "WAIT": 0.00158017
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1641,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00139928,
+              "LET_EXPIRE": 0.00517158,
+              "PARK": 0.00126627,
+              "WAIT": 0.00267308
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.0008933,
+              "LET_EXPIRE": 0.00461946,
+              "PARK": 0.00064199,
+              "WAIT": 0.00200616
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00226178,
+              "LET_EXPIRE": 0.00517158,
+              "PARK": "Infinity",
+              "WAIT": 0.00517158
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00211065,
+              "LET_EXPIRE": 0.00461946,
+              "PARK": "Infinity",
+              "WAIT": 0.00461946
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00124273,
+              "LET_EXPIRE": 0.00235885,
+              "PARK": 0.00155772,
+              "WAIT": 0.00093859
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0009737,
+              "LET_EXPIRE": 0.00212868,
+              "PARK": 0.00082766,
+              "WAIT": 0.00068218
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00160477,
+              "LET_EXPIRE": 0.00235885,
+              "PARK": "Infinity",
+              "WAIT": 0.00130064
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00150781,
+              "LET_EXPIRE": 0.00212868,
+              "PARK": "Infinity",
+              "WAIT": 0.00121629
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 1440,
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1641,
+      "residualAllocated": 0.0332,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00147629,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": 0.00134327,
+              "WAIT": 0.00275008
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094235,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": 0.00069104,
+              "WAIT": 0.00205522
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00338225,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": "Infinity",
+              "WAIT": 0.00629204
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00311121,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": "Infinity",
+              "WAIT": 0.00562002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00127073,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": 0.00158573,
+              "WAIT": 0.0009666
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099154,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": 0.0008455,
+              "WAIT": 0.00070002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00201225,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": "Infinity",
+              "WAIT": 0.00170812
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00187168,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": "Infinity",
+              "WAIT": 0.00158017
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 1440,
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1641,
+      "residualAllocated": 0.0332,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00147629,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": 0.00134327,
+              "WAIT": 0.00275008
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094235,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": 0.00069104,
+              "WAIT": 0.00205522
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00338225,
+              "LET_EXPIRE": 0.00629204,
+              "PARK": "Infinity",
+              "WAIT": 0.00629204
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00311121,
+              "LET_EXPIRE": 0.00562002,
+              "PARK": "Infinity",
+              "WAIT": 0.00562002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00127073,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": 0.00158573,
+              "WAIT": 0.0009666
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099154,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": 0.0008455,
+              "WAIT": 0.00070002
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00201225,
+              "LET_EXPIRE": 0.00276633,
+              "PARK": "Infinity",
+              "WAIT": 0.00170812
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00187168,
+              "LET_EXPIRE": 0.00249255,
+              "PARK": "Infinity",
+              "WAIT": 0.00158017
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 1440,
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1641,
+      "residualAllocated": 0.0332,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00124976,
+              "LET_EXPIRE": 0.00388302,
+              "PARK": 0.00117771,
+              "WAIT": 0.00258452
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00083688,
+              "LET_EXPIRE": 0.00346881,
+              "PARK": 0.00058557,
+              "WAIT": 0.00194975
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00124976,
+              "LET_EXPIRE": 0.00388302,
+              "PARK": "Infinity",
+              "WAIT": 0.00388302
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00119179,
+              "LET_EXPIRE": 0.00346881,
+              "PARK": "Infinity",
+              "WAIT": 0.00346881
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00121052,
+              "LET_EXPIRE": 0.00189024,
+              "PARK": 0.00152552,
+              "WAIT": 0.00090639
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00095318,
+              "LET_EXPIRE": 0.00171022,
+              "PARK": 0.00080714,
+              "WAIT": 0.00066166
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00123672,
+              "LET_EXPIRE": 0.00189024,
+              "PARK": "Infinity",
+              "WAIT": 0.00093259
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00117364,
+              "LET_EXPIRE": 0.00171022,
+              "PARK": "Infinity",
+              "WAIT": 0.00088212
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 240,
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1011,
+      "residualAllocated": 0.1343,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00152725,
+              "LET_EXPIRE": 0.00842098,
+              "PARK": 0.00148959,
+              "WAIT": 0.0028964
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00103556,
+              "LET_EXPIRE": 0.00752112,
+              "PARK": 0.00078425,
+              "WAIT": 0.00214842
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00152725,
+              "LET_EXPIRE": 0.00842098,
+              "PARK": "Infinity",
+              "WAIT": 0.00842098
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00145306,
+              "LET_EXPIRE": 0.00752112,
+              "PARK": "Infinity",
+              "WAIT": 0.00752112
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00132394,
+              "LET_EXPIRE": 0.00354057,
+              "PARK": 0.00163894,
+              "WAIT": 0.00101981
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00102543,
+              "LET_EXPIRE": 0.00318393,
+              "PARK": 0.00087939,
+              "WAIT": 0.00073391
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00133764,
+              "LET_EXPIRE": 0.00354057,
+              "PARK": "Infinity",
+              "WAIT": 0.00103351
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126866,
+              "LET_EXPIRE": 0.00318393,
+              "PARK": "Infinity",
+              "WAIT": 0.00097714
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 240,
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1011,
+      "residualAllocated": 0.1343,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3637,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.0016226,
+              "LET_EXPIRE": 0.00842098,
+              "PARK": 0.00148959,
+              "WAIT": 0.0028964
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00103556,
+              "LET_EXPIRE": 0.00752112,
+              "PARK": 0.00078425,
+              "WAIT": 0.00214842
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00578771,
+              "LET_EXPIRE": 0.00842098,
+              "PARK": "Infinity",
+              "WAIT": 0.00842098
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.0052441,
+              "LET_EXPIRE": 0.00752112,
+              "PARK": "Infinity",
+              "WAIT": 0.00752112
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2345,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00132394,
+              "LET_EXPIRE": 0.00354057,
+              "PARK": 0.00163894,
+              "WAIT": 0.00101981
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00102543,
+              "LET_EXPIRE": 0.00318393,
+              "PARK": 0.00087939,
+              "WAIT": 0.00073391
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00288706,
+              "LET_EXPIRE": 0.00354057,
+              "PARK": "Infinity",
+              "WAIT": 0.00258292
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00264736,
+              "LET_EXPIRE": 0.00318393,
+              "PARK": "Infinity",
+              "WAIT": 0.00235584
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 240,
+      "label": "log estimate (rollover log, input-source labelled, 2026-09-17..23)",
+      "observedEndsAsNever": 0.1011,
+      "residualAllocated": 0.1343,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00180873,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00731349,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00661944,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0013699,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00106577
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00317622,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00287209
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00290805,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.00261653
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00180873,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00731349,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00661944,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0013699,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00106577
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00317622,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00287209
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00290805,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.00261653
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00180873,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00731349,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00661944,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0013699,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00106577
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00317622,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00287209
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00290805,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.00261653
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00150138,
+              "LET_EXPIRE": 0.00723816,
+              "PARK": 0.00141695,
+              "WAIT": 0.00322527
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00097787,
+              "LET_EXPIRE": 0.00646526,
+              "PARK": 0.00073798,
+              "WAIT": 0.00249132
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.0028415,
+              "LET_EXPIRE": 0.00723816,
+              "PARK": "Infinity",
+              "WAIT": 0.00723816
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00262604,
+              "LET_EXPIRE": 0.00646526,
+              "PARK": "Infinity",
+              "WAIT": 0.00646526
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00127057,
+              "LET_EXPIRE": 0.00284775,
+              "PARK": 0.00162497,
+              "WAIT": 0.00096644
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00100727,
+              "LET_EXPIRE": 0.0025667,
+              "PARK": 0.00087049,
+              "WAIT": 0.00071576
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00173096,
+              "LET_EXPIRE": 0.00284775,
+              "PARK": "Infinity",
+              "WAIT": 0.00142683
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00161746,
+              "LET_EXPIRE": 0.0025667,
+              "PARK": "Infinity",
+              "WAIT": 0.00132594
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": 1440,
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.1176,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00180873,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00475739,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00454505,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0013699,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00106577
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00235014,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00204601
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00223765,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.00194613
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": 1440,
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.1176,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00180873,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00731349,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00661944,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0013699,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00106577
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00317622,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00287209
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00290805,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.00261653
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": 1440,
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.1176,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "NO_DECISION",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00126518,
+              "LET_EXPIRE": 0.00513903,
+              "PARK": 0.00127268,
+              "WAIT": 0.003081
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00088597,
+              "LET_EXPIRE": 0.00459078,
+              "PARK": 0.00064608,
+              "WAIT": 0.00239942
+            },
+            "notes": []
+          },
+          "reason": "coefficient_range_straddles_boundary"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00126518,
+              "LET_EXPIRE": 0.00513903,
+              "PARK": "Infinity",
+              "WAIT": 0.00513903
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00120572,
+              "LET_EXPIRE": 0.00459078,
+              "PARK": "Infinity",
+              "WAIT": 0.00459078
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00122153,
+              "LET_EXPIRE": 0.00216935,
+              "PARK": 0.00157834,
+              "WAIT": 0.00091739
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00097757,
+              "LET_EXPIRE": 0.00196091,
+              "PARK": 0.00084079,
+              "WAIT": 0.00068605
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00122153,
+              "LET_EXPIRE": 0.00216935,
+              "PARK": "Infinity",
+              "WAIT": 0.00091739
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00115844,
+              "LET_EXPIRE": 0.00196091,
+              "PARK": "Infinity",
+              "WAIT": 0.00086692
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": 240,
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.1728,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "NO_DECISION",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.001667,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "coefficient_range_straddles_boundary"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.001667,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00158284,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00135139,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00104725
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00135139,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00104725
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128032,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.0009888
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": 240,
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.1728,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3232,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00180873,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": 0.0017243,
+              "WAIT": 0.00353262
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117366,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": 0.00093377,
+              "WAIT": 0.00268711
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.0078363,
+              "LET_EXPIRE": 0.01171015,
+              "PARK": "Infinity",
+              "WAIT": 0.01171015
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00707361,
+              "LET_EXPIRE": 0.01045867,
+              "PARK": "Infinity",
+              "WAIT": 0.01045867
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.3032,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0013699,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": 0.0017243,
+              "WAIT": 0.00106577
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00107055,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": 0.00093377,
+              "WAIT": 0.00077903
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00334519,
+              "LET_EXPIRE": 0.00429301,
+              "PARK": "Infinity",
+              "WAIT": 0.00304105
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00305483,
+              "LET_EXPIRE": 0.0038573,
+              "PARK": "Infinity",
+              "WAIT": 0.00276331
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_endsCensored",
+      "horizonMin": 240,
+      "label": "log estimate, observed context ends treated as censored (could still return)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.1728,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00151844,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": 0.00134963,
+              "WAIT": 0.00281865
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00095481,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": 0.00069509,
+              "WAIT": 0.00209118
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00262749,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": "Infinity",
+              "WAIT": 0.00683536
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00243689,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": "Infinity",
+              "WAIT": 0.00610386
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128171,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": 0.00158261,
+              "WAIT": 0.00097758
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099286,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": 0.00084351,
+              "WAIT": 0.00070134
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00176496,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": "Infinity",
+              "WAIT": 0.00146082
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00165155,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": "Infinity",
+              "WAIT": 0.00136003
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.1678,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00151844,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": 0.00134963,
+              "WAIT": 0.00281865
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00095481,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": 0.00069509,
+              "WAIT": 0.00209118
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00262749,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": "Infinity",
+              "WAIT": 0.00683536
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00243689,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": "Infinity",
+              "WAIT": 0.00610386
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128171,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": 0.00158261,
+              "WAIT": 0.00097758
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099286,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": 0.00084351,
+              "WAIT": 0.00070134
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00176496,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": "Infinity",
+              "WAIT": 0.00146082
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00165155,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": "Infinity",
+              "WAIT": 0.00136003
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.1678,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00151844,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": 0.00134963,
+              "WAIT": 0.00281865
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00095481,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": 0.00069509,
+              "WAIT": 0.00209118
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00262749,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": "Infinity",
+              "WAIT": 0.00683536
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00243689,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": "Infinity",
+              "WAIT": 0.00610386
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128171,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": 0.00158261,
+              "WAIT": 0.00097758
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099286,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": 0.00084351,
+              "WAIT": 0.00070134
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00176496,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": "Infinity",
+              "WAIT": 0.00146082
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00165155,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": "Infinity",
+              "WAIT": 0.00136003
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.1678,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00144015,
+              "LET_EXPIRE": 0.00569616,
+              "PARK": 0.00127133,
+              "WAIT": 0.00274035
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00090494,
+              "LET_EXPIRE": 0.00508657,
+              "PARK": 0.00064521,
+              "WAIT": 0.00204131
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00148829,
+              "LET_EXPIRE": 0.00569616,
+              "PARK": "Infinity",
+              "WAIT": 0.00569616
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.0014196,
+              "LET_EXPIRE": 0.00508657,
+              "PARK": "Infinity",
+              "WAIT": 0.00508657
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00125211,
+              "LET_EXPIRE": 0.00262128,
+              "PARK": 0.001553,
+              "WAIT": 0.00094797
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.000974,
+              "LET_EXPIRE": 0.00236204,
+              "PARK": 0.00082465,
+              "WAIT": 0.00068248
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00133415,
+              "LET_EXPIRE": 0.00262128,
+              "PARK": "Infinity",
+              "WAIT": 0.00103002
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126685,
+              "LET_EXPIRE": 0.00236204,
+              "PARK": "Infinity",
+              "WAIT": 0.00097533
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": 1440,
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.1678,
+      "residualAllocated": 0.0351,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00151844,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": 0.00134963,
+              "WAIT": 0.00281865
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00095481,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": 0.00069509,
+              "WAIT": 0.00209118
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00262749,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": "Infinity",
+              "WAIT": 0.00683536
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00243689,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": "Infinity",
+              "WAIT": 0.00610386
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128171,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": 0.00158261,
+              "WAIT": 0.00097758
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099286,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": 0.00084351,
+              "WAIT": 0.00070134
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00176496,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": "Infinity",
+              "WAIT": 0.00146082
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00165155,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": "Infinity",
+              "WAIT": 0.00136003
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": 1440,
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.1678,
+      "residualAllocated": 0.0351,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00151844,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": 0.00134963,
+              "WAIT": 0.00281865
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00095481,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": 0.00069509,
+              "WAIT": 0.00209118
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00262749,
+              "LET_EXPIRE": 0.00683536,
+              "PARK": "Infinity",
+              "WAIT": 0.00683536
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00243689,
+              "LET_EXPIRE": 0.00610386,
+              "PARK": "Infinity",
+              "WAIT": 0.00610386
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128171,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": 0.00158261,
+              "WAIT": 0.00097758
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099286,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": 0.00084351,
+              "WAIT": 0.00070134
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00176496,
+              "LET_EXPIRE": 0.00305209,
+              "PARK": "Infinity",
+              "WAIT": 0.00146082
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00165155,
+              "LET_EXPIRE": 0.00274674,
+              "PARK": "Infinity",
+              "WAIT": 0.00136003
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": 1440,
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.1678,
+      "residualAllocated": 0.0351,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "NO_DECISION",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00108488,
+              "LET_EXPIRE": 0.00512653,
+              "PARK": 0.00123218,
+              "WAIT": 0.0027012
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00088,
+              "LET_EXPIRE": 0.0045779,
+              "PARK": 0.00062028,
+              "WAIT": 0.00201637
+            },
+            "notes": []
+          },
+          "reason": "coefficient_range_straddles_boundary"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00108488,
+              "LET_EXPIRE": 0.00512653,
+              "PARK": "Infinity",
+              "WAIT": 0.00512653
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00103362,
+              "LET_EXPIRE": 0.0045779,
+              "PARK": "Infinity",
+              "WAIT": 0.0045779
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0011816,
+              "LET_EXPIRE": 0.00240587,
+              "PARK": 0.0015382,
+              "WAIT": 0.00087746
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00096457,
+              "LET_EXPIRE": 0.00216968,
+              "PARK": 0.00081522,
+              "WAIT": 0.00067305
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0011816,
+              "LET_EXPIRE": 0.00240587,
+              "PARK": "Infinity",
+              "WAIT": 0.00087746
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00112088,
+              "LET_EXPIRE": 0.00216968,
+              "PARK": "Infinity",
+              "WAIT": 0.00082936
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": 240,
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.0801,
+      "residualAllocated": 0.1403,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00155487,
+              "LET_EXPIRE": 0.00968346,
+              "PARK": 0.00154537,
+              "WAIT": 0.00301439
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00107951,
+              "LET_EXPIRE": 0.00864716,
+              "PARK": 0.00081978,
+              "WAIT": 0.00221587
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00155487,
+              "LET_EXPIRE": 0.00968346,
+              "PARK": "Infinity",
+              "WAIT": 0.00968346
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00147854,
+              "LET_EXPIRE": 0.00864716,
+              "PARK": "Infinity",
+              "WAIT": 0.00864716
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00135574,
+              "LET_EXPIRE": 0.00412914,
+              "PARK": 0.00165663,
+              "WAIT": 0.0010516
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104002,
+              "LET_EXPIRE": 0.00370853,
+              "PARK": 0.00089066,
+              "WAIT": 0.0007485
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00135933,
+              "LET_EXPIRE": 0.00412914,
+              "PARK": "Infinity",
+              "WAIT": 0.0010552
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00128914,
+              "LET_EXPIRE": 0.00370853,
+              "PARK": "Infinity",
+              "WAIT": 0.00099762
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": 240,
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.0801,
+      "residualAllocated": 0.1403,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3782,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00171418,
+              "LET_EXPIRE": 0.00968346,
+              "PARK": 0.00154537,
+              "WAIT": 0.00301439
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00107951,
+              "LET_EXPIRE": 0.00864716,
+              "PARK": 0.00081978,
+              "WAIT": 0.00221587
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00564181,
+              "LET_EXPIRE": 0.00968346,
+              "PARK": "Infinity",
+              "WAIT": 0.00968346
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00510288,
+              "LET_EXPIRE": 0.00864716,
+              "PARK": "Infinity",
+              "WAIT": 0.00864716
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2318,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00135574,
+              "LET_EXPIRE": 0.00412914,
+              "PARK": 0.00165663,
+              "WAIT": 0.0010516
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104002,
+              "LET_EXPIRE": 0.00370853,
+              "PARK": 0.00089066,
+              "WAIT": 0.0007485
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00290486,
+              "LET_EXPIRE": 0.00412914,
+              "PARK": "Infinity",
+              "WAIT": 0.00260073
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00265973,
+              "LET_EXPIRE": 0.00370853,
+              "PARK": "Infinity",
+              "WAIT": 0.00236821
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_context>=100K",
+      "horizonMin": 240,
+      "label": "log estimate, idle starts with context >= 100K only",
+      "observedEndsAsNever": 0.0801,
+      "residualAllocated": 0.1403,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00146999,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": 0.00134357,
+              "WAIT": 0.00280462
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094099,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": 0.00069123,
+              "WAIT": 0.002108
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00344304,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": "Infinity",
+              "WAIT": 0.00627901
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00316443,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": "Infinity",
+              "WAIT": 0.00560843
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126139,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": 0.00159191,
+              "WAIT": 0.00095726
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099183,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": 0.00084943,
+              "WAIT": 0.00070031
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00199143,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": "Infinity",
+              "WAIT": 0.00168729
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00185181,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": "Infinity",
+              "WAIT": 0.00156029
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.1568,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00146999,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": 0.00134357,
+              "WAIT": 0.00280462
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094099,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": 0.00069123,
+              "WAIT": 0.002108
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00344304,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": "Infinity",
+              "WAIT": 0.00627901
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00316443,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": "Infinity",
+              "WAIT": 0.00560843
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126139,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": 0.00159191,
+              "WAIT": 0.00095726
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099183,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": 0.00084943,
+              "WAIT": 0.00070031
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00199143,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": "Infinity",
+              "WAIT": 0.00168729
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00185181,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": "Infinity",
+              "WAIT": 0.00156029
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.1568,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00146999,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": 0.00134357,
+              "WAIT": 0.00280462
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094099,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": 0.00069123,
+              "WAIT": 0.002108
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00344304,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": "Infinity",
+              "WAIT": 0.00627901
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00316443,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": "Infinity",
+              "WAIT": 0.00560843
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126139,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": 0.00159191,
+              "WAIT": 0.00095726
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099183,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": 0.00084943,
+              "WAIT": 0.00070031
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00199143,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": "Infinity",
+              "WAIT": 0.00168729
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00185181,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": "Infinity",
+              "WAIT": 0.00156029
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.1568,
+      "residualAllocated": 0,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00138981,
+              "LET_EXPIRE": 0.00511241,
+              "PARK": 0.00126339,
+              "WAIT": 0.00272445
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00088992,
+              "LET_EXPIRE": 0.00456668,
+              "PARK": 0.00064016,
+              "WAIT": 0.00205693
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00227644,
+              "LET_EXPIRE": 0.00511241,
+              "PARK": "Infinity",
+              "WAIT": 0.00511241
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00212268,
+              "LET_EXPIRE": 0.00456668,
+              "PARK": "Infinity",
+              "WAIT": 0.00456668
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00123351,
+              "LET_EXPIRE": 0.00226777,
+              "PARK": 0.00156403,
+              "WAIT": 0.00092938
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00097407,
+              "LET_EXPIRE": 0.00204789,
+              "PARK": 0.00083167,
+              "WAIT": 0.00068255
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00158577,
+              "LET_EXPIRE": 0.00226777,
+              "PARK": "Infinity",
+              "WAIT": 0.00128164
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00148957,
+              "LET_EXPIRE": 0.00204789,
+              "PARK": "Infinity",
+              "WAIT": 0.00119805
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": 1440,
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.1568,
+      "residualAllocated": 0.033,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00146999,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": 0.00134357,
+              "WAIT": 0.00280462
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094099,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": 0.00069123,
+              "WAIT": 0.002108
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00344304,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": "Infinity",
+              "WAIT": 0.00627901
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00316443,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": "Infinity",
+              "WAIT": 0.00560843
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126139,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": 0.00159191,
+              "WAIT": 0.00095726
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099183,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": 0.00084943,
+              "WAIT": 0.00070031
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00199143,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": "Infinity",
+              "WAIT": 0.00168729
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00185181,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": "Infinity",
+              "WAIT": 0.00156029
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": 1440,
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.1568,
+      "residualAllocated": 0.033,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00146999,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": 0.00134357,
+              "WAIT": 0.00280462
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00094099,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": 0.00069123,
+              "WAIT": 0.002108
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00344304,
+              "LET_EXPIRE": 0.00627901,
+              "PARK": "Infinity",
+              "WAIT": 0.00627901
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00316443,
+              "LET_EXPIRE": 0.00560843,
+              "PARK": "Infinity",
+              "WAIT": 0.00560843
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126139,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": 0.00159191,
+              "WAIT": 0.00095726
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099183,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": 0.00084943,
+              "WAIT": 0.00070031
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00199143,
+              "LET_EXPIRE": 0.00267342,
+              "PARK": "Infinity",
+              "WAIT": 0.00168729
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00185181,
+              "LET_EXPIRE": 0.00241013,
+              "PARK": "Infinity",
+              "WAIT": 0.00156029
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": 1440,
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.1568,
+      "residualAllocated": 0.033,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00125108,
+              "LET_EXPIRE": 0.00403333,
+              "PARK": 0.00118923,
+              "WAIT": 0.00265028
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00084267,
+              "LET_EXPIRE": 0.00360309,
+              "PARK": 0.00059291,
+              "WAIT": 0.00200968
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00125108,
+              "LET_EXPIRE": 0.00403333,
+              "PARK": "Infinity",
+              "WAIT": 0.00403333
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00119369,
+              "LET_EXPIRE": 0.00360309,
+              "PARK": "Infinity",
+              "WAIT": 0.00360309
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00120773,
+              "LET_EXPIRE": 0.00189255,
+              "PARK": 0.00153824,
+              "WAIT": 0.00090359
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00095764,
+              "LET_EXPIRE": 0.00171282,
+              "PARK": 0.00081524,
+              "WAIT": 0.00066612
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00122923,
+              "LET_EXPIRE": 0.00189255,
+              "PARK": "Infinity",
+              "WAIT": 0.0009251
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00116654,
+              "LET_EXPIRE": 0.00171282,
+              "PARK": "Infinity",
+              "WAIT": 0.00087502
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": 240,
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.094,
+      "residualAllocated": 0.1263,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00152393,
+              "LET_EXPIRE": 0.0084955,
+              "PARK": 0.0014959,
+              "WAIT": 0.00295696
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00103803,
+              "LET_EXPIRE": 0.00758772,
+              "PARK": 0.00078827,
+              "WAIT": 0.00220504
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00152393,
+              "LET_EXPIRE": 0.0084955,
+              "PARK": "Infinity",
+              "WAIT": 0.0084955
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00144977,
+              "LET_EXPIRE": 0.00758772,
+              "PARK": "Infinity",
+              "WAIT": 0.00758772
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00131436,
+              "LET_EXPIRE": 0.00344414,
+              "PARK": 0.00164488,
+              "WAIT": 0.00101023
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00102557,
+              "LET_EXPIRE": 0.00309837,
+              "PARK": 0.00088318,
+              "WAIT": 0.00073405
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00132411,
+              "LET_EXPIRE": 0.00344414,
+              "PARK": "Infinity",
+              "WAIT": 0.00101998
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00125559,
+              "LET_EXPIRE": 0.00309837,
+              "PARK": "Infinity",
+              "WAIT": 0.00096407
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": 240,
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.094,
+      "residualAllocated": 0.1263,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.3477,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00162232,
+              "LET_EXPIRE": 0.0084955,
+              "PARK": 0.0014959,
+              "WAIT": 0.00295696
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00103803,
+              "LET_EXPIRE": 0.00758772,
+              "PARK": 0.00078827,
+              "WAIT": 0.00220504
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00571325,
+              "LET_EXPIRE": 0.0084955,
+              "PARK": "Infinity",
+              "WAIT": 0.0084955
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00517832,
+              "LET_EXPIRE": 0.00758772,
+              "PARK": "Infinity",
+              "WAIT": 0.00758772
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2435,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00131436,
+              "LET_EXPIRE": 0.00344414,
+              "PARK": 0.00164488,
+              "WAIT": 0.00101023
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00102557,
+              "LET_EXPIRE": 0.00309837,
+              "PARK": 0.00088318,
+              "WAIT": 0.00073405
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00278083,
+              "LET_EXPIRE": 0.00344414,
+              "PARK": "Infinity",
+              "WAIT": 0.00247669
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00255209,
+              "LET_EXPIRE": 0.00309837,
+              "PARK": "Infinity",
+              "WAIT": 0.00226057
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "A_labelled_P2_commandAsReturn",
+      "horizonMin": 240,
+      "label": "log estimate, a typed /rollover command counts as return",
+      "observedEndsAsNever": 0.094,
+      "residualAllocated": 0.1263,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00174788,
+              "LET_EXPIRE": 0.01029261,
+              "PARK": 0.00167372,
+              "WAIT": 0.00291191
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00113903,
+              "LET_EXPIRE": 0.00919485,
+              "PARK": 0.00090155,
+              "WAIT": 0.0021542
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00368222,
+              "LET_EXPIRE": 0.01029261,
+              "PARK": "Infinity",
+              "WAIT": 0.01029261
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00346805,
+              "LET_EXPIRE": 0.00919485,
+              "PARK": "Infinity",
+              "WAIT": 0.00919485
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00125143,
+              "LET_EXPIRE": 0.00277851,
+              "PARK": 0.00171355,
+              "WAIT": 0.0009473
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00103839,
+              "LET_EXPIRE": 0.00250891,
+              "PARK": 0.00092692,
+              "WAIT": 0.00074687
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00167817,
+              "LET_EXPIRE": 0.00277851,
+              "PARK": "Infinity",
+              "WAIT": 0.00137404
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00158368,
+              "LET_EXPIRE": 0.00250891,
+              "PARK": "Infinity",
+              "WAIT": 0.00129217
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.0127,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00179846,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": 0.0017243,
+              "WAIT": 0.00296249
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117125,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": 0.00093377,
+              "WAIT": 0.00218642
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00441811,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": "Infinity",
+              "WAIT": 0.0110285
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00412519,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": "Infinity",
+              "WAIT": 0.00985199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126218,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": 0.0017243,
+              "WAIT": 0.00095805
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104524,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": 0.00093377,
+              "WAIT": 0.00075372
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00183452,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": "Infinity",
+              "WAIT": 0.00153039
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0017233,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": "Infinity",
+              "WAIT": 0.00143178
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.0127,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00179846,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": 0.0017243,
+              "WAIT": 0.00296249
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117125,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": 0.00093377,
+              "WAIT": 0.00218642
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00441811,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": "Infinity",
+              "WAIT": 0.0110285
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00412519,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": "Infinity",
+              "WAIT": 0.00985199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126218,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": 0.0017243,
+              "WAIT": 0.00095805
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104524,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": 0.00093377,
+              "WAIT": 0.00075372
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00183452,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": "Infinity",
+              "WAIT": 0.00153039
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0017233,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": "Infinity",
+              "WAIT": 0.00143178
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": "full_follow_up",
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.0127,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00169731,
+              "LET_EXPIRE": 0.00955678,
+              "PARK": 0.00162315,
+              "WAIT": 0.00286134
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00110681,
+              "LET_EXPIRE": 0.00853776,
+              "PARK": 0.00086933,
+              "WAIT": 0.00212199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00294639,
+              "LET_EXPIRE": 0.00955678,
+              "PARK": "Infinity",
+              "WAIT": 0.00955678
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00281096,
+              "LET_EXPIRE": 0.00853776,
+              "PARK": "Infinity",
+              "WAIT": 0.00853776
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00124069,
+              "LET_EXPIRE": 0.00262217,
+              "PARK": 0.00170281,
+              "WAIT": 0.00093656
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00103155,
+              "LET_EXPIRE": 0.0023693,
+              "PARK": 0.00092008,
+              "WAIT": 0.00074003
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00152183,
+              "LET_EXPIRE": 0.00262217,
+              "PARK": "Infinity",
+              "WAIT": 0.0012177
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00144408,
+              "LET_EXPIRE": 0.0023693,
+              "PARK": "Infinity",
+              "WAIT": 0.00115256
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": 1440,
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.0254,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00179846,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": 0.0017243,
+              "WAIT": 0.00296249
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117125,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": 0.00093377,
+              "WAIT": 0.00218642
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.0031821,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": "Infinity",
+              "WAIT": 0.0110285
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.0030351,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": "Infinity",
+              "WAIT": 0.00985199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126218,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": 0.0017243,
+              "WAIT": 0.00095805
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104524,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": 0.00093377,
+              "WAIT": 0.00075372
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00157191,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": "Infinity",
+              "WAIT": 0.00126778
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0014917,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": "Infinity",
+              "WAIT": 0.00120018
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": 1440,
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.0254,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00179846,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": 0.0017243,
+              "WAIT": 0.00296249
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117125,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": 0.00093377,
+              "WAIT": 0.00218642
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00441811,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": "Infinity",
+              "WAIT": 0.0110285
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00412519,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": "Infinity",
+              "WAIT": 0.00985199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126218,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": 0.0017243,
+              "WAIT": 0.00095805
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104524,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": 0.00093377,
+              "WAIT": 0.00075372
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00183452,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": "Infinity",
+              "WAIT": 0.00153039
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.0017233,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": "Infinity",
+              "WAIT": 0.00143178
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": 1440,
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.0254,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "NO_DECISION",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00127473,
+              "LET_EXPIRE": 0.00553288,
+              "PARK": 0.0013466,
+              "WAIT": 0.00258479
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00093064,
+              "LET_EXPIRE": 0.0049445,
+              "PARK": 0.00069316,
+              "WAIT": 0.00194582
+            },
+            "notes": []
+          },
+          "reason": "coefficient_range_straddles_boundary"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00127473,
+              "LET_EXPIRE": 0.00553288,
+              "PARK": "Infinity",
+              "WAIT": 0.00553288
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00121356,
+              "LET_EXPIRE": 0.0049445,
+              "PARK": "Infinity",
+              "WAIT": 0.0049445
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00116666,
+              "LET_EXPIRE": 0.00176724,
+              "PARK": 0.00164405,
+              "WAIT": 0.00086253
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00099412,
+              "LET_EXPIRE": 0.00160586,
+              "PARK": 0.00088265,
+              "WAIT": 0.0007026
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00116666,
+              "LET_EXPIRE": 0.00176724,
+              "PARK": "Infinity",
+              "WAIT": 0.00086253
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00110468,
+              "LET_EXPIRE": 0.00160586,
+              "PARK": "Infinity",
+              "WAIT": 0.00081317
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": 240,
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.095,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "never",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "NO_DECISION",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00161078,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": 0.0017243,
+              "WAIT": 0.00296249
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117125,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": 0.00093377,
+              "WAIT": 0.00218642
+            },
+            "notes": []
+          },
+          "reason": "coefficient_range_straddles_boundary"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00161078,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": "Infinity",
+              "WAIT": 0.0110285
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00152895,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": "Infinity",
+              "WAIT": 0.00985199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00123806,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": 0.0017243,
+              "WAIT": 0.00093393
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104524,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": 0.00093377,
+              "WAIT": 0.00075372
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00123806,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": "Infinity",
+              "WAIT": 0.00093393
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00117169,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": "Infinity",
+              "WAIT": 0.00088018
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": 240,
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.095,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "just_after_follow_up",
+      "tailAllocationKind": "assumption"
+    },
+    {
+      "atFirstReview": {
+        "noReturnNoEndSoFar": 0.2125,
+        "parkingAllowed": {
+          "action": "PARK",
+          "high": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00179846,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": 0.0017243,
+              "WAIT": 0.00296249
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "PARK",
+            "costs": {
+              "KEEP_WARM": 0.00117125,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": 0.00093377,
+              "WAIT": 0.00218642
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "KEEP_WARM",
+          "high": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00677035,
+              "LET_EXPIRE": 0.0110285,
+              "PARK": "Infinity",
+              "WAIT": 0.0110285
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "KEEP_WARM",
+            "costs": {
+              "KEEP_WARM": 0.00612105,
+              "LET_EXPIRE": 0.00985199,
+              "PARK": "Infinity",
+              "WAIT": 0.00985199
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 10,
+        "returnWithinNextHourGivenOpen": 0.2918,
+        "reviewMin": 50
+      },
+      "atIdleStart": {
+        "parkingAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00126218,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": 0.0017243,
+              "WAIT": 0.00095805
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00104524,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": 0.00093377,
+              "WAIT": 0.00075372
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "parkingNotAllowed": {
+          "action": "WAIT",
+          "high": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00233429,
+              "LET_EXPIRE": 0.00293486,
+              "PARK": "Infinity",
+              "WAIT": 0.00203016
+            },
+            "notes": []
+          },
+          "low": {
+            "action": "WAIT",
+            "costs": {
+              "KEEP_WARM": 0.00214735,
+              "LET_EXPIRE": 0.00264853,
+              "PARK": "Infinity",
+              "WAIT": 0.00185584
+            },
+            "notes": []
+          },
+          "reason": "both_range_ends_agree"
+        },
+        "remainingTtlMin": 60
+      },
+      "candidate": "B_transcript_P1",
+      "horizonMin": 240,
+      "label": "log estimate from transcripts, 2026-09-01..17 (estimation-period candidate; no shutdown record, ends censored)",
+      "observedEndsAsNever": 0,
+      "residualAllocated": 0.095,
+      "sourceKind": "log_estimate",
+      "tailAllocation": "at_72h",
+      "tailAllocationKind": "assumption"
+    }
+  ],
+  "v": "idle-existing-data-analysis/dp-replay/1",
+  "vScenarios": [
+    {
+      "V": {
+        "high": 0,
+        "low": 0
+      },
+      "atFirstReview": {
+        "action": "PARK",
+        "high": {
+          "action": "PARK",
+          "costs": {
+            "KEEP_WARM": 0.00139928,
+            "LET_EXPIRE": 0.00517158,
+            "PARK": 0.00126627,
+            "WAIT": 0.00267308
+          },
+          "notes": []
+        },
+        "low": {
+          "action": "PARK",
+          "costs": {
+            "KEEP_WARM": 0.0008933,
+            "LET_EXPIRE": 0.00461946,
+            "PARK": 0.00064199,
+            "WAIT": 0.00200616
+          },
+          "notes": []
+        },
+        "reason": "both_range_ends_agree"
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 1440,
+      "tailAllocation": "never",
+      "vKind": "baseline",
+      "vScenario": "V0_baseline"
+    },
+    {
+      "V": {
+        "high": -0.00189886,
+        "low": -0.00126156
+      },
+      "atFirstReview": {
+        "action": "NO_DECISION",
+        "high": {
+          "action": "KEEP_WARM",
+          "costs": {
+            "KEEP_WARM": 0.00179204,
+            "LET_EXPIRE": 0.00517158,
+            "PARK": 0.00213517,
+            "WAIT": 0.00320803
+          },
+          "notes": []
+        },
+        "low": {
+          "action": "PARK",
+          "costs": {
+            "KEEP_WARM": 0.00124871,
+            "LET_EXPIRE": 0.00461946,
+            "PARK": 0.00121927,
+            "WAIT": 0.00236157
+          },
+          "notes": []
+        },
+        "reason": "coefficient_range_straddles_boundary"
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 1440,
+      "tailAllocation": "never",
+      "vKind": "measured_one_unit",
+      "vScenario": "V_measured_restore_run1"
+    },
+    {
+      "V": {
+        "high": 0.0011358,
+        "low": 0.00144334
+      },
+      "atFirstReview": {
+        "action": "PARK",
+        "high": {
+          "action": "PARK",
+          "costs": {
+            "KEEP_WARM": 0.0010793,
+            "LET_EXPIRE": 0.00517158,
+            "PARK": 0.00074653,
+            "WAIT": 0.00235309
+          },
+          "notes": []
+        },
+        "low": {
+          "action": "PARK",
+          "costs": {
+            "KEEP_WARM": 0.00048668,
+            "LET_EXPIRE": 0.00461946,
+            "PARK": -0.00001848,
+            "WAIT": 0.00159954
+          },
+          "notes": []
+        },
+        "reason": "both_range_ends_agree"
+      },
+      "candidate": "A_labelled_P2_endsCompeting",
+      "horizonMin": 1440,
+      "tailAllocation": "never",
+      "vKind": "hypothetical",
+      "vScenario": "V_hypothetical_successor_caching"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "meter": "unified-5h utilization fraction (0.01 = one tick)",
+  "outputQuota": {
+    "eq": [
+      0.00732,
+      0.0757
+    ],
+    "outputTokens": 183624,
+    "requests": 41
+  },
+  "policyEffectPerPair": [
+    {
+      "eq": [
+        0.02166,
+        0.02499
+      ],
+      "pair": 1,
+      "requests": 27
+    },
+    {
+      "eq": [
+        0.02164,
+        0.02484
+      ],
+      "pair": 2,
+      "requests": 27
+    },
+    {
+      "eq": [
+        0.02178,
+        0.02534
+      ],
+      "pair": 3,
+      "requests": 27
+    }
+  ],
+  "policyEffectThreePairs": [
+    0.06508,
+    0.07517
+  ]
+}

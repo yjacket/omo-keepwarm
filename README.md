@@ -14,11 +14,12 @@ omo-rollover의 유휴 비용 조사에서 나온 결론을 옮긴 것이다.
 - **데우기는 경제성이 확인됐다.** 복귀 확률 곡선으로 재생하면 만료 방치가 가장 비쌌다.
 - **파킹(rollover)은 효과를 측정하기 어렵다.** 인수인계에 숨은 비용이 많기 때문이다. 이 확장에서는 기본으로 꺼 둔다.
 
-조사 자료:
+조사 자료는 모두 [research/](research/README.md)에 있다.
 
-- [조사 보고서](https://github.com/yjacket/omo-rollover/blob/wt/idle-existing-data-analysis/docs/idle-existing-data-analysis.md)
-- [재현 스크립트](https://github.com/yjacket/omo-rollover/tree/wt/idle-existing-data-analysis/scripts/idle-existing-data)
-- [유료 실측 보고](https://github.com/yjacket/omo-rollover/blob/wt/idle-existing-data-analysis/docs/idle-cost-report.md)
+- [기존 자료 오프라인 분석](research/existing-data-analysis/report.md): 복귀 확률, 계기 지연, 복원 비용, DP 재생
+- [유료 실측 보고](research/idle-cost-v2/idle-cost-report.md): 실측 2회 합산
+- [첫 quota 측정](research/quota-2026-09-19/REPORT.md)과 [연구 의뢰서](research/brief/AGENT_TASK.md)
+- 유휴 비용 엔진과 실측 실행기 같은 **코드**는 아직 omo-rollover 브랜치 `wt/idle-cost-shadow-implementation`(d8a4abd)에 있다.
 
 ## 구현 전에 확인할 것
 

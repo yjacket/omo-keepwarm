@@ -1,0 +1,19 @@
+{
+  "AGENT_TASK.md": "f88ae2b4370dd5a43ca549aff4a7317fefb65b85df2fc9ef4ba4a867dd6f82e3",
+  "START_HERE.md": "1c49615cc19299e045b69465d5a88f42cac5a2142d6066875a09d28fc8cd7df8",
+  "references/claude-checks/independent_check.out.txt": "7ab9e37ecfbc4d38056644dcbab59c125da9e62e552035a7dade7dfb3eea90ab",
+  "references/claude-checks/independent_check.py": "af8b14f14ff713a29913cbfa368c585ab6fda57e55d75a75a35dd91e3f5dab0e",
+  "references/claude-checks/regret_check.out.txt": "e263187293953977e73c99972512b7854323749c7ba6c04910f00055006b2605",
+  "references/claude-checks/regret_check.py": "859ed996f6a44c1bf5bb0905a7df3f1bd047d834535ec88f830d66e96679c492",
+  "references/comparison/comparison-review.md": "0fe2360335521d21af4d02618f5f0f4189ff200633ad9a0eac61fc8c36d40f1d",
+  "references/latest-review/audit_reply.py": "155f1d367503f76f5b6b581748d4b62e61c80e5d81263f90b7a51349377cc0cb",
+  "references/latest-review/audit_reply.results.json": "f2d26405dceb52868a2eb0f6465b054b62b9fce3059f9585b762ff9179e22f66",
+  "references/latest-review/reply-review.md": "5517ac269ca9000cb7091d7a0547cfc84b1206909373a8dc9ece760a585b6875",
+  "references/v1/README.md": "05c31584130747cc800e9e250e6305fe4272ed3eb16f530236256f2a26230e4f",
+  "references/v1/dist/cache-policy.d.ts": "99b219b0c5d6240c8f54eefdb144a53333954e05f9fd01f28b98f9b292547ba1",
+  "references/v1/dist/cache-policy.js": "ff31b540f827bf53d12bc25179cc34eb83982206268756c5f637b8742f89e18f",
+  "references/v1/research-report.md": "5ca43ae0561779ea560d1c091c40800b77c9294a742eb6215cf1638beea41c9b",
+  "references/v1/src/cache-policy.ts": "9c1734c1cfcf3a4784d06e4bc8183db21e5dcf13f122088445928456868fb7a1",
+  "references/v1/tests/cache-policy.test.cjs": "021de9aae6dcd0bbf4122bce6c356cf020b727147e018dcf0eb4bcf09a9631f9",
+  "references/v1/tsconfig.json": "d19be69f705146546c9e2b1a32b78977afbedebbdc99d7a96e8a6f0044d74ac5"
+}

@@ -1,0 +1,6 @@
+files recorded: 387
+identical: 385
+grew by appending only (recorded prefix identical): 2
+changed: 0
+missing: 0
+by group: {"senpiTranscripts":{"files":133,"identical":131,"appendOnly":2,"changedOrMissing":0},"rolloverEventLog":{"files":126,"identical":126,"appendOnly":0,"changedOrMissing":0},"firstRun":{"files":10,"identical":10,"appendOnly":0,"changedOrMissing":0},"rerun":{"files":108,"identical":108,"appendOnly":0,"changedOrMissing":0},"quota0919":{"files":10,"identical":10,"appendOnly":0,"changedOrMissing":0}}

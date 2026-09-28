@@ -24,4 +24,4 @@
 2. Claude Code, How Claude Code uses prompt caching: 구독 한도 안 본대화 1시간, 그 밖 5분, `promptCacheTtl` 등 설정. https://code.claude.com/docs/en/prompt-caching
 3. OpenAI, Prompt caching: GPT-5.6 이상 `prompt_cache_options.ttl` 30분, 쓰기 1.25배, 읽기 0.1배, 이전 모델의 in_memory/24h. https://developers.openai.com/api/docs/guides/prompt-caching
 4. Google Cloud, Context caching overview: 암묵 캐시 기본 사용, 명시 캐시 기본 60분. https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/context-cache/context-cache-overview
-5. 로컬 실측: senpi lane별 TTL 확인(2026-09-17~18, rollover 이벤트 로그), 1시간 TTL 갱신 실험(2026-09-27 재실행, n = 2). [조사 보고서](https://github.com/yjacket/omo-rollover/blob/wt/idle-existing-data-analysis/docs/idle-existing-data-analysis.md)와 [이전 실측 보고서](https://github.com/yjacket/omo-rollover/blob/wt/idle-existing-data-analysis/docs/idle-cost-report.md).
+5. 로컬 실측: senpi lane별 TTL 확인(2026-09-17~18, rollover 이벤트 로그), 1시간 TTL 갱신 실험(2026-09-27 재실행, n = 2). [조사 보고서](../research/existing-data-analysis/report.md)와 [이전 실측 보고서](../research/idle-cost-v2/idle-cost-report.md).

@@ -1,0 +1,13 @@
+{
+  "idleParkLogged": true,
+  "handoffPromptSent": true,
+  "successorFoundLogged": true,
+  "extensionSentRolloverNow": true,
+  "commandLoggedAfterSuccessor": true,
+  "interactiveUserInputs": 0,
+  "lastShadowEpisodeStatus": "returned",
+  "lastShadowEpisodeEndReason": "command",
+  "userClockMovedByDispatch": true,
+  "tmpRemoved": true,
+  "defectReproduced": true
+}

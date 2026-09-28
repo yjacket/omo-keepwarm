@@ -1,0 +1,1534 @@
+{
+  "conversion": {
+    "T": {
+      "empty": false,
+      "hi": 133519.75193485766,
+      "lo": 119246.6599500635
+    },
+    "kOutUpperBound": 0.000040969520507349455,
+    "meterEnds": "conversionEnds({T measured, kOutUpperBound}) from scripts/idle-live-analyze.mjs at d8a4abd"
+  },
+  "crossCheckAgainstMergedAnalysis": {
+    "allEqual": true,
+    "policyPairs": [
+      {
+        "equal": true,
+        "key": "pair1/current_policy"
+      },
+      {
+        "equal": true,
+        "key": "pair1/shadow_candidate_policy"
+      },
+      {
+        "equal": true,
+        "key": "pair2/current_policy"
+      },
+      {
+        "equal": true,
+        "key": "pair2/shadow_candidate_policy"
+      },
+      {
+        "equal": true,
+        "key": "pair3/current_policy"
+      },
+      {
+        "equal": true,
+        "key": "pair3/shadow_candidate_policy"
+      }
+    ],
+    "restoreRun1": [
+      {
+        "equal": true,
+        "key": "park_path/park_parent"
+      },
+      {
+        "equal": true,
+        "key": "park_path/restore_child"
+      },
+      {
+        "equal": true,
+        "key": "park_path/useful_work"
+      },
+      {
+        "equal": true,
+        "key": "raw_path/resume_raw"
+      },
+      {
+        "equal": true,
+        "key": "raw_path/useful_work"
+      },
+      {
+        "equal": true,
+        "key": "shared/ctx_create"
+      },
+      {
+        "equal": true,
+        "key": "shared/observe"
+      },
+      {
+        "equal": true,
+        "key": "shared/resume_raw"
+      }
+    ]
+  },
+  "futureWorkDifferentialV": {
+    "definition": "raw useful_work minus parked useful_work, per resume; >0 favours PARK",
+    "meter": "unified-5h",
+    "perUnit": {
+      "policy-effect#1": {
+        "hypotheticalSuccessorCaching": {
+          "high": 0.00203246,
+          "low": 0.0020375
+        },
+        "measured": {
+          "high": -0.00275218,
+          "low": -0.00222721
+        },
+        "status": "valid (clean pair)"
+      },
+      "policy-effect#2": {
+        "hypotheticalSuccessorCaching": {
+          "high": 0.00174792,
+          "low": 0.00197037
+        },
+        "measured": {
+          "high": -0.00310257,
+          "low": -0.00235303
+        },
+        "status": "valid (clean pair)"
+      },
+      "policy-effect#3": {
+        "hypotheticalSuccessorCaching": {
+          "high": 0.00175112,
+          "low": 0.00197428
+        },
+        "measured": {
+          "high": -0.0031475,
+          "low": -0.00239203
+        },
+        "status": "valid (clean pair)"
+      },
+      "restore-decomposition#1": {
+        "hypotheticalSuccessorCaching": {
+          "high": 0.0011358,
+          "low": 0.00144334
+        },
+        "measured": {
+          "high": -0.00189886,
+          "low": -0.00126156
+        },
+        "status": "valid (clean, pooled in d8a4abd)"
+      },
+      "restore-decomposition#2": {
+        "hypotheticalSuccessorCaching": null,
+        "measured": {
+          "high": 0.00155316,
+          "low": 0.00152923
+        },
+        "status": "contaminated (anomalies_present) - reference only, not pooled"
+      }
+    }
+  },
+  "hypotheticalSuccessorCaching": {
+    "assumption": "each successor call after the first reads the previous successor prompt from cache and writes only its increment, as the raw path already does in the same run",
+    "cleanPairMeans": {
+      "unified-5h": {
+        "hypothetical": [
+          -0.00315914,
+          -0.00167598
+        ],
+        "measured": [
+          0.00145684,
+          0.00350274
+        ]
+      },
+      "unified-7d": {
+        "hypothetical": [
+          -0.00157434,
+          0.00047257
+        ],
+        "measured": [
+          -0.00099734,
+          0.00239062
+        ]
+      },
+      "unified-7d_oi": {
+        "hypothetical": [
+          -0.00238059,
+          0.00059827
+        ],
+        "measured": [
+          -0.00135482,
+          0.00355754
+        ]
+      }
+    },
+    "label": "hypothetical",
+    "note": "measured values are the d8a4abd method recomputed; the hypothetical never replaces them",
+    "perUnit": {
+      "policy-effect#1": {
+        "status": "valid (clean pair)",
+        "unified-5h": {
+          "hypotheticalParkMinusRaw": [
+            -0.00326958,
+            -0.00180874
+          ],
+          "measuredParkMinusRaw": [
+            0.00129694,
+            0.00331449
+          ]
+        },
+        "unified-7d": {
+          "hypotheticalParkMinusRaw": [
+            -0.00160987,
+            0.00043083
+          ],
+          "measuredParkMinusRaw": [
+            -0.00103905,
+            0.00232832
+          ]
+        },
+        "unified-7d_oi": {
+          "hypotheticalParkMinusRaw": [
+            -0.00243606,
+            0.00053297
+          ],
+          "measuredParkMinusRaw": [
+            -0.00142128,
+            0.00346053
+          ]
+        }
+      },
+      "policy-effect#2": {
+        "status": "valid (clean pair)",
+        "unified-5h": {
+          "hypotheticalParkMinusRaw": [
+            -0.00302059,
+            -0.00170409
+          ],
+          "measuredParkMinusRaw": [
+            0.00159848,
+            0.0034781
+          ]
+        },
+        "unified-7d": {
+          "hypotheticalParkMinusRaw": [
+            -0.00151944,
+            0.00045275
+          ],
+          "measuredParkMinusRaw": [
+            -0.00094206,
+            0.00237208
+          ]
+        },
+        "unified-7d_oi": {
+          "hypotheticalParkMinusRaw": [
+            -0.00229633,
+            0.00056881
+          ],
+          "measuredParkMinusRaw": [
+            -0.00126987,
+            0.00353007
+          ]
+        }
+      },
+      "policy-effect#3": {
+        "status": "valid (clean pair)",
+        "unified-5h": {
+          "hypotheticalParkMinusRaw": [
+            -0.00318725,
+            -0.00151511
+          ],
+          "measuredParkMinusRaw": [
+            0.00147509,
+            0.00371563
+          ]
+        },
+        "unified-7d": {
+          "hypotheticalParkMinusRaw": [
+            -0.0015937,
+            0.00053414
+          ],
+          "measuredParkMinusRaw": [
+            -0.0010109,
+            0.00247145
+          ]
+        },
+        "unified-7d_oi": {
+          "hypotheticalParkMinusRaw": [
+            -0.00240939,
+            0.00069302
+          ],
+          "measuredParkMinusRaw": [
+            -0.00137331,
+            0.00368201
+          ]
+        }
+      },
+      "restore-decomposition#1": {
+        "status": "valid (clean, pooled in d8a4abd)",
+        "unified-5h": {
+          "hypotheticalParkMinusRaw": [
+            -0.0013308,
+            0.00002621
+          ],
+          "measuredParkMinusRaw": [
+            0.00166983,
+            0.00339266
+          ]
+        },
+        "unified-7d": {
+          "hypotheticalParkMinusRaw": [
+            -0.00084301,
+            0.00064682
+          ],
+          "measuredParkMinusRaw": [
+            -0.00046793,
+            0.00189365
+          ]
+        },
+        "unified-7d_oi": {
+          "hypotheticalParkMinusRaw": [
+            -0.00125874,
+            0.0009217
+          ],
+          "measuredParkMinusRaw": [
+            -0.00059193,
+            0.00284538
+          ]
+        }
+      },
+      "restore-decomposition#2": {
+        "status": "contaminated (anomalies_present) - reference only, not pooled",
+        "unified-5h": {
+          "hypotheticalParkMinusRaw": null,
+          "measuredParkMinusRaw": [
+            -0.00147773,
+            -0.00023391
+          ]
+        },
+        "unified-7d": {
+          "hypotheticalParkMinusRaw": null,
+          "measuredParkMinusRaw": [
+            -0.0008817,
+            0.00055133
+          ]
+        },
+        "unified-7d_oi": {
+          "hypotheticalParkMinusRaw": null,
+          "measuredParkMinusRaw": [
+            -0.00132031,
+            0.00077427
+          ]
+        }
+      }
+    }
+  },
+  "operationalSuccessors": {
+    "firstCallCachedRead": {
+      "median": 10891.5
+    },
+    "firstCallPrefixTokens": {
+      "max": 28069,
+      "median": 27568.5,
+      "min": 27426,
+      "n": 4
+    },
+    "followingCallsConversationHit": 33,
+    "followingCallsPartialOrMiss": 3,
+    "perSession": [
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10480,
+          "write": 23075
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0aa73",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 23779,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 5,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ace7",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10685,
+          "write": 16802
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": true,
+        "session": "01a0af31",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 26255,
+          "write": 1171
+        },
+        "followingCallsConversationHit": 7,
+        "followingCallsPartialOrMiss": 2,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": true,
+        "session": "01a0b09c",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 17296,
+          "read": 2048,
+          "write": 0
+        },
+        "followingCallsConversationHit": 2,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "devin"
+        ],
+        "rolloverSuccessor": true,
+        "session": "01a0b5f4",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 0,
+          "write": 27845
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0bc6e",
+        "skillFileChars": 18537,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 26550,
+          "write": 10000
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ca20",
+        "skillFileChars": 18537,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 26550,
+          "write": 10227
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ca5c",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 24265,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 6,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "anthropic-subscription",
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ca8d",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 20303,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 1,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ba31",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10894,
+          "write": 16756
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": true,
+        "session": "01a0c97c",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10889,
+          "write": 17180
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": true,
+        "session": "01a0ca1d",
+        "skillFileChars": 5439,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 23679,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 7,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a09bfc",
+        "skillFileChars": 22434,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 23644,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a09c02",
+        "skillFileChars": 22487,
+        "skillFileReadsInFirst15Turns": 2
+      },
+      {
+        "firstCall": {
+          "input": 23645,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a09c04",
+        "skillFileChars": 22434,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 23641,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a09c07",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 23626,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a09c27",
+        "skillFileChars": 37547,
+        "skillFileReadsInFirst15Turns": 2
+      },
+      {
+        "firstCall": {
+          "input": 23934,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a09c47",
+        "skillFileChars": 61819,
+        "skillFileReadsInFirst15Turns": 3
+      },
+      {
+        "firstCall": {
+          "input": 28090,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 4,
+        "followingCallsPartialOrMiss": 3,
+        "providers": [
+          "claude-sdk-oauth",
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0a635",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 28059,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0a77e",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 22415,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 6,
+        "followingCallsPartialOrMiss": 2,
+        "providers": [
+          "claude-sdk-oauth",
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0a9df",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 22429,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 6,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0aa2c",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10685,
+          "write": 27236
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ab13",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27526,
+          "write": 10358
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ab54",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27526,
+          "write": 10277
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0af34",
+        "skillFileChars": 18515,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27526,
+          "write": 10423
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0b086",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27549,
+          "write": 10359
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0b152",
+        "skillFileChars": 18515,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10685,
+          "write": 27370
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0b1d8",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27572,
+          "write": 10437
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0b208",
+        "skillFileChars": 32489,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27572,
+          "write": 10153
+        },
+        "followingCallsConversationHit": 2,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0b469",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10889,
+          "write": 27227
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ca38",
+        "skillFileChars": 18537,
+        "skillFileReadsInFirst15Turns": 1
+      },
+      {
+        "firstCall": {
+          "input": 23418,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 4,
+        "followingCallsPartialOrMiss": 2,
+        "providers": [
+          "anthropic-subscription",
+          "claude-sdk-oauth",
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ca81",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10685,
+          "write": 19739
+        },
+        "followingCallsConversationHit": 3,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0b51e",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 20884,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "openai-codex"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0bb1c",
+        "skillFileChars": 22277,
+        "skillFileReadsInFirst15Turns": 2
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 27071,
+          "write": 11491
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0bcfc",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 2,
+          "read": 10889,
+          "write": 28745
+        },
+        "followingCallsConversationHit": 9,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "claude-sdk-oauth"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0ca29",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 22884,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 8,
+        "followingCallsPartialOrMiss": 0,
+        "providers": [
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0a0e6",
+        "skillFileChars": 0,
+        "skillFileReadsInFirst15Turns": 0
+      },
+      {
+        "firstCall": {
+          "input": 22853,
+          "read": 0,
+          "write": 0
+        },
+        "followingCallsConversationHit": 7,
+        "followingCallsPartialOrMiss": 1,
+        "providers": [
+          "devin"
+        ],
+        "rolloverSuccessor": false,
+        "session": "01a0a0f8",
+        "skillFileChars": 3938,
+        "skillFileReadsInFirst15Turns": 1
+      }
+    ],
+    "rolloverSuccessors": 5,
+    "rolloverSuccessorsOnClaudeLanes": 4,
+    "skillFileReads": {
+      "chars": 5439,
+      "reads": 1,
+      "sessionsWithAny": 1
+    },
+    "source": "senpi transcripts, usage fields only",
+    "successorSessions": 38
+  },
+  "phaseSums": {
+    "policy-effect#1": {
+      "phases": {
+        "current_policy/resume_raw": {
+          "input": 2,
+          "output": 22,
+          "read": 148058,
+          "requests": 1,
+          "write1h": 79,
+          "write5m": 0
+        },
+        "current_policy/useful_work": {
+          "input": 16,
+          "output": 474,
+          "read": 1222873,
+          "requests": 8,
+          "write1h": 10920,
+          "write5m": 0
+        },
+        "current_policy/warm": {
+          "input": 8,
+          "output": 16,
+          "read": 590403,
+          "requests": 4,
+          "write1h": 1457,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/park_parent": {
+          "input": 2,
+          "output": 1213,
+          "read": 145503,
+          "requests": 1,
+          "write1h": 1098,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/restore_child": {
+          "input": 6,
+          "output": 570,
+          "read": 9105,
+          "requests": 3,
+          "write1h": 6656,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/useful_work": {
+          "input": 16,
+          "output": 648,
+          "read": 24280,
+          "requests": 8,
+          "write1h": 69406,
+          "write5m": 0
+        },
+        "shared/ctx_create": {
+          "input": 2,
+          "output": 4,
+          "read": 0,
+          "requests": 1,
+          "write1h": 146490,
+          "write5m": 0
+        },
+        "shared/observe": {
+          "input": 2,
+          "output": 4,
+          "read": 4022,
+          "requests": 1,
+          "write1h": 0,
+          "write5m": 0
+        }
+      },
+      "status": "valid (clean pair)"
+    },
+    "policy-effect#2": {
+      "phases": {
+        "current_policy/resume_raw": {
+          "input": 2,
+          "output": 20,
+          "read": 147839,
+          "requests": 1,
+          "write1h": 79,
+          "write5m": 0
+        },
+        "current_policy/useful_work": {
+          "input": 16,
+          "output": 26,
+          "read": 1219904,
+          "requests": 8,
+          "write1h": 10431,
+          "write5m": 0
+        },
+        "current_policy/warm": {
+          "input": 8,
+          "output": 16,
+          "read": 589634,
+          "requests": 4,
+          "write1h": 1350,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/park_parent": {
+          "input": 2,
+          "output": 1106,
+          "read": 145391,
+          "requests": 1,
+          "write1h": 1098,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/restore_child": {
+          "input": 6,
+          "output": 630,
+          "read": 9105,
+          "requests": 3,
+          "write1h": 6586,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/useful_work": {
+          "input": 16,
+          "output": 771,
+          "read": 24280,
+          "requests": 8,
+          "write1h": 70240,
+          "write5m": 0
+        },
+        "shared/ctx_create": {
+          "input": 2,
+          "output": 4,
+          "read": 0,
+          "requests": 1,
+          "write1h": 146378,
+          "write5m": 0
+        },
+        "shared/observe": {
+          "input": 2,
+          "output": 4,
+          "read": 4022,
+          "requests": 1,
+          "write1h": 0,
+          "write5m": 0
+        }
+      },
+      "status": "valid (clean pair)"
+    },
+    "policy-effect#3": {
+      "phases": {
+        "current_policy/resume_raw": {
+          "input": 2,
+          "output": 20,
+          "read": 147829,
+          "requests": 1,
+          "write1h": 79,
+          "write5m": 0
+        },
+        "current_policy/useful_work": {
+          "input": 16,
+          "output": 477,
+          "read": 1220893,
+          "requests": 8,
+          "write1h": 10849,
+          "write5m": 0
+        },
+        "current_policy/warm": {
+          "input": 8,
+          "output": 16,
+          "read": 589641,
+          "requests": 4,
+          "write1h": 1303,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/park_parent": {
+          "input": 2,
+          "output": 1059,
+          "read": 145428,
+          "requests": 1,
+          "write1h": 1098,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/restore_child": {
+          "input": 6,
+          "output": 708,
+          "read": 9105,
+          "requests": 3,
+          "write1h": 6641,
+          "write5m": 0
+        },
+        "shadow_candidate_policy/useful_work": {
+          "input": 16,
+          "output": 1225,
+          "read": 24280,
+          "requests": 8,
+          "write1h": 71201,
+          "write5m": 0
+        },
+        "shared/ctx_create": {
+          "input": 2,
+          "output": 4,
+          "read": 0,
+          "requests": 1,
+          "write1h": 146415,
+          "write5m": 0
+        },
+        "shared/observe": {
+          "input": 2,
+          "output": 4,
+          "read": 4022,
+          "requests": 1,
+          "write1h": 0,
+          "write5m": 0
+        }
+      },
+      "status": "valid (clean pair)"
+    },
+    "restore-decomposition#1": {
+      "phases": {
+        "park_path/park_parent": {
+          "input": 2,
+          "output": 1251,
+          "read": 145509,
+          "requests": 1,
+          "write1h": 1159,
+          "write5m": 0
+        },
+        "park_path/restore_child": {
+          "input": 6,
+          "output": 661,
+          "read": 9105,
+          "requests": 3,
+          "write1h": 6633,
+          "write5m": 0
+        },
+        "park_path/useful_work": {
+          "input": 12,
+          "output": 965,
+          "read": 18210,
+          "requests": 6,
+          "write1h": 45728,
+          "write5m": 0
+        },
+        "raw_path/resume_raw": {
+          "input": 2,
+          "output": 20,
+          "read": 146668,
+          "requests": 1,
+          "write1h": 1326,
+          "write5m": 0
+        },
+        "raw_path/useful_work": {
+          "input": 12,
+          "output": 35,
+          "read": 907854,
+          "requests": 6,
+          "write1h": 7946,
+          "write5m": 0
+        },
+        "shared/ctx_create": {
+          "input": 2,
+          "output": 4,
+          "read": 0,
+          "requests": 1,
+          "write1h": 146496,
+          "write5m": 0
+        },
+        "shared/observe": {
+          "input": 2,
+          "output": 4,
+          "read": 4022,
+          "requests": 1,
+          "write1h": 0,
+          "write5m": 0
+        },
+        "shared/resume_raw": {
+          "input": 2,
+          "output": 4,
+          "read": 145509,
+          "requests": 1,
+          "write1h": 1048,
+          "write5m": 0
+        }
+      },
+      "status": "valid (clean, pooled in d8a4abd)"
+    },
+    "restore-decomposition#2": {
+      "phases": {
+        "park_path/park_parent": {
+          "input": 2,
+          "output": 1192,
+          "read": 145419,
+          "requests": 1,
+          "write1h": 1098,
+          "write5m": 0
+        },
+        "park_path/restore_child": {
+          "input": 6,
+          "output": 876,
+          "read": 13248,
+          "requests": 3,
+          "write1h": 2752,
+          "write5m": 0
+        },
+        "park_path/useful_work": {
+          "input": 12,
+          "output": 306,
+          "read": 54615,
+          "requests": 6,
+          "write1h": 8028,
+          "write5m": 0
+        },
+        "raw_path/resume_raw": {
+          "input": 2,
+          "output": 20,
+          "read": 146517,
+          "requests": 1,
+          "write1h": 1267,
+          "write5m": 0
+        },
+        "raw_path/useful_work": {
+          "input": 12,
+          "output": 249,
+          "read": 906478,
+          "requests": 6,
+          "write1h": 7981,
+          "write5m": 0
+        },
+        "shared/ctx_create": {
+          "input": 2,
+          "output": 4,
+          "read": 0,
+          "requests": 1,
+          "write1h": 146406,
+          "write5m": 0
+        },
+        "shared/observe": {
+          "input": 2,
+          "output": 4,
+          "read": 4022,
+          "requests": 1,
+          "write1h": 0,
+          "write5m": 0
+        }
+      },
+      "status": "contaminated (anomalies_present) - reference only, not pooled"
+    }
+  },
+  "reexplanation": {
+    "analyzerReexplainNeeded": {
+      "policy-effect#1": 1,
+      "policy-effect#2": 1,
+      "policy-effect#3": 1,
+      "restore-decomposition#1": 1
+    },
+    "keywordRule": "/(missing|resend|re-send|paste|did not survive|didn't survive|not included|only the note|no file path|cannot scan|can't scan|need (the|one of))/i",
+    "perUnit": {
+      "policy-effect#1": {
+        "r2AsksForDataAgain": true,
+        "r2Usage": {
+          "input": 2,
+          "output": 182,
+          "read": 3035,
+          "write1h": 2276,
+          "write5m": 0
+        },
+        "status": "valid (clean pair)",
+        "workPromptsIdenticalAcrossArms": true,
+        "workSteps": 8
+      },
+      "policy-effect#2": {
+        "r2AsksForDataAgain": true,
+        "r2Usage": {
+          "input": 2,
+          "output": 232,
+          "read": 3035,
+          "write1h": 2240,
+          "write5m": 0
+        },
+        "status": "valid (clean pair)",
+        "workPromptsIdenticalAcrossArms": true,
+        "workSteps": 8
+      },
+      "policy-effect#3": {
+        "r2AsksForDataAgain": true,
+        "r2Usage": {
+          "input": 2,
+          "output": 249,
+          "read": 3035,
+          "write1h": 2273,
+          "write5m": 0
+        },
+        "status": "valid (clean pair)",
+        "workPromptsIdenticalAcrossArms": true,
+        "workSteps": 8
+      },
+      "restore-decomposition#1": {
+        "r2AsksForDataAgain": true,
+        "r2Usage": {
+          "input": 2,
+          "output": 292,
+          "read": 3035,
+          "write1h": 2226,
+          "write5m": 0
+        },
+        "status": "valid (clean, pooled in d8a4abd)",
+        "workPromptsIdenticalAcrossArms": true,
+        "workSteps": 6
+      },
+      "restore-decomposition#2": {
+        "r2AsksForDataAgain": true,
+        "r2Usage": {
+          "input": 2,
+          "output": 307,
+          "read": 4803,
+          "write1h": 607,
+          "write5m": 0
+        },
+        "status": "contaminated (anomalies_present) - reference only, not pooled",
+        "workPromptsIdenticalAcrossArms": true,
+        "workSteps": 6
+      }
+    }
+  },
+  "successorCachePattern": {
+    "policy-effect#1": {
+      "parkSuccessorCalls": 11,
+      "parkSuccessorReadsEqualSystemPromptOnly": true,
+      "parkSuccessorWrites": [
+        1853,
+        2276,
+        2527,
+        3861,
+        5180,
+        6555,
+        7938,
+        9328,
+        10777,
+        12180,
+        13587
+      ],
+      "parkSuccessorWritesStrictlyGrow": true,
+      "rawReadsCoverPreviousPrompt": true,
+      "rawWrites": [
+        79,
+        1335,
+        1304,
+        1364,
+        1364,
+        1371,
+        1420,
+        1379,
+        1383
+      ],
+      "status": "valid (clean pair)"
+    },
+    "policy-effect#2": {
+      "parkSuccessorCalls": 11,
+      "parkSuccessorReadsEqualSystemPromptOnly": true,
+      "parkSuccessorWrites": [
+        1805,
+        2240,
+        2541,
+        3856,
+        5284,
+        6658,
+        8070,
+        9505,
+        10916,
+        12319,
+        13632
+      ],
+      "parkSuccessorWritesStrictlyGrow": true,
+      "rawReadsCoverPreviousPrompt": true,
+      "rawWrites": [
+        79,
+        1316,
+        1318,
+        1270,
+        1284,
+        1327,
+        1320,
+        1333,
+        1263
+      ],
+      "status": "valid (clean pair)"
+    },
+    "policy-effect#3": {
+      "parkSuccessorCalls": 11,
+      "parkSuccessorReadsEqualSystemPromptOnly": true,
+      "parkSuccessorWrites": [
+        1777,
+        2273,
+        2591,
+        3935,
+        5284,
+        6695,
+        8091,
+        9547,
+        11043,
+        12550,
+        14056
+      ],
+      "parkSuccessorWritesStrictlyGrow": true,
+      "rawReadsCoverPreviousPrompt": true,
+      "rawWrites": [
+        79,
+        1345,
+        1306,
+        1365,
+        1342,
+        1358,
+        1368,
+        1375,
+        1390
+      ],
+      "status": "valid (clean pair)"
+    },
+    "restore-decomposition#1": {
+      "parkSuccessorCalls": 9,
+      "parkSuccessorReadsEqualSystemPromptOnly": true,
+      "parkSuccessorWrites": [
+        1820,
+        2226,
+        2587,
+        3920,
+        5396,
+        6869,
+        8374,
+        9860,
+        11309
+      ],
+      "parkSuccessorWritesStrictlyGrow": true,
+      "rawReadsCoverPreviousPrompt": true,
+      "rawWrites": [
+        1326,
+        1334,
+        1323,
+        1314,
+        1329,
+        1328,
+        1318
+      ],
+      "status": "valid (clean, pooled in d8a4abd)"
+    },
+    "restore-decomposition#2": {
+      "parkSuccessorCalls": 9,
+      "parkSuccessorReadsEqualSystemPromptOnly": false,
+      "parkSuccessorWrites": [
+        1768,
+        607,
+        377,
+        1283,
+        1374,
+        1308,
+        1332,
+        1394,
+        1337
+      ],
+      "parkSuccessorWritesStrictlyGrow": false,
+      "rawReadsCoverPreviousPrompt": true,
+      "rawWrites": [
+        1267,
+        1283,
+        1362,
+        1295,
+        1320,
+        1386,
+        1335
+      ],
+      "status": "contaminated (anomalies_present) - reference only, not pooled"
+    }
+  },
+  "systemPrompt": {
+    "callsReadingOnlyTheSystemPrompt": 54,
+    "cliSystemPromptTokens": 3035,
+    "paidCalls": 248
+  },
+  "v": "idle-existing-data-analysis/restore-reanalysis/1"
+}
