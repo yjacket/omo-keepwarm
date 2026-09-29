@@ -181,3 +181,19 @@ export function updateConfig(home, mutator) {
   atomicWriteJson(file, config);
   return config;
 }
+
+// Lanes whose TTL (and therefore grid) can come in more than one class keep their expiry
+// setting per class: "<laneId>:<gridClass>". Single-class lanes use the bare lane id.
+export const MULTI_CLASS_LANES = new Set(["anthropic-api", "openai-api", "codex-subscription"]);
+
+export function expiryKey(lane) {
+  return MULTI_CLASS_LANES.has(lane.id) ? `${lane.id}:${lane.gridClass}` : lane.id;
+}
+
+// config.expiry lookup: exact "<id>:<class>" first, then bare "<id>"; "auto" when neither is set.
+export function expirySettingFor(expiry, lane) {
+  const e = expiry ?? {};
+  const exact = `${lane.id}:${lane.gridClass}`;
+  const v = Object.hasOwn(e, exact) ? e[exact] : Object.hasOwn(e, lane.id) ? e[lane.id] : "auto";
+  return typeof v === "number" && Number.isFinite(v) ? v : "auto";
+}
