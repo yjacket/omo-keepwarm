@@ -171,6 +171,8 @@ not enough data: need 30 human returns and a valid estimate; nothing written
 - [기록과 상태 계약](docs/기록과-상태-계약.md): 기록 v1, config, behavior, 스냅샷, omo-health 읽기 규칙
 - [senpi upstream 요구](docs/senpi-upstream-요구.md): 주력 lane을 데우려면 senpi에 필요한 것
 - [유료 실측 제안](docs/유료-실측-제안.md): 아직 실행하지 않은 측정 계획
+- [운영과 문제 해결](docs/운영과-문제-해결.md): 세션 phase, doctor 결과 읽기, 자주 보는 경고, 끄기와 제거
+- [개발과 검증](docs/개발과-검증.md): 코드 구조, 규칙, 단위 테스트, 실제 senpi 시나리오, 개발 중 코드로 띄우기
 
 ## 배경
 

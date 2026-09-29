@@ -21,6 +21,6 @@
 
 ## 여기로 옮기지 않은 것
 
-- **코드.** 유휴 비용 엔진, shadow 기록, 실측 실행기와 분석기는 omo-rollover 브랜치 `wt/idle-cost-shadow-implementation`에 있다. 새 확장을 만들 때 필요한 부분만 가져온다.
+- **코드.** 유휴 비용 엔진, shadow 기록, 실측 실행기와 분석기는 omo-rollover 브랜치 `wt/idle-cost-shadow-implementation`에 있다. keepwarm 확장은 이 코드를 옮기지 않고, 필요한 부분을 이 저장소의 `src/`와 `extension/`에 새로 구현했다.
 - **유료 실측 원본.** 요청·응답 기록과 CLI 응답이며, 로컬에만 있다. 위치는 `C:/dev/omo/omo-rollover-wt/idle-rerun-w1/.omo/ulw-execute/evidence/idle-live-run/` 아래 `live/20260925-161302`와 `rerun/20260927-052028`이다. 해시는 `existing-data-analysis/evidence/inputs/inputs.json`에 있다.
 - **실행 로그와 세션 인수인계 메모.** 실측 런처 스크립트와 실행 로그, 세션 인수인계 메모는 문서가 아니라 작업 기록이라 omo-rollover의 `.omo/rollover/`에 남겼다.
