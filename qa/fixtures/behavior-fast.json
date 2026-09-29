@@ -1,0 +1,9 @@
+{
+  "v": 1,
+  "p": 0.95,
+  "mMin": 0.3,
+  "t90Min": 1.2,
+  "humanReturns": 30,
+  "updatedAt": 1790685904199,
+  "source": "observed"
+}

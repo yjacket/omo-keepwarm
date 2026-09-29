@@ -1,0 +1,15 @@
+{
+  "v": 1,
+  "mode": "on",
+  "maxUsdPerEpisode": 10,
+  "maxUsdPerDay": 10,
+  "lanes": {
+    "anthropic-api": {
+      "ttlSeconds": 12,
+      "intervalSeconds": 4,
+      "grid": [0, 0.2, 0.4, 0.6],
+      "minContextTokens": 1000,
+      "verified": true
+    }
+  }
+}
