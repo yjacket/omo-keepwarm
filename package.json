@@ -1,0 +1,9 @@
+{
+  "name": "omo-keepwarm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "bin": { "omo-keepwarm": "bin/omo-keepwarm.mjs" },
+  "scripts": { "test": "node --test \"test/**/*.test.mjs\"" }
+}
