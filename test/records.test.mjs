@@ -15,7 +15,9 @@ const EXPECTED = {
     "episode", "awayStartMs", "openedBy", "lane", "provider", "api", "model", "thinking",
     "contextTokens", "habit", "r", "expiry", "maxPings", "mode", "warmPath", "verified",
   ],
-  segment_open: ["episode", "segment", "reason", "anchorMs", "lane", "model", "eligible", "disabledReason"],
+  segment_open: [
+    "episode", "segment", "reason", "anchorMs", "lane", "model", "eligible", "disabledReason", "otherWakeSources",
+  ],
   decision: ["episode", "segment", "tick", "tAwayMin", "hazard", "r", "action", "reason", "lateByMs"],
   ping: ["episode", "segment", "tick", "ok", "hit", "usage", "costUsd", "durationMs", "error", "stale"],
   warm_stop: ["episode", "segment", "reason"],
