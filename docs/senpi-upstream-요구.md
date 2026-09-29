@@ -24,6 +24,13 @@ keepwarm이 주력 lane(Claude 구독, Codex)을 데우려면 senpi와 pi-ai에 
 - **필요.** 확장이 `ctx`에서 바로 부를 수 있는 데우기 함수. 내장 keepalive가 하는 조립(prepareProviderRequest → convertToLlm, getSystemPrompt, 활성 도구, getApiKeyAndHeaders, transformHeaders/transformPayload)을 호스트가 대신 하고, 대화 기록, 턴, UI에 흔적을 남기지 않는다.
 - 지금 keepwarm은 이 조립을 직접 한다. 호스트 내부 순서가 바뀌면 따라가야 한다.
 
+## 5. 마지막 실제 요청의 도구 목록
+
+- **지금.** 확장이 보는 `pi.getAllTools()`(ToolInfo)에는 실제 요청의 도구 순서(활성 순서), `constrainedSampling`(strict 도구), tool-search가 붙이는 `defer_loading`과 카탈로그 도구가 없다. ToolInfo로 다시 만든 도구 목록은 실제 요청과 달라 캐시 접두부가 어긋난다. senpi 2026.9.29 실사용 QA에서 이 차이 때문에 on 모드의 모든 warm 핑이 접두부 불일치로 멈췄다(증거 `.omo/evidence/keepwarm-v1/task-11/defect-prefix-mismatch/`).
+- **keepwarm의 대응.** `before_provider_request`에서 본 실제 요청의 `tools`를 메모리에만 두고 warm 요청에 그대로 쓴다. 재로드 직후처럼 그 값이 없으면 활성 순서와 strict 표시로 다시 만들고, 그래도 다르면 보내지 않는다.
+- **내장 keepalive도 같은 문제가 있다.** `cache-keepalive/index.js`(128-133행)는 `getAllTools()` 순서로 `{name, description, parameters}`만 넘긴다. strict 도구나 지연 도구가 있으면 핑의 도구 접두부가 실제 요청과 달라 캐시를 읽지 못하고 새로 쓴다.
+- **필요.** 마지막 provider 요청의 도구 목록(또는 ToolInfo의 `constrainedSampling`과 지연 여부)을 확장에 주는 API. 4번의 흔적 없는 warm 호출이 생기면 이 조립도 호스트가 맡는다.
+
 ## 다른 확장과의 관계
 
 **on 모드 핑도 다른 확장의 `before_provider_request` 핸들러를 거친다.** senpi의 `transformPayload`가 `emitBeforeProviderRequest`를 부르고, 호출한 확장만 빼고 모든 확장의 핸들러를 돌린다(`senpi/dist/core/extensions/runner.js` 1418-1421행). 그래서 다른 확장이 핑 요청을 보고 기록하거나 바꿀 수 있다. keepwarm은 바뀐 페이로드의 접두부가 마지막 실제 요청과 다르면 네트워크 전에 멈춘다. 흔적 없는 warm 호출(4번)을 만든다면 이 경로를 핑에서 건너뛸지 정해야 한다.

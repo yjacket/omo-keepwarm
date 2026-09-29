@@ -37,8 +37,40 @@ export function prefixDigest(payload) {
   return { head, messages };
 }
 
+// Besides the digest, keep what senpi's ToolInfo cannot tell us about the real request: the order the agent loop sent
+// the tools in and which tools went out strict (pi-ai derives strict from tool.constrainedSampling, which ToolInfo omits).
 export function captureRealPrefix(payload) {
-  return prefixDigest(payload);
+  const tools = Array.isArray(payload?.tools) ? payload.tools : [];
+  const prefix = {
+    ...prefixDigest(payload),
+    toolOrder: tools.map((t) => String(t?.name ?? "")),
+    strictTools: tools.filter((t) => t?.strict === true).map((t) => String(t?.name ?? "")),
+  };
+  // The real request's tools verbatim: senpi's tool-search transform rewrites them after pi-ai builds them
+  // (defer_loading, injected catalog tools), which no rebuild from ToolInfo reproduces. Memory only: the
+  // property is non-enumerable so it never reaches the saved episode state; a restored prefix falls back to
+  // the rebuild below.
+  Object.defineProperty(prefix, "tools", { value: tools, enumerable: false });
+  return prefix;
+}
+
+const STRICT_SAMPLING = { type: "json_schema", strict: "prefer" };
+// OAuth requests rename tools (pi-ai toClaudeCodeName), so names are matched case-insensitively.
+const toolKey = (name) => String(name).toLowerCase();
+
+// The warm request's tools, rebuilt so pi-ai converts them exactly like the last real request: the captured order
+// (else the active order, which is what the agent loop sends) and constrainedSampling on the tools that went out strict.
+function warmTools(pi, expectPrefix) {
+  const infos = new Map(pi.getAllTools().map((t) => [toolKey(t.name), t]));
+  const strict = new Set((expectPrefix?.strictTools ?? []).map(toolKey));
+  const out = [];
+  for (const name of expectPrefix?.toolOrder ?? pi.getActiveTools()) {
+    const info = infos.get(toolKey(name));
+    if (!info) continue;
+    const { name: n, description, parameters } = info;
+    out.push(strict.has(toolKey(n)) ? { name: n, description, parameters, constrainedSampling: STRICT_SAMPLING } : { name: n, description, parameters });
+  }
+  return out;
 }
 
 // True when system/tools match and the expected message list is a prefix of the actual one.
@@ -127,11 +159,7 @@ export function createWarmer({ piAi, convertToLlm, now = Date.now } = {}) {
     }
     try {
       const preparation = await ctx.prepareProviderRequest?.(lastMessages);
-      const activeToolNames = new Set(pi.getActiveTools());
-      const tools = pi
-        .getAllTools()
-        .filter((tool) => activeToolNames.has(tool.name))
-        .map(({ name, description, parameters }) => ({ name, description, parameters }));
+      const tools = warmTools(pi, expectPrefix);
       const auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
       if (!auth?.ok) {
         const e = new Error(String(auth?.error ?? "auth unavailable"));
@@ -142,9 +170,10 @@ export function createWarmer({ piAi, convertToLlm, now = Date.now } = {}) {
       const headers = preparation ? await preparation.transformHeaders(authHeaders) : authHeaders;
       const onPayload = async (payload) => {
         const transformed = preparation ? await preparation.transformPayload(payload) : undefined;
-        const effective = transformed ?? payload;
+        let effective = transformed ?? payload;
+        if (Array.isArray(expectPrefix?.tools)) effective = { ...effective, tools: expectPrefix.tools };
         if (expectPrefix && !prefixMatches(expectPrefix, prefixDigest(effective))) throw new PrefixMismatchError();
-        return transformed;
+        return effective === payload ? undefined : effective;
       };
       const result = await piAi.warmPromptCache(
         model,

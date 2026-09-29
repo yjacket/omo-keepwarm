@@ -317,6 +317,42 @@ test("prefixDigest ignores cache_control differences", () => {
   assert.equal(prefixMatches(captureRealPrefix(payloadA), prefixDigest(noCc)), true);
 });
 
+test("captureRealPrefix keeps the real tool order and the tools sent strict", () => {
+  const p = { system: "S", tools: [{ name: "write", strict: true }, { name: "read" }, { name: "Edit", strict: true }], messages: [] };
+  const c = captureRealPrefix(p);
+  assert.deepEqual([c.toolOrder, c.strictTools], [["write", "read", "Edit"], ["write", "Edit"]]);
+  assert.equal(prefixMatches(c, prefixDigest(p)), true);
+});
+
+test("warm tools follow the captured order (else the active order) and strict tools carry constrainedSampling", async () => {
+  const { pi, ctx, piAi, warmer } = setup();
+  pi.tools.active = ["bash", "read"]; // active order differs from the registry order read, bash
+  await warmer.ping({ pi, ctx, model: models.anthropic5m, lastMessages: msgs });
+  assert.deepEqual(piAi.calls[0].context.tools.map((t) => t.name), ["bash", "read"]);
+  assert.equal(piAi.calls[0].context.tools.some((t) => "constrainedSampling" in t), false);
+  const expectPrefix = { head: "x", messages: [], toolOrder: ["Read", "bash"], strictTools: ["Read"] };
+  await warmer.ping({ pi, ctx, model: models.anthropic5m, lastMessages: msgs, expectPrefix });
+  assert.deepEqual(piAi.calls[1].context.tools, [
+    { name: "read", description: "Read", parameters: { type: "object" }, constrainedSampling: { type: "json_schema", strict: "prefer" } },
+    { name: "bash", description: "Bash", parameters: { type: "object" } },
+  ]);
+});
+
+test("the warm request reuses the captured real tools verbatim, which never reach the saved state", async () => {
+  const realTools = [
+    { name: "read", input_schema: { type: "object" }, strict: true },
+    { name: "schedule_prompt", input_schema: { type: "object", required: ["action"] }, defer_loading: true },
+  ];
+  const piAi = networkPiAi();
+  const { pi, ctx, warmer } = setup({ piAi, ctxOpts: { systemPrompt: "SYS" } });
+  const expectPrefix = captureRealPrefix({ system: "SYS", tools: realTools, messages: convertToLlm(msgs) });
+  assert.equal(JSON.stringify(expectPrefix).includes("schedule_prompt\",\"input_schema"), false);
+  assert.equal("tools" in JSON.parse(JSON.stringify(expectPrefix)), false);
+  const res = await warmer.ping({ pi, ctx, model: models.anthropic5m, lastMessages: msgs, expectPrefix });
+  assert.equal(res.ok, true);
+  assert.deepEqual(piAi.network[0].tools, realTools);
+});
+
 test("appending messages keeps the prefix; cache_control moving to the new tail is ignored", () => {
   const longer = structuredClone(payloadA);
   delete longer.messages[1].content[0].cache_control;
