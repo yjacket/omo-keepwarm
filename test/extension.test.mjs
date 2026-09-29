@@ -293,6 +293,13 @@ test("the loaded marker is written at the first session_start of a runtime with 
   assert.equal(existsSync(h.L.loadedMarker(VERSION)), true);
 });
 
+test("the session status carries keepwarmVersion, which install's pruneReleases keeps", async () => {
+  const h = boot();
+  await h.start();
+  await h.clock.advance(SEC);
+  assert.equal(readJsonSafe(h.L.sessionStatus(h.sessionId))?.keepwarmVersion, VERSION);
+});
+
 test("no version, no marker", async () => {
   const h = boot({ version: null });
   await h.start();

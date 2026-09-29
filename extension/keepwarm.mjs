@@ -188,6 +188,8 @@ export default function omoKeepwarm(pi, deps = {}) {
           setTimeout: setTimer,
           clearTimeout: clearTimer,
         });
+        // install's pruneReleases keeps the releases that live sessions report here.
+        statusHandle.update({ keepwarmVersion: deps.version ?? null });
         startHeartbeat();
         return statusHandle;
       },
