@@ -3,14 +3,14 @@ import { join } from "node:path";
 import { atomicWriteJson, readJsonSafe } from "./fsx.mjs";
 import { layout, localDate } from "./paths.mjs";
 import { sumDay, sumSpend } from "./ledger.mjs";
-
-export const STALE_AFTER_MS = 900000;
+import { STALE_AFTER_MS } from "./policy.mjs";
 
 const MODES = new Set(["off", "shadow", "on"]);
 const LANE_VALUES = new Set(["on", "shadow", "observe", "off"]);
 const LANE_RANK = { off: 0, observe: 1, shadow: 2, on: 3 };
-// Phases in which the human is not driving the session.
-const IDLE_PHASES = new Set(["HELD", "ARMED", "PINGING", "OBSERVING", "EXPIRED"]);
+// Controller phases in which the human is not driving the session (an open episode that is armed,
+// pinging, observing, paused or held; CLASSIFYING and BUSY are a turn in progress).
+export const IDLE_PHASES = new Set(["HELD", "ARMED", "PINGING", "OBSERVING", "PAUSED"]);
 const WARMING_PHASES = new Set(["ARMED", "PINGING"]);
 
 function configMode(home) {
@@ -111,6 +111,7 @@ export function createStatus({
   debounceMs = 0,
   setTimeout: setTimer = globalThis.setTimeout,
   clearTimeout: clearTimer = globalThis.clearTimeout,
+  canWrite = () => true,
 }) {
   const L = layout(home);
   const file = L.sessionStatus(sessionId);
@@ -127,8 +128,10 @@ export function createStatus({
   };
   let timer = null;
   let pending = false;
+  let dead = false; // abandoned: the config file is gone or mode is off, nothing may be written any more
 
   function writeSession() {
+    if (dead) return;
     const { episodeState, ...rest } = state;
     atomicWriteJson(file, { v: 1, ts: now(), session: sessionId, ...rest, episodeState });
   }
@@ -152,6 +155,8 @@ export function createStatus({
       timer = null;
       if (!pending) return;
       pending = false;
+      // Unattended write: dropped when the config file is gone (the home was purged in the meantime).
+      if (!canWrite()) return;
       try {
         writeSession();
       } catch {
@@ -163,6 +168,7 @@ export function createStatus({
   }
 
   function recomputeGlobal() {
+    if (dead) return;
     try {
       atomicWriteJson(L.globalStatus, computeGlobal(home, now()));
     } catch (err) {
@@ -204,7 +210,14 @@ export function createStatus({
       writeNow();
       recomputeGlobal();
     },
+    /** Drops the pending write and the saved episode without touching the disk; every later call is a no-op. */
+    abandon() {
+      dead = true;
+      cancelPending();
+      state.episodeState = null;
+    },
     close() {
+      if (dead) return;
       flush();
       cancelPending();
       if (state.episodeState) {

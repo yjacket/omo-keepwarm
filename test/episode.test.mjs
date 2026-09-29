@@ -1,6 +1,6 @@
 import { test, afterEach } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readdirSync, rmSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { createController, wireController, EVENT_METHODS, CHILD_WORK_SOURCES } from "../src/episode.mjs";
 import { createConfigSource, updateConfig } from "../src/config.mjs";
@@ -68,6 +68,7 @@ function setup(o = {}) {
       piAi,
       home,
       version: "0.1.0+test",
+      onError: o.onError,
     },
   });
   const wired = wireController(pi, controller);
@@ -935,13 +936,39 @@ test("45 shadow applies the USD caps to the virtual ledger on warm-path lanes on
   assert.equal(h.ledger.spendEpisode(id, { virtual: true }), 0.015);
   assert.equal(h.ledger.spendToday({ virtual: false }), 0);
 
-  // No warm path (claude-sdk-oauth): nothing can be spent, so only the request cap applies; virtual cost is still kept.
+  // No warm path (claude-sdk-oauth): nothing can be spent, so only the request cap applies. Its notional
+  // cost stays in the episode counters and never reaches the shared virtual ledger.
   const s = setup({ model: models.claudeSdkOauth, config: { maxUsdPerEpisode: 0.02, maxUsdPerDay: 0.02 } });
   await s.openEpisode();
   await s.to(111);
   assert.deepEqual(s.records("decision").map((d) => [d.action, d.reason]), [["would_warm", "shadow"], ["would_warm", "shadow"]]);
   assert.deepEqual(s.stops(), []);
-  assert.equal(s.ledger.spendEpisode(s.records("episode_open")[0].episode, { virtual: true }), 0.15);
+  const sid = s.records("episode_open")[0].episode;
+  assert.equal(s.ledger.spendEpisode(sid, { virtual: true }), 0);
+  assert.equal(s.ledger.spendToday({ virtual: true }), 0);
+  await s.input("interactive");
+  const [close] = s.records("episode_close");
+  assert.equal(close.virtualUsd, 0.15);
+  assert.equal(close.wouldWarm, 2);
+});
+
+test("45b virtual cost of a no-warm-path lane does not push a warm-path shadow session into daily_cap", async () => {
+  const claude = setup({ model: models.claudeSdkOauth, config: { maxUsdPerEpisode: 100, maxUsdPerDay: 0.02 } });
+  await claude.openEpisode();
+  await claude.to(56);
+  assert.deepEqual(claude.records("decision").map((d) => [d.action, d.reason]), [["would_warm", "shadow"]]);
+
+  // Same home and clock: an anthropic-api shadow session whose ping costs $0.015 fits under the $0.02 daily cap.
+  const api = setup({
+    home: claude.home,
+    clock: claude.clock,
+    ctxOpts: { sessionId: "sess-2" },
+  });
+  await api.openEpisode();
+  await api.clock.advance(4.5 * MIN);
+  const mine = api.records("decision").filter((d) => d.episode === "sess-2:1");
+  assert.deepEqual(mine.map((d) => [d.action, d.reason]), [["would_warm", "shadow"]]);
+  assert.deepEqual(api.records("warm_stop").filter((r) => r.episode === "sess-2:1"), []);
 });
 
 test("46 invalid habit: auto -> E 0; manual expiry -> warm proceeds with hazard null", async () => {
@@ -1048,7 +1075,7 @@ test("52 no config file -> inert; once created, the next settle starts recording
   assert.equal(h.records("segment_open")[0].eligible, true);
 });
 
-test("53 mode on -> off switch -> config_off at the next tick", async () => {
+test("53 mode on -> off switch mid-episode: one censored config_off close at the next tick, then silence", async () => {
   const h = setup({ config: { mode: "on" } });
   await h.openEpisode();
   await h.to(5);
@@ -1056,8 +1083,110 @@ test("53 mode on -> off switch -> config_off at the next tick", async () => {
     c.mode = "off";
   });
   await h.to(10);
-  assert.deepEqual(h.records("decision").map((d) => [d.action, d.reason]), [["would_warm", "unverified"], ["skip", "config_off"]]);
-  assert.deepEqual(h.stops(), ["config_off"]);
+  assert.deepEqual(h.records("decision").map((d) => [d.action, d.reason]), [["would_warm", "unverified"]]);
+  assert.deepEqual(h.stops(), []);
+  const [close, ...more] = h.records("episode_close");
+  assert.equal(more.length, 0);
+  assert.deepEqual([close.kind, close.source, close.detail], ["censored", "config", "config_off"]);
+  assert.equal(close.wouldWarm, 1);
+  assert.equal(h.snap().phase, "INERT");
+  assert.equal(readJsonSafe(h.L.sessionStatus("sess-1")).episodeState, null, "the saved episode state is cleared");
+  assert.equal(h.clock.pendingCount(), 0);
+});
+
+test("65 mode off mid-episode: nothing is written across many ticks and events; shadow again -> the next settle opens a new episode", async () => {
+  const h = setup();
+  await h.openEpisode();
+  await h.to(2);
+  updateConfig(h.home, (c) => {
+    c.mode = "off";
+  });
+  await h.to(6);
+  assert.equal(h.records("episode_close").length, 1);
+  const files = () =>
+    [h.L.sessionStatus("sess-1"), h.L.recordFile("sess-1", START), h.L.globalStatus].map((f) => (existsSync(f) ? readFileSync(f, "utf8") : null));
+  const frozen = files();
+  const count = h.records().length;
+  for (let min = 10; min <= 200; min += 30) {
+    await h.to(min);
+    await h.input("interactive");
+    await h.runTurn();
+    await h.settle();
+    await h.bus("wake_source_state", { source: "senpi-task", activeCount: 1 });
+    await h.bus("cache_warm_ping", {});
+    await h.emit("model_select", { model: otherModel, previousModel: models.anthropic5m });
+  }
+  assert.equal(h.records().length, count, "no record after the close");
+  assert.deepEqual(files(), frozen, "no status, record or _global write after the close");
+  assert.equal(h.snap().phase, "INERT");
+  assert.equal(h.clock.pendingCount(), 0);
+
+  updateConfig(h.home, (c) => {
+    c.mode = "shadow";
+  });
+  await h.to(230);
+  h.bus("wake_source_state", { source: "senpi-task", activeCount: 0 });
+  await h.humanTurn();
+  const opens = h.records("episode_open");
+  assert.deepEqual(opens.map((o) => o.episode), ["sess-1:1", "sess-1:2"]);
+  assert.equal(h.snap().episode, "sess-1:2");
+  assert.equal(h.snap().phase, "ARMED");
+});
+
+test("66 config file deleted mid-episode: zero writes afterwards and the home stays absent", async () => {
+  const h = setup();
+  await h.openEpisode();
+  await h.to(2);
+  rmSync(h.home, { recursive: true, force: true });
+  await h.to(70);
+  for (const source of ["interactive", "rpc"]) {
+    await h.input(source);
+    await h.runTurn();
+    await h.settle();
+  }
+  h.controller.checkConfig();
+  await h.shutdown("quit");
+  assert.equal(existsSync(h.home), false, "nothing recreated the home");
+  assert.equal(h.snap().phase, "DETACHED");
+  assert.equal(h.clock.pendingCount(), 0);
+});
+
+test("66b an input right after the home is deleted neither closes the episode nor recreates the home", async () => {
+  const h = setup();
+  await h.openEpisode();
+  rmSync(h.home, { recursive: true, force: true });
+  await h.input("interactive");
+  assert.equal(existsSync(h.home), false);
+  assert.equal(h.snap().phase, "INERT");
+  assert.equal(h.snap().episode, null);
+});
+
+test("66c a ping that finishes after the home was deleted writes nothing", async () => {
+  const h = setup({ config: ON_VERIFIED, piAiOpts: { deferred: true } });
+  await h.openEpisode();
+  await h.to(4.5);
+  assert.equal(h.snap().phase, "PINGING");
+  rmSync(h.home, { recursive: true, force: true });
+  h.piAi.pending[0].resolve();
+  await h.drain();
+  assert.equal(existsSync(h.home), false);
+  assert.equal(h.snap().phase, "INERT");
+});
+
+test("67 an unexpected error after the decision stops warming with internal_error, is reported, and leaves no stuck phase", async () => {
+  const errors = [];
+  const h = setup({ config: ON_VERIFIED, onError: (err) => errors.push(err) });
+  await h.openEpisode();
+  h.ctx.sessionManager.buildSessionContext = () => {
+    throw new Error("history boom");
+  };
+  await h.to(4.5);
+  await h.drain();
+  assert.deepEqual(errors.map((e) => e.message), ["history boom"]);
+  assert.deepEqual(h.stops(), ["internal_error"]);
+  assert.equal(h.snap().phase, "OBSERVING");
+  assert.equal(h.clock.pendingCount(), 0);
+  assert.equal(h.piAi.calls.length, 0);
 });
 
 // ---- segment eligibility --------------------------------------------------

@@ -7,7 +7,7 @@ const EXPIRY = ["formulaMin", "autoMin", "requestedMin", "effectiveMin", "source
 const USAGE = ["input", "output", "cacheRead", "cacheWrite"];
 const ERROR = ["kind", "message", "status"];
 const MARKER = ["kind", "atMs"];
-const MAX_MARKERS = 32;
+export const MAX_MARKERS = 32;
 
 export const SCHEMA = {
   session: ["reason", "mode", "sessionKind", "uiMode", "keepwarmVersion", "cwd", "restored"],

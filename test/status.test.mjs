@@ -2,7 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { appendFileSync, existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { createStatus, STALE_AFTER_MS } from "../src/status.mjs";
+import { createStatus } from "../src/status.mjs";
+import { STALE_AFTER_MS } from "../src/policy.mjs";
 import { createLedger } from "../src/ledger.mjs";
 import { atomicWriteJson, readJsonSafe } from "../src/fsx.mjs";
 import { layout } from "../src/paths.mjs";
@@ -53,6 +54,20 @@ test("session file shape; _global recomputed when the episode opens", () => {
   });
   // no temp files left behind
   assert.deepEqual(readdirSync(L.statusDir).sort(), ["_global.json", "s1.json"]);
+});
+
+test("idle counts every controller phase in which the human is away; a turn in progress is not idle", () => {
+  const { status, global } = setup();
+  const phases = ["HELD", "ARMED", "PINGING", "OBSERVING", "PAUSED", "CLASSIFYING", "BUSY", "INERT"];
+  let last;
+  phases.forEach((phase, i) => {
+    last = status(`s${i}`);
+    last.update({ phase, lane: "anthropic-api", mode: "shadow" });
+  });
+  last.recomputeGlobal();
+  assert.equal(global().detail.sessions.count, phases.length);
+  assert.equal(global().detail.sessions.idle, 5);
+  assert.equal(global().detail.sessions.warming, 2);
 });
 
 test("two session writers -> sessions.count 2", () => {

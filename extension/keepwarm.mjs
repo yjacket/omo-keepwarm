@@ -55,7 +55,15 @@ export default function omoKeepwarm(pi, deps = {}) {
 
   function startHeartbeat() {
     stopHeartbeat();
-    heartbeat = setTick(safe.wrap("heartbeat", () => statusHandle?.heartbeat()), HEARTBEAT_MS);
+    heartbeat = setTick(
+      safe.wrap("heartbeat", () => {
+        // A purge or an off switch is noticed here even when no host event arrives; the gate then
+        // abandons the status handle and stops this heartbeat before it can write.
+        controller?.checkConfig();
+        statusHandle?.heartbeat();
+      }),
+      HEARTBEAT_MS,
+    );
     heartbeat?.unref?.();
   }
 
@@ -98,7 +106,8 @@ export default function omoKeepwarm(pi, deps = {}) {
   }
 
   function writeLoadedMarker() {
-    if (markerDone || !deps.version) return;
+    // No config file (home purged or never installed): the runtime writes nothing anywhere.
+    if (markerDone || !deps.version || !config.exists(true)) return;
     const file = L.loadedMarker(deps.version);
     ensureDir(dirname(file));
     writeFileSync(file, `${new Date(now()).toISOString()}\n`);
@@ -175,6 +184,7 @@ export default function omoKeepwarm(pi, deps = {}) {
           sessionId,
           now,
           debounceMs: STATUS_DEBOUNCE_MS,
+          canWrite: () => config.exists(true),
           setTimeout: setTimer,
           clearTimeout: clearTimer,
         });
@@ -187,6 +197,7 @@ export default function omoKeepwarm(pi, deps = {}) {
       home,
       version: deps.version,
       onError,
+      onQuiet: stopHeartbeat,
     },
   });
   wireController(pi, controller, { wrap: guard });

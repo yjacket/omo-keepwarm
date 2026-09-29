@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { copyFileSync, mkdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { COMMANDS, main } from "../bin/omo-keepwarm.mjs";
@@ -33,11 +34,15 @@ test("unknown command exits 64", async () => {
   assert.equal(await main(["bogus"], i), 64);
 });
 
-test("known command without module exits 70 'not implemented'", async () => {
-  // only meaningful while no src/cli/<name>.mjs exists for the probed command
-  const r = spawnSync(process.execPath, [bin, "render-stub"], { encoding: "utf8" });
-  if (r.status === 70) assert.match(r.stderr, /not implemented/);
-  else assert.equal(typeof r.status, "number");
+test("known command without module exits 70 'not implemented'", (t) => {
+  // The bin is self-contained (node builtins only): a copy in a temp dir has no src/cli/<name>.mjs.
+  const dir = tmpHome();
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  mkdirSync(join(dir, "bin"));
+  copyFileSync(bin, join(dir, "bin", "omo-keepwarm.mjs"));
+  const r = spawnSync(process.execPath, [join(dir, "bin", "omo-keepwarm.mjs"), "install"], { encoding: "utf8" });
+  assert.equal(r.status, 70, r.stderr);
+  assert.match(r.stderr, /install: not implemented/);
 });
 
 test("process exit codes via real spawn", () => {

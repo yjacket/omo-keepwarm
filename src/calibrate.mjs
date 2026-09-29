@@ -1,4 +1,4 @@
-// Habit calibration: Kaplan-Meier over away durations from keepwarm records.
+// Habit calibration: Aalen-Johansen over away durations from keepwarm records.
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 import { atomicWriteJson, readJsonLines, readJsonSafe } from "./fsx.mjs";

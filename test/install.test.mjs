@@ -18,6 +18,10 @@ import { run as runDoctor } from "../src/cli/doctor.mjs";
 import { run as runRenderStub } from "../src/cli/render-stub.mjs";
 import { tmpHome } from "./helpers/fake-host.mjs";
 
+// Fixed clock for the freshness windows (30 s omo-health sensors, 15 min keepwarm status).
+const NOW = Date.UTC(2026, 5, 15, 9, 0, 0);
+const clock = () => NOW;
+
 function setup(t) {
   const T = tmpHome();
   t.after(() => rmSync(T, { recursive: true, force: true }));
@@ -28,7 +32,7 @@ function setup(t) {
     OMO_HEALTH_HOME: join(T, "health"),
   };
   const out = { out: "", err: "" };
-  const io = { stdout: (s) => (out.out += s), stderr: (s) => (out.err += s), env, now: Date.now, cwd: T };
+  const io = { stdout: (s) => (out.out += s), stderr: (s) => (out.err += s), env, now: clock, cwd: T };
   const reset = () => {
     out.out = "";
     out.err = "";
@@ -138,7 +142,7 @@ test("existing config is preserved", async (t) => {
 
 test("busy sessions: exit 3 with a list, --force overrides", async (t) => {
   const { env, io, out, reset, L } = setup(t);
-  const now = Date.now();
+  const now = NOW;
   // keepwarm session in a busy phase
   mkdirSync(L.statusDir, { recursive: true });
   writeFileSync(L.sessionStatus("kw-busy"), JSON.stringify({ v: 1, ts: now, session: "kw-busy", phase: "PINGING" }));
@@ -168,7 +172,7 @@ test("busy sessions: exit 3 with a list, --force overrides", async (t) => {
 
 test("busy check excludes the calling session (PI_SESSION_ID)", async (t) => {
   const { env, io, out, reset, L } = setup(t);
-  const now = Date.now();
+  const now = NOW;
   env.PI_SESSION_ID = "caller";
   mkdirSync(L.statusDir, { recursive: true });
   // the caller is busy in every source: keepwarm status, omo-health sensor and omo-health status
@@ -275,16 +279,16 @@ test("prune keeps current, previous, lkg and fresh status keepwarmVersion", (t) 
   const { T, env, L } = setup(t);
   const repo = copyRepo(T);
   const v = [];
-  v.push(install({ env, sourceRoot: repo.root }).version); // 0: referenced by a fresh status file
+  v.push(install({ env, now: clock, sourceRoot: repo.root }).version); // 0: referenced by a fresh status file
   repo.bump();
-  v.push(install({ env, sourceRoot: repo.root }).version); // 1: will be dropped
+  v.push(install({ env, now: clock, sourceRoot: repo.root }).version); // 1: will be dropped
   mkdirSync(L.statusDir, { recursive: true });
-  writeFileSync(L.sessionStatus("s1"), JSON.stringify({ v: 1, ts: Date.now(), session: "s1", phase: "HELD", keepwarmVersion: v[0] }));
+  writeFileSync(L.sessionStatus("s1"), JSON.stringify({ v: 1, ts: NOW, session: "s1", phase: "HELD", keepwarmVersion: v[0] }));
   repo.bump();
-  const r2 = install({ env, sourceRoot: repo.root });
+  const r2 = install({ env, now: clock, sourceRoot: repo.root });
   v.push(r2.version); // 2: previous
   repo.bump();
-  const r3 = install({ env, sourceRoot: repo.root });
+  const r3 = install({ env, now: clock, sourceRoot: repo.root });
   v.push(r3.version); // 3: current
   assert.deepEqual(releases(L), [v[0], v[2], v[3]].sort());
   assert.ok(r3.pruned.includes(v[1]));

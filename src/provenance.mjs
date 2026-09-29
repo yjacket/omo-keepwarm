@@ -1,4 +1,4 @@
-export const STALE_INPUT_MS = 600000;
+import { STALE_INPUT_MS } from "./policy.mjs";
 
 export function createProvenance({ now }) {
   const inputs = [];

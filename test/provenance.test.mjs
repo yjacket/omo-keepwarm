@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createProvenance, STALE_INPUT_MS } from '../src/provenance.mjs';
+import { createProvenance } from '../src/provenance.mjs';
+import { STALE_INPUT_MS } from '../src/policy.mjs';
 
 function setup() {
   let t = 1000;

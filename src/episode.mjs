@@ -22,11 +22,11 @@ import { expirySettingFor } from "./config.mjs";
 import { captureRealPrefix } from "./warm.mjs";
 import { readJsonLines } from "./fsx.mjs";
 import { layout } from "./paths.mjs";
+import { MAX_MARKERS } from "./records.mjs";
 
 // Wake sources whose active work ends in a notification turn that rewrites the cache.
 export const CHILD_WORK_SOURCES = ["senpi-task", "senpi-task-member", "omo-dag"];
 const CLOCK_SKEW_MS = 1000;
-const MAX_MARKERS = 32;
 
 // Host event name -> controller method.
 export const EVENT_METHODS = {
@@ -103,7 +103,8 @@ function isWakeSourceState(data) {
 // recorder and status may be objects or factories (sessionId) => object; factories are called
 // at session_start once the session id is known. home enables episode-id continuity and the
 // restore-failure trace (both read this session's record files). onError receives errors from
-// timer-driven work; without it such errors surface as unhandled rejections.
+// timer-driven work; without it such errors surface as unhandled rejections. onQuiet() is called when
+// the config gate stops the controller (config file gone or mode off): the extension stops its heartbeat.
 export function createController({ pi, deps }) {
   const { now, config, ledger, warmer, piAi } = deps;
   const setTimer = deps.setTimeout;
@@ -484,10 +485,11 @@ export function createController({ pi, deps }) {
     setPhase("ARMED");
   }
 
+  // The phase leaves ARMED/PINGING before anything is written, so a failing write cannot leave a stuck phase.
   function warmStop(reason) {
     invalidate();
-    recorder.write("warm_stop", { episode: ep.id, segment: ep.segment, reason });
     setPhase("OBSERVING");
+    recorder.write("warm_stop", { episode: ep.id, segment: ep.segment, reason });
     publish(true);
   }
 
@@ -496,7 +498,7 @@ export function createController({ pi, deps }) {
     if (phase === "ARMED" || phase === "PINGING") warmStop(reason);
   }
 
-  function closeEpisode({ kind, source, detail = null, atMs }) {
+  function closeEpisode({ kind, source, detail = null, atMs, next = "BUSY" }) {
     invalidate();
     const e = ep;
     const ttlMs = e.lane.ttlSec * 1000;
@@ -535,8 +537,42 @@ export function createController({ pi, deps }) {
         sinceRealAnchorSec: realAnchorMs === null ? null : (atMs - realAnchorMs) / 1000,
       };
     }
-    setPhase("BUSY");
+    setPhase(next);
     publish(true);
+  }
+
+  // Config gate (IS-13): runs on the tick and on every host/bus event while the controller holds live
+  // state. Config file missing (home purged or uninstalled): stop without writing anything. Mode off:
+  // one final censored close of an open episode (which also clears the saved episode state), then
+  // silence. Either way the recorder and status are dropped and `activated` is cleared, so the next
+  // settle with a config present and mode not off re-activates through activate(), as at first start.
+  // Returns true when the controller went quiet.
+  function configGate() {
+    if (!active()) return false;
+    const present = config.exists(true);
+    if (present && config.get().mode !== "off") return false;
+    invalidate();
+    if (present) {
+      mode = "off";
+      if (ep) closeEpisode({ kind: "censored", source: "config", detail: "config_off", atMs: now(), next: "INERT" });
+      else {
+        setPhase("INERT");
+        publish(true);
+      }
+    } else {
+      ep = null;
+      setPhase("INERT");
+    }
+    returnUsage = null;
+    preclassified = false;
+    // Nothing is tracked while quiet: re-activation re-estimates the anchor from the session history.
+    anchorMs = realAnchorMs = lastRealPrefix = lastTurn = null;
+    status?.abandon?.();
+    status = null;
+    recorder = null;
+    activated = false;
+    deps.onQuiet?.();
+    return true;
   }
 
   // Applies a provenance verdict for the turn now running inside the episode.
@@ -586,6 +622,7 @@ export function createController({ pi, deps }) {
 
   async function runTick(g, dueAtMs) {
     if (g !== gen || phase !== "ARMED" || !ep) return;
+    if (configGate()) return;
     timer = null;
     nextTickMs = null;
     const ctx = ctxRef;
@@ -636,6 +673,23 @@ export function createController({ pi, deps }) {
     const stopReason = stopReasonAt(ctx, cfg, real, tokens);
     if (stopReason) return stop(stopReason);
 
+    // Past the decision: an unexpected error must not leave the phase stuck in ARMED/PINGING.
+    const epId = ep.id;
+    try {
+      return await tickAction({ g, ctx, lane, cfg, real, tokens, firedAt, decide, stop });
+    } catch (err) {
+      if (g === gen && ep?.id === epId) {
+        try {
+          warmStop("internal_error");
+        } catch {
+          // The original error is the one reported; warmStop already left ARMED/PINGING before it wrote.
+        }
+      }
+      throw err;
+    }
+  }
+
+  async function tickAction({ g, ctx, lane, cfg, real, tokens, firedAt, decide, stop }) {
     if (!real) {
       const why = cfg.mode !== "on" ? "shadow"
         : lane.warmPath !== "warmPromptCache" ? "no_warm_path"
@@ -645,7 +699,11 @@ export function createController({ pi, deps }) {
       ep.pingsSent += 1;
       ep.wouldWarm += 1;
       const usd = warmer.projectedCostUsd(ctx.model, tokens);
-      ledger.recordSpend({ session: sessionId, episode: ep.id, usd, virtual: true });
+      // Only warm-path lanes write to the shared virtual ledger (it feeds their shadow caps); a lane
+      // without a warm path keeps its notional cost in the episode counters only.
+      if (lane.warmPath === "warmPromptCache") {
+        ledger.recordSpend({ session: sessionId, episode: ep.id, usd, virtual: true });
+      }
       ep.virtualUsd += usd;
       anchorMs = firedAt;
       schedule(firedAt + lane.intervalSec * 1000);
@@ -675,6 +733,11 @@ export function createController({ pi, deps }) {
       signal: ac.signal,
     });
     if (pingAbort === ac) pingAbort = null;
+    // The gate went quiet during the ping (or the config file is gone now): write nothing.
+    if (!recorder || !config.exists(true)) {
+      configGate();
+      return;
+    }
     const current = g === gen;
     const aborted = !res.ok && res.error?.kind === "aborted";
     recorder.write("ping", {
@@ -734,6 +797,7 @@ export function createController({ pi, deps }) {
     }
     if (status) status.close();
     status = null;
+    activated = false;
     setPhase("DETACHED");
   }
 
@@ -986,28 +1050,36 @@ export function createController({ pi, deps }) {
     };
   }
 
+  // Every event handler runs the config gate first, so a purge or an off switch is noticed by the
+  // next event and not only by the next tick.
+  const gated = (fn) => (...args) => {
+    configGate();
+    return fn(...args);
+  };
+
   return {
     onSessionStart,
-    onSessionShutdown,
-    onInput,
-    onInputDisposition,
-    onBeforeAgentStart,
-    onAgentStart,
-    onMessageStart,
-    onMessageEnd,
-    onBeforeProviderRequest,
-    onAgentEnd,
-    onAgentSettled,
-    onModelSelect,
-    onThinkingLevelSelect,
-    onSessionCompact,
-    onSessionTree,
-    onSessionParked,
-    onSessionResumed,
-    onUserBash,
-    onSessionAbort,
-    onWakeSourceState,
-    onCacheWarmPing,
+    onSessionShutdown: gated(onSessionShutdown),
+    onInput: gated(onInput),
+    onInputDisposition: gated(onInputDisposition),
+    onBeforeAgentStart: gated(onBeforeAgentStart),
+    onAgentStart: gated(onAgentStart),
+    onMessageStart: gated(onMessageStart),
+    onMessageEnd: gated(onMessageEnd),
+    onBeforeProviderRequest: gated(onBeforeProviderRequest),
+    onAgentEnd: gated(onAgentEnd),
+    onAgentSettled: gated(onAgentSettled),
+    onModelSelect: gated(onModelSelect),
+    onThinkingLevelSelect: gated(onThinkingLevelSelect),
+    onSessionCompact: gated(onSessionCompact),
+    onSessionTree: gated(onSessionTree),
+    onSessionParked: gated(onSessionParked),
+    onSessionResumed: gated(onSessionResumed),
+    onUserBash: gated(onUserBash),
+    onSessionAbort: gated(onSessionAbort),
+    onWakeSourceState: gated(onWakeSourceState),
+    onCacheWarmPing: gated(onCacheWarmPing),
+    checkConfig: configGate,
     halt,
     snapshot,
   };

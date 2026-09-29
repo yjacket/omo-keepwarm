@@ -109,9 +109,9 @@ export function createConfigSource({ home, now = Date.now, statEveryMs = 5000 } 
   let present = false;
   let behavior;
 
-  function refresh() {
+  function refresh(fresh = false) {
     const t = now();
-    if (lastCheck !== undefined && t - lastCheck < statEveryMs) return;
+    if (!fresh && lastCheck !== undefined && t - lastCheck < statEveryMs) return;
     lastCheck = t;
 
     const cm = mtimeOf(files.config);
@@ -162,8 +162,9 @@ export function createConfigSource({ home, now = Date.now, statEveryMs = 5000 } 
       refresh();
       return [...invalidList];
     },
-    exists() {
-      refresh();
+    // fresh: stat now instead of waiting for the throttle (the config gate runs on every event).
+    exists(fresh = false) {
+      refresh(fresh);
       return present;
     },
   };

@@ -4,7 +4,9 @@ import { existsSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import keepwarm from "../extension/keepwarm.mjs";
 import { BUS_METHODS, EVENT_METHODS } from "../src/episode.mjs";
+import { updateConfig } from "../src/config.mjs";
 import { atomicWriteJson, readJsonLines, readJsonSafe } from "../src/fsx.mjs";
+import { uninstall } from "../src/install.mjs";
 import { layout } from "../src/paths.mjs";
 import { HEARTBEAT_MS } from "../src/policy.mjs";
 import { createFakeClock, createFakeCtx, createFakePi, createFakePiAi, models, tmpHome } from "./helpers/fake-host.mjs";
@@ -336,6 +338,112 @@ test("the heartbeat recomputes _global every HEARTBEAT_MS and not before", async
   await h.clock.advance(1);
   assert.equal(existsSync(h.L.globalStatus), true);
   assert.ok(h.status().ts > ts, "the session status is refreshed too");
+});
+
+// ---- purge and mode off (IS-13) ---------------------------------------------
+
+function purgeHome(h) {
+  const agent = tmpHome();
+  const env = {
+    OMO_KEEPWARM_HOME: h.home,
+    OMO_CODING_AGENT_DIR: agent,
+    SENPI_CODING_AGENT_DIR: agent,
+    OMO_HEALTH_HOME: join(agent, "health"),
+  };
+  const res = uninstall({ env, purge: true, force: true });
+  assert.equal(res.purged, true);
+  assert.equal(existsSync(h.home), false);
+}
+
+test("uninstall --purge with an open episode: ticks, heartbeats and events write nothing and the home stays absent", async () => {
+  const h = boot();
+  await h.openEpisode();
+  assert.ok(h.clock.pendingCount() >= 3);
+  purgeHome(h);
+  await h.clock.advance(65 * MIN);
+  assert.equal(existsSync(h.home), false, "no tick, heartbeat or calibration recreated the home");
+  await h.input("interactive");
+  await h.runTurn();
+  await h.settle();
+  await h.clock.advance(HEARTBEAT_MS * 2);
+  await h.shutdown();
+  assert.equal(existsSync(h.home), false);
+  assert.equal(h.clock.pendingCount(), 0, "the heartbeat and the debounce are stopped");
+  assert.equal(h.calibrations.length, 0);
+});
+
+test("an input right after --purge does not close the episode nor recreate the home", async () => {
+  const h = boot();
+  await h.openEpisode();
+  purgeHome(h);
+  await h.input("interactive");
+  assert.equal(existsSync(h.home), false);
+  await h.runTurn();
+  await h.settle();
+  await h.clock.advance(HEARTBEAT_MS * 2);
+  assert.equal(existsSync(h.home), false);
+});
+
+test("a pending status debounce is dropped, not written, when the home is purged", async () => {
+  const h = boot();
+  await h.openEpisode();
+  await h.emit("agent_start");
+  assert.equal(h.status().phase, "ARMED", "the CLASSIFYING update is only debounced");
+  purgeHome(h);
+  await h.clock.advance(SEC);
+  assert.equal(existsSync(h.home), false);
+});
+
+test("mode off with an open episode: one config_off close, then the session status is never touched again", async () => {
+  const h = boot();
+  await h.openEpisode();
+  await h.clock.advance(MIN);
+  updateConfig(h.home, (c) => {
+    c.mode = "off";
+  });
+  await h.clock.advance(4 * MIN);
+  assert.deepEqual(h.records("episode_close").map((r) => [r.kind, r.source, r.detail]), [["censored", "config", "config_off"]]);
+  const status = readFileSync(h.L.sessionStatus("sess-1"), "utf8");
+  const global = readFileSync(h.L.globalStatus, "utf8");
+  const lines = h.records().length;
+  const ts = h.status().ts;
+  await h.clock.advance(HEARTBEAT_MS * 2);
+  assert.equal(h.status().ts, ts, "no heartbeat write");
+  await h.input("interactive");
+  await h.runTurn();
+  await h.settle();
+  await h.clock.advance(HEARTBEAT_MS * 2);
+  assert.equal(readFileSync(h.L.sessionStatus("sess-1"), "utf8"), status);
+  assert.equal(readFileSync(h.L.globalStatus, "utf8"), global);
+  assert.equal(h.records().length, lines);
+  assert.equal(h.clock.pendingCount(), 0, "the heartbeat is stopped");
+
+  // Back to shadow: the next settle re-activates and the heartbeat restarts.
+  updateConfig(h.home, (c) => {
+    c.mode = "shadow";
+  });
+  await h.clock.advance(MIN);
+  // The host history carries the last assistant message, which re-activation uses as the anchor.
+  h.ctx.setMessages([{ role: "assistant", content: "a", stopReason: "stop", usage: USAGE_50K, timestamp: h.clock.now() }]);
+  await h.humanTurn();
+  assert.equal(h.records("episode_open").length, 2);
+  assert.ok(h.clock.pendingCount() >= 2, "tick and heartbeat are back");
+  const ts2 = h.status().ts;
+  await h.clock.advance(HEARTBEAT_MS);
+  assert.ok(h.status().ts > ts2, "the heartbeat writes again");
+});
+
+test("an unexpected error in the tick is logged to errors.log and stops warming with internal_error", async () => {
+  const h = boot({ config: { mode: "on", lanes: { "anthropic-api": { verified: true } } } });
+  h.expectErrors = true;
+  await h.openEpisode();
+  h.ctx.sessionManager.buildSessionContext = () => {
+    throw new Error("history boom");
+  };
+  await h.clock.advance(5 * MIN);
+  assert.match(readFileSync(h.L.errorLog, "utf8"), /timer history boom/);
+  assert.deepEqual(h.records("warm_stop").map((r) => r.reason), ["internal_error"]);
+  assert.equal(h.status().phase, "OBSERVING");
 });
 
 // ---- shutdown ------------------------------------------------------------

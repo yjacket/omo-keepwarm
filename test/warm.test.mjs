@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  classifyError,
   createWarmer,
   prefixDigest,
   captureRealPrefix,
@@ -175,6 +176,19 @@ for (const [label, error, kind, status] of errorCases) {
     assert.equal(typeof res.error.message, "string");
   });
 }
+
+test("error classification: 'aborted' in the message alone is not an abort, the signal and error names are", () => {
+  const plain = classifyError(new Error("upstream connection aborted by peer"));
+  assert.equal(plain.kind, "provider_error");
+  const ac = new AbortController();
+  ac.abort();
+  assert.equal(classifyError(new Error("whatever"), { signal: ac.signal }).kind, "aborted");
+  for (const name of ["AbortError", "APIUserAbortError"]) {
+    const err = new Error("stopped");
+    err.name = name;
+    assert.equal(classifyError(err).kind, "aborted", name);
+  }
+});
 
 test("error classification: aborted signal wins over the error text", async () => {
   const ac = new AbortController();

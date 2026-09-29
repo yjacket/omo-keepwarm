@@ -1,4 +1,4 @@
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -312,6 +312,21 @@ export function createFakePiAi({ supported = true, usage, error, deferred = fals
 
 // ---- tmp ---------------------------------------------------------------
 
+// Every home made here is removed when the test file's process exits, so no test leaves a directory
+// behind even when it never asks for cleanup. cleanupTmpHomes() removes them earlier on demand.
+const madeHomes = [];
+let sweepRegistered = false;
+
+export function cleanupTmpHomes() {
+  for (const dir of madeHomes.splice(0)) rmSync(dir, { recursive: true, force: true });
+}
+
 export function tmpHome() {
-  return mkdtempSync(join(tmpdir(), "omo-keepwarm-test-"));
+  if (!sweepRegistered) {
+    sweepRegistered = true;
+    process.once("exit", cleanupTmpHomes);
+  }
+  const dir = mkdtempSync(join(tmpdir(), "omo-keepwarm-test-"));
+  madeHomes.push(dir);
+  return dir;
 }

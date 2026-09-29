@@ -66,7 +66,7 @@ export function classifyError(err, { signal } = {}) {
   const name = String(err?.name ?? "");
   let kind;
   if (err instanceof PrefixMismatchError || name === "PrefixMismatchError") kind = "prefix_mismatch";
-  else if (signal?.aborted || name === "AbortError" || name === "APIUserAbortError" || /\baborted\b/i.test(message)) kind = "aborted";
+  else if (signal?.aborted || name === "AbortError" || name === "APIUserAbortError") kind = "aborted";
   else if (/timeout/i.test(name) || /timed? ?out/i.test(message)) kind = "timeout";
   else if (status === 429 || RATE_RE.test(message)) kind = "rate_limit";
   else if (status === 401 || status === 403 || err?.kind === "auth") kind = "auth";
@@ -112,8 +112,9 @@ export function createWarmer({ piAi, convertToLlm, now = Date.now } = {}) {
     );
   }
 
-  // Expected cost of one warm ping: the whole prefix read from cache. A miss (full rewrite) is bounded to
-  // once per episode because the first cache miss stops warming (IS-6, IS-7).
+  // Expected cost of one warm ping: the whole prefix read from cache. A miss (full rewrite) stops the
+  // segment, and every ping is pre-checked against the caps with this cost, so the overshoot past a
+  // cap stays at most one rewrite (IS-6, IS-7).
   function projectedCostUsd(model, promptTokens) {
     const c = model?.cost ?? {};
     return (tokens(promptTokens) * (Number(c.cacheRead) || 0)) / 1e6;
