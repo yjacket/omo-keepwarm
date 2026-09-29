@@ -71,6 +71,15 @@ test("codex-subscription", () => {
   });
 });
 
+test("codex-subscription follows the pi-ai TTL when the model has no extended cache", () => {
+  const lane = classifyLane({ ...M.codexSub, ttlHint: 300 }, { piAi });
+  assert.equal(lane.ttlSec, 300);
+  assert.equal(lane.intervalSec, 270);
+  assert.equal(lane.gridClass, "5m");
+  assert.deepEqual(lane.grid, GRIDS["5m"]);
+  assert.equal(lane.policy, "decide");
+});
+
 test("github-copilot", () => {
   assert.deepEqual(classifyLane(M.copilot, { piAi }), {
     id: "github-copilot", ttlSec: 300, intervalSec: 270, r: null, gridClass: "5m", grid: GRIDS["5m"],

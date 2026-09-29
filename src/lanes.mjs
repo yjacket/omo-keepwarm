@@ -34,8 +34,10 @@ function classify(model, piAi) {
     );
   }
   if (model?.api === "openai-codex-responses") {
+    // pi-ai reports 1800 s only for extended-cache models, otherwise 300 s.
+    const ttl = piAi?.resolvePromptCacheTtlSeconds?.(model) ?? 1800;
     return base(
-      "codex-subscription", 1800, 1620, 0.08, "decide", "none",
+      "codex-subscription", ttl, ttl === 1800 ? 1620 : 270, 0.08, "decide", "none",
       "no prompt-cache warmer is registered for openai-codex-responses", "token",
     );
   }
