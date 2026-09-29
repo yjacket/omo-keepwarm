@@ -21,12 +21,15 @@ export function createSafe({ logFile, now = Date.now, maxDistinctErrors = 5, onD
   function fail(name, err) {
     const message = String(err?.message ?? err);
     count++;
+    // A reload retires the previous extension generation (senpi invalidates its context). That is expected on
+    // every install/update/reload, so it disables this instance without being logged as an error.
+    const stale = STALE_RE.test(message);
     const key = `${name}\u0000${message}`;
-    if (!seen.has(key)) {
+    if (!stale && !seen.has(key)) {
       seen.add(key);
       log(name, message);
     }
-    if (!off && (STALE_RE.test(message) || seen.size >= maxDistinctErrors)) {
+    if (!off && (stale || seen.size >= maxDistinctErrors)) {
       off = true;
       try {
         onDisable?.({ name, message });

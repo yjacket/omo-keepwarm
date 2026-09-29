@@ -49,11 +49,12 @@ test("disables once after maxDistinctErrors distinct errors; wrap becomes no-op"
   assert.equal(ran, false);
 });
 
-test("stale extension generation disables immediately", () => {
-  const { safe, disabled } = mk();
+test("stale extension generation disables immediately and is not logged as an error", () => {
+  const { safe, disabled, logFile } = mk();
   safe.wrap("h", () => {
     throw new Error("This Stale Extension Generation was replaced");
   })();
   assert.equal(safe.disabled(), true);
   assert.equal(disabled.length, 1);
+  assert.deepEqual(lines(logFile), []);
 });

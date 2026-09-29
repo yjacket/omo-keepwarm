@@ -318,7 +318,9 @@ export function doctor({ env, now = Date.now }) {
   }
 
   const lkg = current?.lkg;
-  if (!lkg) row("WARN", "last known good", "none yet (no session has loaded a release)");
+  const currentLoaded = typeof current?.version === "string" && existsSync(L.loadedMarker(current.version));
+  if (!lkg && currentLoaded) row("PASS", "last known good", `none yet; ${current.version} is loaded by a session and becomes last known good at the next update`);
+  else if (!lkg) row("WARN", "last known good", "none yet (no session has loaded a release)");
   else if (typeof lkg.root !== "string" || !existsSync(lkg.root)) row("FAIL", "last known good", `${lkg.version}: root missing`);
   else row("PASS", "last known good", `${lkg.version}`);
 

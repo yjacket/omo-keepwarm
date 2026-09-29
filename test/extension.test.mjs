@@ -272,7 +272,7 @@ test("a stale generation disables the extension: status self disabled, controlle
   assert.equal(h.status().self, "disabled", "written immediately, without waiting for the debounce");
   assert.equal(h.clock.pendingCount(), 0, "tick, heartbeat, debounce and calibration are all cleared");
   assert.equal(table().has("sess-1"), false, "the token is released");
-  assert.match(readFileSync(h.L.errorLog, "utf8"), /agent_settled stale extension generation/);
+  assert.equal(existsSync(h.L.errorLog), false, "a retired generation is expected, not an error");
 
   h.ctx.isIdle = idle;
   const linesBefore = h.records().length;

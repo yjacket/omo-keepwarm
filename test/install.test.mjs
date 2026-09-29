@@ -264,6 +264,13 @@ test("doctor: FAIL before install, PASS after, WARN on builtin keep-alive", asyn
   assert.match(out.out, /^WARN last known good/m);
   assert.ok(!/^FAIL/m.test(out.out));
 
+  const current = JSON.parse(readFileSync(layout(env.OMO_KEEPWARM_HOME).currentFile, "utf8"));
+  mkdirSync(join(env.OMO_KEEPWARM_HOME, "app", "loaded"), { recursive: true });
+  writeFileSync(layout(env.OMO_KEEPWARM_HOME).loadedMarker(current.version), "x");
+  reset();
+  assert.equal(await runDoctor([], io), 0);
+  assert.match(out.out, /^PASS last known good .*is loaded by a session/m);
+
   writeFileSync(join(env.OMO_CODING_AGENT_DIR, "settings.json"), JSON.stringify({ promptCache: { keepAlive: { enabled: true } } }));
   reset();
   assert.equal(await runDoctor([], io), 0);
