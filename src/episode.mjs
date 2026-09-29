@@ -737,6 +737,13 @@ export function createController({ pi, deps }) {
     setPhase("DETACHED");
   }
 
+  // Permanent stop (safe disable): cancels the tick and any ping, writes nothing, ignores every later event.
+  function halt() {
+    invalidate();
+    inertForGood = true;
+    setPhase("INERT");
+  }
+
   function onInput(ev, ctx) {
     if (!active()) return;
     ctxRef = ctx ?? ctxRef;
@@ -1001,6 +1008,7 @@ export function createController({ pi, deps }) {
     onSessionAbort,
     onWakeSourceState,
     onCacheWarmPing,
+    halt,
     snapshot,
   };
 }

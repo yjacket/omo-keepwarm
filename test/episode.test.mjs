@@ -1249,3 +1249,20 @@ test("63 terminal monitor wake source does not pause; senpi-task and senpi-task-
   ]);
   assert.deepEqual(h.stops(), []);
 });
+
+test("64 halt cancels the armed tick, writes nothing more and ignores later events", async () => {
+  const h = setup();
+  await h.openEpisode();
+  assert.equal(h.snap().phase, "ARMED");
+  assert.equal(h.clock.pendingCount(), 1);
+  const before = h.records().length;
+  h.controller.halt();
+  assert.equal(h.clock.pendingCount(), 0);
+  assert.equal(h.snap().phase, "INERT");
+  await h.to(30);
+  await h.settle();
+  await h.input("interactive", "started");
+  assert.equal(h.snap().phase, "INERT");
+  await h.shutdown("quit");
+  assert.equal(h.records().length, before);
+});

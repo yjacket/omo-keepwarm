@@ -101,7 +101,17 @@ export function computeGlobal(home, nowMs) {
   };
 }
 
-export function createStatus({ home, sessionId, now = Date.now }) {
+// Another session may be renaming over _global.json at the same moment (Windows); the next writer wins.
+const GLOBAL_BUSY_CODES = new Set(["EPERM", "EBUSY", "EACCES"]);
+
+export function createStatus({
+  home,
+  sessionId,
+  now = Date.now,
+  debounceMs = 0,
+  setTimeout: setTimer = globalThis.setTimeout,
+  clearTimeout: clearTimer = globalThis.clearTimeout,
+}) {
   const L = layout(home);
   const file = L.sessionStatus(sessionId);
   const prior = readJsonSafe(file);
@@ -115,44 +125,95 @@ export function createStatus({ home, sessionId, now = Date.now }) {
     self: "active",
     episodeState: prior && typeof prior === "object" ? prior.episodeState ?? null : null,
   };
+  let timer = null;
+  let pending = false;
 
-  function writeGlobal() {
-    atomicWriteJson(L.globalStatus, computeGlobal(home, now()));
-  }
-
-  function write() {
+  function writeSession() {
     const { episodeState, ...rest } = state;
     atomicWriteJson(file, { v: 1, ts: now(), session: sessionId, ...rest, episodeState });
-    writeGlobal();
+  }
+
+  function cancelPending() {
+    if (timer !== null) clearTimer(timer);
+    timer = null;
+    pending = false;
+  }
+
+  /** Write the session file now, including everything merged so far, and drop any scheduled write. */
+  function writeNow() {
+    cancelPending();
+    writeSession();
+  }
+
+  function schedule() {
+    pending = true;
+    if (timer !== null) return;
+    timer = setTimer(() => {
+      timer = null;
+      if (!pending) return;
+      pending = false;
+      try {
+        writeSession();
+      } catch {
+        // A timer has no caller to report to: stay dirty so the next flush, saveEpisode or heartbeat retries and throws there.
+        pending = true;
+      }
+    }, debounceMs);
+    timer?.unref?.();
+  }
+
+  function recomputeGlobal() {
+    try {
+      atomicWriteJson(L.globalStatus, computeGlobal(home, now()));
+    } catch (err) {
+      if (!GLOBAL_BUSY_CODES.has(err?.code)) throw err;
+    }
+  }
+
+  function flush() {
+    if (pending) writeNow();
   }
 
   return {
     update(partial = {}) {
+      const wasOpen = state.episode != null;
       for (const [k, v] of Object.entries(partial)) {
         if (k === "v" || k === "ts" || k === "session" || k === "episodeState") continue;
         state[k] = v;
       }
-      write();
+      if ((state.episode != null) !== wasOpen) {
+        writeNow();
+        recomputeGlobal();
+      } else if (debounceMs > 0) {
+        schedule();
+      } else {
+        writeSession();
+      }
     },
     saveEpisode(episodeState) {
       state.episodeState = episodeState ?? null;
-      write();
+      writeNow();
     },
     loadEpisode() {
       const s = readJsonSafe(file);
       return s && typeof s === "object" && s.session === sessionId ? s.episodeState ?? null : null;
     },
+    flush,
+    recomputeGlobal,
     heartbeat() {
-      write();
+      writeNow();
+      recomputeGlobal();
     },
     close() {
+      flush();
+      cancelPending();
       if (state.episodeState) {
         state.phase = "detached";
-        write();
-        return;
+        writeSession();
+      } else {
+        rmSync(file, { force: true });
       }
-      rmSync(file, { force: true });
-      writeGlobal();
+      recomputeGlobal();
     },
   };
 }
