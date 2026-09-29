@@ -46,8 +46,9 @@ function cleanEnv(base) {
 }
 
 // The senpi TUI needs an explicit model (no RPC get_available_models); one short RPC run discovers it.
-export async function discoverModel({ tmp }) {
-  const probe = await startSenpi({ tmp, extensions: [], model: "auto" });
+// env must carry the scenario's KW_QA_MOCK_URL / KW_QA_BLOCK_LOG: the network guard is loaded for the probe too.
+export async function discoverModel({ tmp, env = {} }) {
+  const probe = await startSenpi({ tmp, extensions: [join(here, "fetch-redirect.ext.mjs")], env, model: "auto" });
   const model = probe.model;
   await probe.stop();
   return model;

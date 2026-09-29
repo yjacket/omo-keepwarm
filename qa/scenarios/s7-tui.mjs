@@ -24,7 +24,7 @@ const dumpScreen = async (label) => {
 
 try {
   if (s.startError) throw s.startError;
-  const model = await discoverModel({ tmp: join(s.tmp, "probe") });
+  const model = await discoverModel({ tmp: join(s.tmp, "probe"), env: s.launchEnv() });
   s.model = model;
   tui = await startPtySenpi({
     tmp: join(s.tmp, "tui"),

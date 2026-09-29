@@ -280,7 +280,8 @@ export async function startScenario(opts = {}) {
 
   s.probeModel = async () => {
     const dir = join(tmp, "probe");
-    const handle = await startSenpi({ tmp: dir, extensions: [], env: { KW_QA_BLOCK_LOG: s.blockLog }, model: "auto" });
+    // The network guard is loaded here too, so the probe is covered by the block log.
+    const handle = await startSenpi({ tmp: dir, extensions: [EXT_HELPER], env: s.launchEnv(), model: "auto" });
     const picked = handle.model;
     await handle.stop();
     return picked;
