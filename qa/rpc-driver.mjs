@@ -3,6 +3,7 @@
 //   startMock({ port: 0, logFile, script }) -> { url, requests(), close() }   (re-exported)
 //   startSenpi({ tmp, extensions, env, model, extraArgs }) ->
 //     { send(cmd), waitForEvent(pred, ms, { from }), waitForJsonl(file, pred, ms), events, stdoutLog, stop(), pid, model, ... }
+//   runSenpiPrint({ tmp, extensions, env, model, prompt, extraArgs, timeoutMs }) -> { code, timedOut, stdoutLog, stderrLog, ... }
 //
 // All waiting is event / fs.watch based with bounded timeouts. No fixed sleeps.
 import { spawn, spawnSync } from "node:child_process";
@@ -22,19 +23,19 @@ function cleanEnv(base) {
 
 const SENPI_BIN = process.env.KW_QA_SENPI_BIN || "senpi";
 
-export async function startSenpi({ tmp, extensions = [], env = {}, model = "auto", extraArgs = [] } = {}) {
-  if (!tmp) throw new Error("startSenpi: tmp is required");
+// Shared launch setup: temp dirs, argv and a scrubbed env. `lead` holds the mode arguments
+// (["--mode", "rpc"] or ["-p", "<text>"]).
+function launchSpec({ tmp, extensions, env, model, extraArgs, lead }) {
+  if (!tmp) throw new Error("tmp is required");
   const agentDir = join(tmp, "agent");
   const homeDir = join(tmp, "home");
   const sessionDir = join(tmp, "sessions");
   const cwd = join(tmp, "work");
   for (const d of [agentDir, homeDir, sessionDir, cwd]) mkdirSync(d, { recursive: true });
-  const stdoutLog = join(tmp, "senpi-stdout.log");
-  const stderrLog = join(tmp, "senpi-stderr.log");
   const blockLog = env.KW_QA_BLOCK_LOG ?? join(tmp, "block.log");
   const extLog = env.KW_QA_EXT_LOG ?? join(tmp, "ext.log");
 
-  const args = ["--mode", "rpc", "--offline", "--no-extensions"];
+  const args = [...lead, "--offline", "--no-extensions"];
   for (const e of extensions) args.push("-e", e);
   args.push("--provider", model === "auto" ? "anthropic" : model.provider);
   if (model !== "auto") args.push("--model", model.modelId);
@@ -53,6 +54,54 @@ export async function startSenpi({ tmp, extensions = [], env = {}, model = "auto
     KW_QA_EXT_LOG: extLog,
     ...env,
   };
+  return { args, childEnv, agentDir, homeDir, sessionDir, cwd, blockLog, extLog };
+}
+
+function killTree(child) {
+  if (process.platform === "win32") spawnSync("taskkill", ["/PID", String(child.pid), "/T", "/F"], { stdio: "ignore" });
+  else child.kill("SIGKILL");
+}
+
+/**
+ * One-shot print mode (`senpi -p <prompt>`); an explicit { provider, modelId } model is required.
+ * Resolves { code, signal, timedOut, pid, stdoutLog, stderrLog, extLog, blockLog, args }; the process tree is killed on timeout.
+ */
+export async function runSenpiPrint({ tmp, extensions = [], env = {}, model, prompt, extraArgs = [], timeoutMs = 90000 } = {}) {
+  if (!model || model === "auto") throw new Error("runSenpiPrint: an explicit { provider, modelId } model is required");
+  const spec = launchSpec({ tmp, extensions, env, model, extraArgs, lead: ["-p", prompt] });
+  const stdoutLog = join(tmp, "senpi-print-stdout.log");
+  const stderrLog = join(tmp, "senpi-print-stderr.log");
+  const out = createWriteStream(stdoutLog);
+  const err = createWriteStream(stderrLog);
+  const child = spawn(SENPI_BIN, spec.args, { cwd: spec.cwd, env: spec.childEnv, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
+  child.stdout.on("data", (c) => out.write(c));
+  child.stderr.on("data", (c) => err.write(c));
+  let timedOut = false;
+  const result = await new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      timedOut = true;
+      killTree(child);
+    }, timeoutMs);
+    child.once("error", (e) => {
+      clearTimeout(timer);
+      resolve({ code: null, signal: null, spawnError: e.message });
+    });
+    child.once("exit", (code, signal) => {
+      clearTimeout(timer);
+      resolve({ code, signal });
+    });
+  });
+  await Promise.all([new Promise((r) => out.end(r)), new Promise((r) => err.end(r))]);
+  return { ...result, timedOut, pid: child.pid, stdoutLog, stderrLog, extLog: spec.extLog, blockLog: spec.blockLog, args: spec.args };
+}
+
+export async function startSenpi({ tmp, extensions = [], env = {}, model = "auto", extraArgs = [] } = {}) {
+  if (!tmp) throw new Error("startSenpi: tmp is required");
+  const { args, childEnv, agentDir, sessionDir, cwd, blockLog, extLog } = launchSpec({
+    tmp, extensions, env, model, extraArgs, lead: ["--mode", "rpc"],
+  });
+  const stdoutLog = join(tmp, "senpi-stdout.log");
+  const stderrLog = join(tmp, "senpi-stderr.log");
 
   const out = createWriteStream(stdoutLog);
   const err = createWriteStream(stderrLog);
@@ -191,8 +240,7 @@ export async function startSenpi({ tmp, extensions = [], env = {}, model = "auto
       ]);
       if (timedOut && !exited) {
         killed = true;
-        if (process.platform === "win32") spawnSync("taskkill", ["/PID", String(pid), "/T", "/F"], { stdio: "ignore" });
-        else child.kill("SIGKILL");
+        killTree(child);
         await new Promise((r) => (exited ? r() : bus.once("exit", r)));
       }
     }
