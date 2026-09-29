@@ -572,10 +572,13 @@ export function createController({ pi, deps }) {
     if (tokens === null) return "context_unknown";
     if (tokens < ep.lane.minContextTokens) return "small_context";
     if (ep.pingsSent >= ep.maxPings) return "episode_request_cap";
-    const projected = warmer.projectedCostUsd(ctx.model, tokens);
-    const virtual = !real;
-    if (ledger.spendEpisode(ep.id, { virtual }) + projected > cfg.maxUsdPerEpisode) return "episode_usd_cap";
-    if (ledger.spendToday({ virtual }) + projected > cfg.maxUsdPerDay) return "daily_cap";
+    // USD caps guard money that can be spent: only lanes with a warm path (real ledger in on, virtual in shadow).
+    if (ep.lane.warmPath === "warmPromptCache") {
+      const projected = warmer.projectedCostUsd(ctx.model, tokens);
+      const virtual = !real;
+      if (ledger.spendEpisode(ep.id, { virtual }) + projected > cfg.maxUsdPerEpisode) return "episode_usd_cap";
+      if (ledger.spendToday({ virtual }) + projected > cfg.maxUsdPerDay) return "daily_cap";
+    }
     if (warmer.builtinActive(ctx, ctx.model) || seenWarmPing) return "duplicate_warmer";
     if (cfg.mode !== ep.mode) return "config_off";
     return null;

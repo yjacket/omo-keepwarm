@@ -66,6 +66,8 @@ node bin/omo-keepwarm.mjs doctor       # PASS/WARN/FAIL 점검
 
 바꾼 값은 재로드 없이 다음 tick이나 다음 에피소드에 반영된다.
 
+상한은 핑 1회의 예상 비용(맥락 × 캐시 읽기 단가)으로 미리 계산해, 넘을 것 같으면 보내지 않는다. 캐시 미스가 나면 그 에피소드의 데우기를 멈추므로 상한을 넘는 폭은 에피소드당 재작성 1회분까지다. 데우기 경로가 없는 lane은 돈을 쓸 수 없어서 USD 상한을 적용하지 않고, 핑 수 상한만 둔다.
+
 ## 명령 예시
 
 아래 `omo-keepwarm`은 이 저장소의 `node bin/omo-keepwarm.mjs`를 줄여 쓴 것이다. 짧은 이름으로 쓰려면 저장소에서 `npm link`(또는 `bun link`)를 한 번 실행한다. 출력은 빈 임시 홈(`OMO_KEEPWARM_HOME`)에서 실제로 돌린 결과다.

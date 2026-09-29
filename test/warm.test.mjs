@@ -253,9 +253,9 @@ test("cost uses cacheRead, cacheWrite, input and output rates; durationMs from i
   assert.equal(res.durationMs, 1234);
 });
 
-test("projectedCostUsd = promptTokens * max(cacheRead, cacheWrite) / 1e6", () => {
+test("projectedCostUsd = promptTokens * cacheRead / 1e6 (expected cost of a hit)", () => {
   const warmer = createWarmer({ piAi: createFakePiAi(), convertToLlm });
-  assert.ok(Math.abs(warmer.projectedCostUsd(models.anthropic5m, 100_000) - 0.375) < 1e-12);
+  assert.ok(Math.abs(warmer.projectedCostUsd(models.anthropic5m, 100_000) - 0.03) < 1e-12);
   assert.ok(Math.abs(warmer.projectedCostUsd(models.openaiCodex, 100_000) - 0.0125) < 1e-12);
   assert.equal(warmer.projectedCostUsd(models.githubCopilot, 100_000), 0);
 });

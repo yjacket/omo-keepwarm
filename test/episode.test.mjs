@@ -903,7 +903,7 @@ test("42 request cap: pingsSent >= maxPings -> episode_request_cap", async () =>
 });
 
 test("43 episode USD cap -> episode_usd_cap", async () => {
-  const h = setup({ config: { ...ON_VERIFIED, maxUsdPerEpisode: 0.2 } });
+  const h = setup({ config: { ...ON_VERIFIED, maxUsdPerEpisode: 0.02 } });
   await h.openEpisode();
   await h.to(4.5);
   await h.drain();
@@ -916,7 +916,7 @@ test("43 episode USD cap -> episode_usd_cap", async () => {
 
 test("44 daily USD cap counts other sessions' real spend -> daily_cap", async () => {
   const h = setup({ config: { ...ON_VERIFIED, maxUsdPerDay: 3 } });
-  h.ledger.recordSpend({ session: "other", episode: "other:1", usd: 2.9, virtual: false });
+  h.ledger.recordSpend({ session: "other", episode: "other:1", usd: 2.99, virtual: false });
   h.ledger.recordSpend({ session: "other", episode: "other:1", usd: 500, virtual: true });
   await h.openEpisode();
   await h.to(4.5);
@@ -925,14 +925,23 @@ test("44 daily USD cap counts other sessions' real spend -> daily_cap", async ()
   assert.equal(h.piAi.calls.length, 0);
 });
 
-test("45 shadow applies the caps to the virtual ledger", async () => {
-  const h = setup({ config: { maxUsdPerEpisode: 0.3 } });
+test("45 shadow applies the USD caps to the virtual ledger on warm-path lanes only", async () => {
+  // Expected cost per ping = 50K x cacheRead 0.3 $/M = $0.015.
+  const h = setup({ config: { maxUsdPerEpisode: 0.02 } });
   await h.openEpisode();
   await h.to(10);
   assert.deepEqual(h.records("decision").map((d) => [d.action, d.reason]), [["would_warm", "shadow"], ["skip", "episode_usd_cap"]]);
   const id = h.records("episode_open")[0].episode;
-  assert.equal(h.ledger.spendEpisode(id, { virtual: true }), 0.1875);
+  assert.equal(h.ledger.spendEpisode(id, { virtual: true }), 0.015);
   assert.equal(h.ledger.spendToday({ virtual: false }), 0);
+
+  // No warm path (claude-sdk-oauth): nothing can be spent, so only the request cap applies; virtual cost is still kept.
+  const s = setup({ model: models.claudeSdkOauth, config: { maxUsdPerEpisode: 0.02, maxUsdPerDay: 0.02 } });
+  await s.openEpisode();
+  await s.to(111);
+  assert.deepEqual(s.records("decision").map((d) => [d.action, d.reason]), [["would_warm", "shadow"], ["would_warm", "shadow"]]);
+  assert.deepEqual(s.stops(), []);
+  assert.equal(s.ledger.spendEpisode(s.records("episode_open")[0].episode, { virtual: true }), 0.15);
 });
 
 test("46 invalid habit: auto -> E 0; manual expiry -> warm proceeds with hazard null", async () => {

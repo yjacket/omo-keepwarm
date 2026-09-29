@@ -112,10 +112,11 @@ export function createWarmer({ piAi, convertToLlm, now = Date.now } = {}) {
     );
   }
 
+  // Expected cost of one warm ping: the whole prefix read from cache. A miss (full rewrite) is bounded to
+  // once per episode because the first cache miss stops warming (IS-6, IS-7).
   function projectedCostUsd(model, promptTokens) {
     const c = model?.cost ?? {};
-    const rate = Math.max(Number(c.cacheRead) || 0, Number(c.cacheWrite) || 0);
-    return (tokens(promptTokens) * rate) / 1e6;
+    return (tokens(promptTokens) * (Number(c.cacheRead) || 0)) / 1e6;
   }
 
   async function ping({ pi, ctx, model, lastMessages = [], expectPrefix, signal } = {}) {
