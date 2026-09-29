@@ -318,7 +318,7 @@ const madeHomes = [];
 let sweepRegistered = false;
 
 export function cleanupTmpHomes() {
-  for (const dir of madeHomes.splice(0)) rmSync(dir, { recursive: true, force: true });
+  for (const dir of madeHomes.splice(0)) rmSync(dir, { recursive: true, force: true, maxRetries: 3 });
 }
 
 export function tmpHome() {

@@ -91,11 +91,12 @@ function validate(raw) {
   return { config, invalid };
 }
 
+// undefined: the file does not exist. null: stat failed for another reason (a transient lock); keep the last state.
 function mtimeOf(file) {
   try {
     return statSync(file).mtimeMs;
-  } catch {
-    return undefined;
+  } catch (err) {
+    return err?.code === "ENOENT" ? undefined : null;
   }
 }
 
@@ -115,7 +116,7 @@ export function createConfigSource({ home, now = Date.now, statEveryMs = 5000 } 
     lastCheck = t;
 
     const cm = mtimeOf(files.config);
-    if (cm !== cfgMtime) {
+    if (cm !== null && cm !== cfgMtime) {
       cfgMtime = cm;
       present = cm !== undefined;
       if (!present) {
@@ -130,7 +131,7 @@ export function createConfigSource({ home, now = Date.now, statEveryMs = 5000 } 
     }
 
     const bm = mtimeOf(files.behavior);
-    if (bm !== behMtime) {
+    if (bm !== null && bm !== behMtime) {
       behMtime = bm;
       behavior = bm === undefined ? undefined : readJsonSafe(files.behavior);
     }

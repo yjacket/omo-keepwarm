@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readdirSync, utimesSync, writeFileSync, mkdirSync } from "node:fs";
+import fs, { existsSync, readdirSync, utimesSync, writeFileSync, mkdirSync } from "node:fs";
+import { syncBuiltinESMExports } from "node:module";
 import { join } from "node:path";
 import { createConfigSource, updateConfig, DEFAULTS, DEFAULT_HABIT } from "../src/config.mjs";
 import { layout } from "../src/paths.mjs";
@@ -29,6 +30,24 @@ test("missing file -> mode off, nothing created by get()", () => {
   assert.deepEqual(src.invalid(), []);
   assert.equal(src.exists(), false);
   assert.deepEqual(readdirSync(home), []);
+});
+
+test("a stat error other than ENOENT keeps the last config instead of treating it as deleted", (t) => {
+  const { files, src, put } = setup();
+  put(files.config, { v: 1, mode: "shadow" });
+  assert.equal(src.exists(true), true);
+  const real = fs.statSync;
+  fs.statSync = (p, ...rest) => {
+    if (String(p) === files.config) throw Object.assign(new Error("busy"), { code: "EBUSY" });
+    return real(p, ...rest);
+  };
+  syncBuiltinESMExports();
+  t.after(() => {
+    fs.statSync = real;
+    syncBuiltinESMExports();
+  });
+  assert.equal(src.exists(true), true);
+  assert.equal(src.get().mode, "shadow");
 });
 
 test("broken JSON -> defaults (shadow) + invalid", () => {
