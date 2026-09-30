@@ -2,15 +2,18 @@ keepwarm이 주력 lane(Claude 구독, Codex)을 데우려면 senpi와 pi-ai에 
 
 **upstream 상태 (2026-09-30 확인).**
 
-- 올린 이슈는 하나다. code-yeongyu/senpi#2389는 내장 keepalive의 도구 불일치를 다룬다(5번 참고). #2400(커밋 7e56f373dd)으로 고쳐져 2026-09-29 20:19Z에 병합됐다. 설치된 senpi 2026.9.29-5에는 아직 없고, 다음 릴리스에 들어간다.
-- 1~4번 요구는 upstream에 올리지 않았다(사용자 결정).
+- 올린 이슈는 두 개다.
+  - code-yeongyu/senpi#2389는 내장 keepalive의 도구 불일치를 다룬다(5번 참고). #2400(커밋 7e56f373dd)으로 고쳐져 2026-09-29 20:19Z에 병합됐고, senpi v2026.9.30에 릴리스됐다. 설치된 senpi 2026.9.29-5에는 아직 없다.
+  - code-yeongyu/senpi#2454(2026-09-30)는 1번과 3번을 내장 keepalive 개선안으로 묶은 것이다. 내장 keepalive(#773)가 원래 "유휴 동안 캐시를 데워 다음 턴이 읽게 한다"는 같은 목적이라 새 기능이 아니라 개선안으로 썼다. 세션당 한도와 최악 비용 추정은 그 기능이 일부러 고른 보수적 선택이었다(`cache-keepalive/changes.md`, 2026-08-09).
+- 2번(Codex)은 올리지 않는다. 메인 세션이라고 가정한 재생에서도 순이득이 캐시 비용의 0~2%다.
+- 4번은 내장 keepalive가 구독 lane을 데우게 되면 필요 없다.
 - 5번은 요구할 필요가 없었다. 호스트가 이미 `ctx.getPromptCachePrefixRequest()`를 준다.
 
 ## 1. Claude 구독: SDK 세션에 더하지 않는 데우기 경로
 
-- **지금.** `claude-sdk-oauth`는 Claude Agent SDK를 거친다. pi-ai `warmPromptCache`는 이 api에 `supported: false`를 돌려준다. SDK로 질의를 보내면 SDK 세션에 기록이 추가되어 대화가 바뀐다.
-- **필요.** 마지막 실제 요청과 같은 접두부(system, tools, messages)로, SDK 세션 기록에 남지 않는 요청을 `max_tokens` 0으로 한 번 보내는 경로. 사용량(input, cacheRead, cacheWrite)을 돌려줘야 한다. 1시간 쓰기와 5분 쓰기를 구분할 수 있으면 더 좋다.
-- **근거 수치.** 2026년 9월 세션 기록을 재생한 결과다([오프라인 재생](../research/offline-replay-2026-09-30/README.md)). 사람 복귀 565건 가운데 60~300분 공백 뒤 식어 있던 복귀가 40건이었고, 그때 쓴 캐시가 12,251,292 토큰이었다. 핑 비용을 빼면 순절감은 7.46M~11.16M write-eq 토큰으로, 이 lane 캐시 쓰기의 6.2%~9.3%다.
+- **지금.** `claude-sdk-oauth`는 Claude Agent SDK를 거친다. pi-ai `warmPromptCache`는 이 api에 `supported: false`를 돌려준다. 살아 있는 SDK 세션에 질의를 보내면 기록이 추가되어 대화가 바뀐다. 다만 SDK(0.3.284)의 `resume` + `forkSession: true` + `persistSession: false`로 세션을 복제해 보내면 원래 대화에는 남지 않는다. senpi는 이 옵션을 이미 재로드 때 쓴다. 복제한 세션이 같은 접두부를 보내는지는 아직 실측하지 않았다.
+- **필요.** 마지막 실제 요청과 같은 접두부(system, tools, messages)로, SDK 세션 기록에 남지 않는 요청을 한 번 보내는 경로다. SDK에는 `max_tokens` 0이 없어서 짧은 답 한 번 값이 든다. 사용량(input, cacheRead, cacheWrite)을 돌려줘야 한다. 1시간 쓰기와 5분 쓰기를 구분할 수 있으면 더 좋다. senpi#2454에 올렸다.
+- **근거 수치.** 2026년 9월 세션 기록을 재생한 결과다([오프라인 재생](../research/offline-replay-2026-09-30/README.md)). 사람 복귀 565건 가운데 60~300분 공백 뒤 식어 있던 복귀가 40건이었고, 그때 쓴 캐시가 12,251,292 토큰이었다. 핑 비용을 빼면 순절감은 7.46M~11.16M write-eq 토큰으로, 이 lane 캐시 쓰기의 6.2%~9.3%이고 읽기를 포함한 캐시 비용 전체의 약 3~5%다.
 
 ## 2. Codex: openai-codex-responses warmer 등록
 
@@ -24,7 +27,11 @@ keepwarm이 주력 lane(Claude 구독, Codex)을 데우려면 senpi와 pi-ai에 
 ## 3. 유휴당 최대 시간 설정
 
 - **지금.** 내장 cache-keepalive는 3회, $0.05로 고정돼 있고 'Warm ping' 항목을 대화에 남긴다.
-- **필요.** 유휴 한 번에 데울 최대 시간(또는 핑 수)을 설정으로 받는 것. 항목을 남기지 않는 모드.
+- **필요.** 유휴 한 번에 데울 최대 시간(또는 핑 수)을 설정으로 받는 것. senpi#2454에는 이렇게 올렸다.
+  - 핑 한도는 사람이 입력할 때만 초기화한다. 지금은 `session_start`에서만 초기화된다.
+  - 설정은 provider별로 두고, 모델별로 덮어쓸 수 있게 하며, 기간으로 받는다.
+  - 예상 비용은 읽기 단가로 계산하고, 첫 미스에서 데우기를 멈춘다.
+  - 알림 항목을 끄는 모드는 요청하지 않았다. senpi는 핑과 그 비용을 더 잘 보이게 하는 방향이다(#2416).
 
 ## 4. ctx 수준의 흔적 없는 warm 호출
 
