@@ -8,7 +8,8 @@
 2. [quota-2026-09-19/REPORT.md](quota-2026-09-19/REPORT.md): 첫 quota 측정(계수 사전값의 출처). 원시 캡처와 측정 스크립트가 함께 있다.
 3. [idle-cost-v2/idle-cost-report.md](idle-cost-v2/idle-cost-report.md): 유료 실측 2회를 합친 최종 보고. 실측 결과, 근거 묶음, 실험 계획, 승인서가 같은 폴더에 있다.
 4. [existing-data-analysis/report.md](existing-data-analysis/report.md): 추가 호출 없이 기존 자료로 한 오프라인 분석. 복귀 확률 q, 계기 지연, 복원 비용, DP 재생이 들어 있다. 지시서(`prompt.md`), 스크립트(`scripts/`), 근거(`evidence/`)가 함께 있다.
-5. 결론을 정리한 문서는 [docs/](../docs/)에 있다.
+5. [offline-replay-2026-09-30/README.md](offline-replay-2026-09-30/README.md): keepwarm 설치 점검(2026-09-30) 때 세션 기록만으로 Claude 구독 lane의 유휴 데우기 절감을 재생한 분석. omo-rollover에서 옮긴 자료가 아니라 이 저장소에서 새로 만든 것이다.
+6. 결론을 정리한 문서는 [docs/](../docs/)에 있다.
 
 ## 출처와 원본 상태
 

@@ -1,0 +1,35 @@
+# Offline replay results, run 2026-09-30T02:50:51.056Z on yjack's workstation (source: ~/.omo/agent/sessions)
+
+$ node research/offline-replay-2026-09-30/replay.mjs 2026-09-01T00:00:00Z 2026-09-30T03:00:00Z
+claude-subscription offline replay (TTL 60m, ping every 55m while away < 300m, r 0.025, hit = src/warm.mjs isHit)
+window 2026-09-01T15:47:27.754Z .. 2026-09-30T02:50:51.030Z · sessions 114 · assistant msgs 12482
+cache tokens: read 4,307,660,415 · write 120,090,567
+human returns 565 by gap since the last request (returns / measured cold / cold write tokens):
+  0-5m        265 /   33 / 6,565,613
+  5-30m       198 /   26 / 7,449,787
+  30-60m       42 /   13 / 3,563,312
+  60-120m      21 /   19 / 4,562,797
+  120-300m     21 /   21 / 7,688,495
+  300-infm     18 /   17 / 5,452,316
+warming could have saved (cold returns with 60m < gap <= 300m): 40 returns, 12,251,292 write tokens
+ping cost inside sessions: 66 idle gaps > 55m, 202 pings, 1,087,562 write-eq tokens
+ping cost after the last request of each session (unknown open time): 0 .. 505 pings, 0 .. 3,702,215 write-eq tokens
+net saving: 7,461,515 .. 11,163,730 write-eq tokens
+net share of all cache writes: 6.2% .. 9.3%
+
+$ node research/offline-replay-2026-09-30/replay.mjs 2026-09-16T00:00:00Z 2026-09-30T03:00:00Z
+claude-subscription offline replay (TTL 60m, ping every 55m while away < 300m, r 0.025, hit = src/warm.mjs isHit)
+window 2026-09-16T11:01:33.758Z .. 2026-09-30T02:50:51.030Z · sessions 92 · assistant msgs 10578
+cache tokens: read 3,800,135,373 · write 71,701,125
+human returns 361 by gap since the last request (returns / measured cold / cold write tokens):
+  0-5m        151 /   11 / 2,259,093
+  5-30m       145 /   13 / 3,327,268
+  30-60m       29 /    6 / 1,232,029
+  60-120m      14 /   13 / 3,186,711
+  120-300m     11 /   11 / 3,266,315
+  300-infm     11 /   10 / 2,115,208
+warming could have saved (cold returns with 60m < gap <= 300m): 24 returns, 6,453,026 write tokens
+ping cost inside sessions: 39 idle gaps > 55m, 116 pings, 452,930 write-eq tokens
+ping cost after the last request of each session (unknown open time): 0 .. 410 pings, 0 .. 3,248,367 write-eq tokens
+net saving: 2,751,729 .. 6,000,096 write-eq tokens
+net share of all cache writes: 3.8% .. 8.4%
