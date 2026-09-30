@@ -1,5 +1,6 @@
 // Episode report over keepwarm records, plus shared minute formatting.
 import { loadEpisodes } from "./calibrate.mjs";
+import { isHit } from "./warm.mjs";
 
 const isNum = (v) => typeof v === "number" && Number.isFinite(v);
 const num = (v) => (isNum(v) ? v : 0);
@@ -38,12 +39,16 @@ function emptyLane() {
     closeSources: {},
     automatedTurnSources: {},
     humanReturns: 0,
+    modeledReturns: 0,
     awayMinQuartiles: null,
     coveredAtReturn: 0,
     coveredAtReturnRate: null,
     coldWithoutWarm: 0,
+    coldEstimated: 0,
     returnCacheWrite: 0,
     savedWriteTokens: 0,
+    returnWriteAvoided: 0,
+    wouldWarmWriteCost: 0,
     wouldWarm: 0,
     pings: 0,
     costUsd: 0,
@@ -64,9 +69,15 @@ export function buildReport(home, { days = 7, now = Date.now } = {}) {
     const c = e.close;
     const o = e.open;
     const returnWrite = num(e.returnUsage?.cacheWrite);
-    const covered = c.coveredAtReturn === true;
-    const cold = c.coldWithoutWarm === true;
     const human = c.kind === "human_return";
+    // Cache facts only where the lane has a cache model; observe lanes (other, github-copilot, devin) record r: null.
+    const modeled = isNum(o.r);
+    const u = e.returnUsage;
+    // With no ping sent, the real return request is the no-warm counterfactual, so its usage decides cold.
+    const measured = modeled && human && num(c.pings) === 0 && isNum(u?.cacheRead) && isNum(u?.cacheWrite);
+    const covered = modeled && c.coveredAtReturn === true;
+    const cold = modeled && (measured ? !isHit({ input: num(u.input), cacheRead: u.cacheRead, cacheWrite: u.cacheWrite }) : c.coldWithoutWarm === true);
+    const coldEstimated = cold && !measured;
     const saved = human && covered && cold ? returnWrite : 0;
     const spent = num(c.wouldWarm) * num(o.contextTokens) * num(o.r);
     for (const T of [L, total]) {
@@ -76,11 +87,13 @@ export function buildReport(home, { days = 7, now = Date.now } = {}) {
       for (const t of e.turns) if (t.kind === "automated") bump(T.automatedTurnSources, t.source);
       if (human) {
         T.humanReturns++;
+        if (modeled) T.modeledReturns++;
         if (isNum(c.awayMin)) T._away.push(c.awayMin);
         if (covered) T.coveredAtReturn++;
         if (e.returnUsage) T.returnCacheWrite += returnWrite;
       }
       if (cold) T.coldWithoutWarm++;
+      if (coldEstimated) T.coldEstimated++;
       T._saved += saved;
       T._spent += spent;
       T.wouldWarm += num(c.wouldWarm);
@@ -93,7 +106,9 @@ export function buildReport(home, { days = 7, now = Date.now } = {}) {
     T.awayMinQuartiles = away.length
       ? { q1: quantile(away, 0.25), median: quantile(away, 0.5), q3: quantile(away, 0.75) }
       : null;
-    T.coveredAtReturnRate = T.humanReturns ? T.coveredAtReturn / T.humanReturns : null;
+    T.coveredAtReturnRate = T.modeledReturns ? T.coveredAtReturn / T.modeledReturns : null;
+    T.returnWriteAvoided = T._saved;
+    T.wouldWarmWriteCost = T._spent;
     T.savedWriteTokens = T._saved - T._spent;
     delete T._away;
     delete T._saved;
@@ -113,14 +128,18 @@ function dist(map) {
 function laneBlock(name, T) {
   const q = T.awayMinQuartiles;
   const rate = T.coveredAtReturnRate === null ? "-" : `${Math.round(T.coveredAtReturnRate * 100)}%`;
+  const est = T.coldEstimated ? ` (est. ${T.coldEstimated})` : "";
+  const coverage = T.modeledReturns
+    ? `covered at return ${rate} (${T.coveredAtReturn}/${T.modeledReturns}) · cold without warm ${T.coldWithoutWarm}${est}`
+    : "covered at return - · cold without warm -";
   return [
     `${name}  ${T.episodes} episodes · ${T.humanReturns} human returns`,
     `  close kinds: ${dist(T.closeKinds)}`,
     `  close sources: ${dist(T.closeSources)}`,
     `  automated turns: ${dist(T.automatedTurnSources)}`,
     `  away (human returns): ${q ? `q1 ${formatMinutes(q.q1)} · median ${formatMinutes(q.median)} · q3 ${formatMinutes(q.q3)}` : "-"}`,
-    `  covered at return ${rate} (${T.coveredAtReturn}/${T.humanReturns}) · cold without warm ${T.coldWithoutWarm} · return cacheWrite ${Math.round(T.returnCacheWrite)}`,
-    `  counterfactual saving ${Math.round(T.savedWriteTokens)} write-eq tokens (would-warm ${T.wouldWarm})`,
+    `  ${coverage} · return cacheWrite ${Math.round(T.returnCacheWrite)}`,
+    `  counterfactual saving ${Math.round(T.savedWriteTokens)} write-eq tokens = return writes avoided ${Math.round(T.returnWriteAvoided)} - would-warm cost ${Math.round(T.wouldWarmWriteCost)} (would-warm ${T.wouldWarm})`,
     `  pings ${T.pings} · $${T.costUsd.toFixed(4)}`,
   ].join("\n");
 }
