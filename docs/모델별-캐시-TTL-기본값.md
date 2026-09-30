@@ -10,7 +10,7 @@
 | `devin` | api `devin-agent` | swe-2-high, swe-2-max | 공개 문서 없음 | 모름 | 대략 5~10분, 들쭉날쭉. 캐시 쓰기 필드가 늘 0 | TTL 5분, 간격 4분 30초, observe |
 | `anthropic-api` | api `anthropic-messages`이고 호스트가 api.anthropic.com | claude-opus-5 (API 키) | 기본 **5분**. 1시간은 선택(`cacheRetention: long`) [1] | 모델 단가 비율. 5분이면 읽기 ÷ 쓰기, 1시간이면 쓰기 단가 ×1.6. 없으면 0.08 | 미측정 | 5분: 간격 4분 30초. 1시간: 간격 55분 |
 | `openai-api` | pi-ai `isOpenAIResponsesPromptCacheModel` | GPT-5.6 이상 (API 키) | 30분 [3] | 모델 단가 비율. 없으면 0.08 | 미측정 | TTL은 pi-ai 값(없으면 30분), 간격 TTL × 0.9 |
-| `other` | 그 밖 | 비공식 호스트, 모르는 모델 | 모름 | 모름 | - | TTL은 pi-ai 값(없으면 5분), 간격 4분 30초, observe |
+| `other` | 그 밖 | 비공식 호스트, 모르는 모델 | 모름 | 모름 | kiro-lb(anthropic-messages 프록시): 09-23~30 615건 모두 cacheRead·cacheWrite 0, 비용 0 | TTL은 pi-ai 값(없으면 5분), 간격 4분 30초, observe |
 | Gemini (참고, 현재 미사용) | `other`로 분류 | Gemini 2.5 이상 | 암묵 캐시는 수명 보장 없음. 명시 캐시는 기본 60분이고 보관료가 따로 든다 [4] | 암묵 캐시 적중 시 90% 할인 [4] | - | 대상 아님 |
 
 ## 데우기 판정
@@ -25,7 +25,7 @@
 | `openai-api` | 가능 | warmPromptCache | decide | `warm-prompt-cache.js:6-15`의 지원 조건을 만족한다. 읽기 갱신 미측정 |
 | `github-copilot` | 불가 | none | observe | 요청 과금(economics `request`) |
 | `devin` | 불가 | none | observe | 데우기 원시 기능 없음. 캐시 쓰기 필드가 늘 0 |
-| `other` | 미확인 | none | observe | 모르는 lane이거나 비공식 호스트 |
+| `other` | 미확인 | none | observe | 모르는 lane이거나 비공식 호스트. kiro-lb는 캐시 필드가 늘 0이라 데울 것이 없다 |
 
 decide lane은 산식으로 판단하고 기록한다. observe lane은 에피소드와 턴만 기록하고 만료 값이 없다. 덮어쓰기 결과 `TTL − 간격 ≤ 5초`이거나 decide lane의 r이 (0, 1) 밖이면 `invalid`가 되어 아무것도 하지 않는다.
 

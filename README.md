@@ -18,7 +18,7 @@ OMO/senpi 세션에서 사람이 자리를 비운 동안 프롬프트 캐시를 
 | `openai-api` | GPT-5.6 이상 (API 키) | 가능 | pi-ai `warmPromptCache` 지원 대상이다. 읽기 갱신이 미검증이라 기본 꺼짐 |
 | `github-copilot` | gpt-5.6-sol, claude-fable-5-1 | 불가 | 요청 과금이라 핑 한 번이 그대로 비용이다 |
 | `devin` | swe-2-high, swe-2-max | 불가 | 데우기 원시 기능이 없고 캐시 쓰기 필드가 늘 0이다 |
-| `other` | 그 밖의 모델, 비공식 호스트 | 미확인 | 모르는 lane이라 요청을 보내지 않는다 |
+| `other` | 그 밖의 모델, 비공식 호스트(kiro-lb 포함) | 미확인 | 모르는 lane이라 요청을 보내지 않는다. kiro-lb는 최근 7일 615건 모두 캐시 읽기·쓰기가 0이라 데울 캐시가 없다(2026-09-30) |
 
 "기본 꺼짐"은 `verified`가 기본 `false`라는 뜻이다. mode `on`이어도 검증되지 않은 lane에서는 `would_warm`만 기록한다. 켜는 절차는 [정책 문서의 활성화 단계](docs/유휴-캐시-만료-정책.md#shadow에서-활성화로-가는-단계)에 있다. 판정의 코드 근거는 [모델별 캐시 TTL 기본값](docs/모델별-캐시-TTL-기본값.md)에 있다.
 
@@ -129,6 +129,10 @@ keepwarm: not running (no snapshot)
 ```
 
 `report`는 최근 에피소드, 복귀, 반사실 절감을 보여 준다. `--days 7`, `--json`이 있다.
+
+- **복귀 때 캐시가 식었는지.** 핑을 보내지 않은 에피소드는 복귀 요청의 실제 사용량으로 판정한다. 캐시 읽기가 입력 전체의 절반 미만이면 식은 것이다. 그 밖의 에피소드는 TTL 추정으로 판정하고, 그 수를 `(est. N)`으로 따로 보인다.
+- **캐시 모형이 없는 lane.** observe lane(`other`, `github-copilot`, `devin`)은 `covered at return -`로 둔다.
+- **반사실 절감.** "피한 복귀 쓰기 − would-warm 핑 비용"으로 나눠 보인다.
 
 ```text
 $ omo-keepwarm report

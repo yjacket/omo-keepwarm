@@ -1,9 +1,16 @@
-keepwarm이 주력 lane(Claude 구독, Codex)을 데우려면 senpi와 pi-ai에 있어야 하는 기능이다. **upstream 이슈는 올리지 않았다(사용자 결정).** 요구만 여기에 적어 둔다. 그 전까지 이 lane에서는 shadow 판단과 기록만 한다.
+keepwarm이 주력 lane(Claude 구독, Codex)을 데우려면 senpi와 pi-ai에 있어야 하는 기능이다. 그 전까지 이 lane에서는 shadow 판단과 기록만 한다.
+
+**upstream 상태 (2026-09-30 확인).**
+
+- 올린 이슈는 하나다. code-yeongyu/senpi#2389는 내장 keepalive의 도구 불일치를 다룬다(5번 참고). #2400(커밋 7e56f373dd)으로 고쳐져 2026-09-29 20:19Z에 병합됐다. 설치된 senpi 2026.9.29-5에는 아직 없고, 다음 릴리스에 들어간다.
+- 1~4번 요구는 upstream에 올리지 않았다(사용자 결정).
+- 5번은 요구할 필요가 없었다. 호스트가 이미 `ctx.getPromptCachePrefixRequest()`를 준다.
 
 ## 1. Claude 구독: SDK 세션에 더하지 않는 데우기 경로
 
 - **지금.** `claude-sdk-oauth`는 Claude Agent SDK를 거친다. pi-ai `warmPromptCache`는 이 api에 `supported: false`를 돌려준다. SDK로 질의를 보내면 SDK 세션에 기록이 추가되어 대화가 바뀐다.
 - **필요.** 마지막 실제 요청과 같은 접두부(system, tools, messages)로, SDK 세션 기록에 남지 않는 요청을 `max_tokens` 0으로 한 번 보내는 경로. 사용량(input, cacheRead, cacheWrite)을 돌려줘야 한다. 1시간 쓰기와 5분 쓰기를 구분할 수 있으면 더 좋다.
+- **근거 수치.** 2026년 9월 세션 기록을 재생한 결과다([오프라인 재생](../research/offline-replay-2026-09-30/README.md)). 사람 복귀 565건 가운데 60~300분 공백 뒤 식어 있던 복귀가 40건이었고, 그때 쓴 캐시가 12,251,292 토큰이었다. 핑 비용을 빼면 순절감은 7.46M~11.16M write-eq 토큰으로, 이 lane 캐시 쓰기의 6.2%~9.3%다.
 
 ## 2. Codex: openai-codex-responses warmer 등록
 
@@ -22,14 +29,15 @@ keepwarm이 주력 lane(Claude 구독, Codex)을 데우려면 senpi와 pi-ai에 
 ## 4. ctx 수준의 흔적 없는 warm 호출
 
 - **필요.** 확장이 `ctx`에서 바로 부를 수 있는 데우기 함수. 내장 keepalive가 하는 조립(prepareProviderRequest → convertToLlm, getSystemPrompt, 활성 도구, getApiKeyAndHeaders, transformHeaders/transformPayload)을 호스트가 대신 하고, 대화 기록, 턴, UI에 흔적을 남기지 않는다.
-- 지금 keepwarm은 이 조립을 직접 한다. 호스트 내부 순서가 바뀌면 따라가야 한다.
+- **호스트에 이미 있는 것.** `ctx.getPromptCachePrefixRequest()`는 다음 사용자 턴의 provider 요청 접두부를 호스트가 조립해 돌려준다(`senpi/dist/core/extensions/types.d.ts` 462행). 내장 keepalive도 #2400부터 이 접두부로 핑한다. 남은 요구는 흔적 없는 warm 호출 자체다.
+- 지금 keepwarm은 이 조립을 직접 한다. 호스트 내부 순서가 바뀌면 따라가야 한다. `getPromptCachePrefixRequest()`로 바꾸지 않은 이유는, 쓰는 lane에 데우기 경로가 없어서 바꿔도 달라지는 것이 없기 때문이다.
 
 ## 5. 마지막 실제 요청의 도구 목록
 
 - **지금.** 확장이 보는 `pi.getAllTools()`(ToolInfo)에는 실제 요청의 도구 순서(활성 순서), `constrainedSampling`(strict 도구), tool-search가 붙이는 `defer_loading`과 카탈로그 도구가 없다. ToolInfo로 다시 만든 도구 목록은 실제 요청과 달라 캐시 접두부가 어긋난다. senpi 2026.9.29 실사용 QA에서 이 차이 때문에 on 모드의 모든 warm 핑이 접두부 불일치로 멈췄다(증거 `.omo/evidence/keepwarm-v1/task-11/defect-prefix-mismatch/`).
 - **keepwarm의 대응.** `before_provider_request`에서 본 실제 요청의 `tools`를 메모리에만 두고 warm 요청에 그대로 쓴다. 재로드 직후처럼 그 값이 없으면 활성 순서와 strict 표시로 다시 만들고, 그래도 다르면 보내지 않는다.
-- **내장 keepalive도 같은 문제가 있다.** `cache-keepalive/index.js`(128-133행)는 `getAllTools()` 순서로 `{name, description, parameters}`만 넘긴다. strict 도구나 지연 도구가 있으면 핑의 도구 접두부가 실제 요청과 달라 캐시를 읽지 못하고 새로 쓴다.
-- **필요.** 마지막 provider 요청의 도구 목록(또는 ToolInfo의 `constrainedSampling`과 지연 여부)을 확장에 주는 API. 4번의 흔적 없는 warm 호출이 생기면 이 조립도 호스트가 맡는다.
+- **내장 keepalive도 같은 문제가 있었다.** senpi 2026.9.29-5의 `cache-keepalive/index.js`(128-133행)는 `getAllTools()` 순서로 `{name, description, parameters}`만 넘긴다. strict 도구나 지연 도구가 있으면 핑의 도구 접두부가 실제 요청과 달라, 캐시를 읽지 못하고 새로 쓴다. 이 결함은 code-yeongyu/senpi#2389로 올렸고, #2400에서 핑의 도구를 `getPromptCachePrefixRequest()`에서 가져오게 바꿔 고쳤다. 같은 수정이 두 번째 결함도 고쳤다. 무장(arming)이 `agent_end`에서 일어났는데 그 시점의 세션은 아직 바쁨이라, keepalive를 켜도 실제 세션에서 핑이 한 번도 나가지 않았다. 이제는 `agent_settled`에서 무장한다. 두 수정 모두 다음 senpi 릴리스에 들어간다.
+- **호스트에 이미 있다.** 이 요구가 찾던 것은 `ctx.getPromptCachePrefixRequest()`다. 이 API는 senpi 2026.9.28-7부터 있었다(커밋 978333162d, 2026-09-24). v1 설계가 이를 놓치고 요구로 적었다. 4번의 흔적 없는 warm 호출이 생기면 도구 조립도 호스트가 맡는다.
 
 ## 다른 확장과의 관계
 
