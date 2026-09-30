@@ -7,7 +7,7 @@
 - **입력.** `~/.omo/agent/sessions/**/*.jsonl`이다. 이 PC에만 있다.
 - **사람 복귀.** `type: "message"`이고 `role: "user"`인 항목이다. 자동 턴(goal 이어가기, 모니터 알림, wake 등)은 `custom_message`라서 세지 않는다.
 - **공백.** 사람 입력 시각에서 바로 앞 assistant 메시지 시각을 뺀 값이다. 앞뒤 assistant가 모두 `claude-sdk-oauth`일 때만 센다.
-- **식음.** 복귀 직후 첫 assistant 사용량이 keepwarm의 `isHit`(`src/warm.mjs`)에서 miss면 식은 것이다. miss는 캐시 읽기가 입력 전체의 50% 미만이라는 뜻이다.
+- **식음.** 복귀 직후 첫 assistant 사용량이 keepwarm의 `isHit`(`src/warm.mjs`)에서 miss면 식은 것이다. miss는 캐시 읽기가 요청 입력 토큰 전체(input + cacheRead + cacheWrite)의 50% 미만이라는 뜻이다.
 - **데우기 모형.** TTL은 60분이다. 자리를 비운 지 300분(자동 만료 5시간)이 되기 전까지 55분마다 핑한다. 핑 비용은 직전 맥락 × r 0.025(write-eq 토큰)다.
 - **아낄 수 있었던 양.** 공백이 60~300분이었고 식어 있던 복귀들의 cacheWrite 합이다.
 - **세션 끝 뒤의 핑.** 세션이 마지막 요청 뒤에 얼마나 열려 있었는지는 알 수 없다. 그래서 그 뒤의 핑을 0회부터 최대 5회까지 범위로 둔다.
