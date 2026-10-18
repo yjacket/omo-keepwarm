@@ -630,7 +630,7 @@ test("24 thinking level change -> warm_stop effort_change", async () => {
   assert.equal(h.records("decision").length, 0);
 });
 
-test("25 cache miss (cacheRead 1000, cacheWrite 400000) -> cache_miss after one ping", async () => {
+test("25 cache miss (cacheRead 1000, cacheWrite 400000) re-arms once, cache_miss after the second miss", async () => {
   const h = setup({ config: ON_VERIFIED, piAiOpts: { usage: { input: 10, output: 0, cacheRead: 1000, cacheWrite: 400_000 } } });
   await h.openEpisode();
   await h.to(4.5);
@@ -638,9 +638,11 @@ test("25 cache miss (cacheRead 1000, cacheWrite 400000) -> cache_miss after one 
   const [ping] = h.records("ping");
   assert.deepEqual([ping.ok, ping.hit], [true, false]);
   assert.ok(ping.costUsd > 1);
-  assert.deepEqual(h.stops(), ["cache_miss"]);
+  assert.deepEqual(h.stops(), []);
   await h.to(20);
-  assert.equal(h.piAi.calls.length, 1);
+  assert.deepEqual(h.records("ping").map((p) => p.hit), [false, false]);
+  assert.deepEqual(h.stops(), ["cache_miss"]);
+  assert.equal(h.piAi.calls.length, 2);
   assert.equal(h.clock.pendingCount(), 0);
 });
 
@@ -1432,7 +1434,7 @@ test("61 claude subscription on: fork ping anchored on the assistant message, ne
   assert.equal(h.piAi.calls.length, 0);
 });
 
-test("62 claude subscription: a fork ping that misses stops the segment", async () => {
+test("62 claude subscription: one miss re-arms, a second miss in a row stops the segment", async () => {
   const claude = fakePinger({ input: 4, output: 4, cacheRead: 500, cacheWrite: 49_000 });
   const h = setup({ model: models.claudeSdkOauth, config: { mode: "on" }, warmer: { claude } });
   await h.start();
@@ -1440,6 +1442,11 @@ test("62 claude subscription: a fork ping that misses stops the segment", async 
   await h.to(55);
   await h.drain();
   assert.deepEqual(h.records("ping").map((p) => [p.ok, p.hit]), [[true, false]]);
+  assert.deepEqual(h.stops(), []);
+  assert.equal(h.snap().nextTickMs, h.at(55) + 55 * MIN);
+  await h.to(110);
+  await h.drain();
+  assert.deepEqual(h.records("ping").map((p) => [p.ok, p.hit]), [[true, false], [true, false]]);
   assert.deepEqual(h.stops(), ["cache_miss"]);
   assert.equal(h.snap().phase, "OBSERVING");
 });

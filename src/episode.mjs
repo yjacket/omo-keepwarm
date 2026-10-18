@@ -442,6 +442,7 @@ export function createController({ pi, deps }) {
     const ctx = ctxRef;
     ep.segment += 1;
     ep.tick = 0;
+    ep.missStreak = 0;
     if (!keepSegmentKeys || !ep.seg) {
       ep.seg = { modelKey: modelKeyOf(ctx.model), thinking, fingerprint: lastFingerprint ?? fingerprintOf(ctx) };
     }
@@ -760,7 +761,17 @@ export function createController({ pi, deps }) {
     }
     if (!current) return;
     if (aborted) return warmStop("aborted");
+    // One miss can be transient (early eviction, routing): that ping already rewrote the cache, so try once more.
+    // A second miss in a row means the prefix itself no longer matches.
+    if (res.ok && !res.hit && ep.missStreak < 1) {
+      ep.missStreak += 1;
+      anchorMs = startedAt;
+      schedule(startedAt + lane.intervalSec * 1000);
+      publish(true);
+      return;
+    }
     if (res.ok && res.hit) {
+      ep.missStreak = 0;
       anchorMs = startedAt;
       schedule(startedAt + lane.intervalSec * 1000);
       publish(true);

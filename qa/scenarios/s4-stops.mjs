@@ -4,7 +4,7 @@
 //   b  set_thinking_level                        -> warm_stop effort_change
 //   c  mock answers 429 to warm 2..                -> warm_stop rate_limit
 //   d  mock answers 500 to warm 2..                -> warm_stop provider_error
-//   e  mock answers warm 2 with a big cacheWrite   -> warm_stop cache_miss
+//   e  mock answers warm 2 and 3 with a big cacheWrite -> warm_stop cache_miss (one miss re-arms)
 //   f  maxUsdPerEpisode 1e-9                       -> warm_stop episode_usd_cap, no warm at all
 //   g  agent settings promptCache.keepAlive.enabled -> duplicate_warmer, keepwarm sends no warm at all
 // Every sub-case writes <EVID>/task-12/s4-stops/<id>/result.json; the aggregate is <EVID>/task-12/s4-stops/result.json.
@@ -72,8 +72,8 @@ const CASES = {
   e: {
     title: "warm response with a large cacheWrite (cache miss)",
     reason: "cache_miss",
-    pings: 2,
-    mockScript: { warm: { 2: { cacheCreation: 25000, cacheRead: 0 } } },
+    pings: 3,
+    mockScript: { warm: { 2: { cacheCreation: 25000, cacheRead: 0 }, 3: { cacheCreation: 25000, cacheRead: 0 } } },
     pingCheck: (p) => p.ok === true && p.hit === false && p.usage?.cacheWrite >= 25000 && p.usage?.cacheRead === 0,
     pingWhat: "miss ping ok true, hit false, cacheWrite >= 25000, cacheRead 0",
   },

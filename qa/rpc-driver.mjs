@@ -37,10 +37,9 @@ function launchSpec({ tmp, extensions, env, model, extraArgs, lead }) {
 
   const args = [...lead, "--offline", "--no-extensions"];
   for (const e of extensions) args.push("-e", e);
-  args.push("--provider", model === "auto" ? "anthropic" : model.provider);
-  if (model !== "auto") args.push("--model", model.modelId);
-  // senpi rejects --api-key without --model, so the auto-model start carries the dummy key in env instead.
-  if (model !== "auto") args.push("--api-key", "kw-qa-dummy");
+  // senpi rejects --provider and --api-key without --model, so the auto-model start passes neither: the dummy key
+  // goes in env and the model is picked afterwards with set_model.
+  if (model !== "auto") args.push("--provider", model.provider, "--model", model.modelId, "--api-key", "kw-qa-dummy");
   args.push("--session-dir", sessionDir, ...extraArgs);
 
   const childEnv = {
