@@ -8,12 +8,12 @@ OMO/senpi 세션에서 사람이 자리를 비운 동안 프롬프트 캐시를 
 
 ## lane 판정
 
-데우기 경로가 있는지를 lane별로 정리했다. 판정 기준은 `src/lanes.mjs`의 `warmPath`다. `warmPromptCache`면 가능이고, `none`이면 불가 또는 미확인이다.
+데우기 경로가 있는지를 lane별로 정리했다. 판정 기준은 `src/lanes.mjs`의 `warmPath`다. `none`이 아니면 가능이고, `none`이면 불가 또는 미확인이다.
 
 | lane id | 주 사용 모델 | 판정 | 근거 한 줄 |
 |---|---|---|---|
-| `claude-subscription` | claude-opus-5-5, claude-fable-5-1 | 불가 | Agent SDK 경유라 pi-ai `warmPromptCache`가 supported:false를 돌려주고, SDK 질의는 SDK 세션에 기록을 더한다 |
-| `codex-subscription` | gpt-5.6-sol, gpt-6-astra | 불가 | `openai-codex-responses`에는 등록된 캐시 warmer가 없다 |
+| `claude-subscription` | claude-opus-5-5, claude-fable-5-1 | 가능 | SDK 세션을 저장하지 않는 fork로 이어 보낸다(`claude-sdk-fork`). 실측에서 98~100% 읽고 1시간 캐시를 갱신했으며 transcript는 그대로다 |
+| `codex-subscription` | gpt-5.6-sol, gpt-6-astra | 가능 | 마지막 요청을 store:false로 같은 `prompt_cache_key`에 다시 보낸다(`codex-sse`). 캐시는 보장 없이 25~30분이라 15분마다 보낸다 |
 | `anthropic-api` | claude-opus-5 (API 키) | 가능 | pi-ai `warmPromptCache` 지원 대상이다. 5분 읽기 갱신이 미검증이라 기본 꺼짐 |
 | `openai-api` | GPT-5.6 이상 (API 키) | 가능 | pi-ai `warmPromptCache` 지원 대상이다. 읽기 갱신이 미검증이라 기본 꺼짐 |
 | `github-copilot` | gpt-5.6-sol, claude-fable-5-1 | 불가 | 요청 과금이라 핑 한 번이 그대로 비용이다 |
@@ -22,7 +22,7 @@ OMO/senpi 세션에서 사람이 자리를 비운 동안 프롬프트 캐시를 
 
 "기본 꺼짐"은 `verified`가 기본 `false`라는 뜻이다. mode `on`이어도 검증되지 않은 lane에서는 `would_warm`만 기록한다. 켜는 절차는 [정책 문서의 활성화 단계](docs/유휴-캐시-만료-정책.md#shadow에서-활성화로-가는-단계)에 있다. 판정의 코드 근거는 [모델별 캐시 TTL 기본값](docs/모델별-캐시-TTL-기본값.md)에 있다.
 
-지금 주로 쓰는 lane(Claude 구독, Codex)은 모두 불가다. 그래서 설치해도 핑은 0이고, 판단 기록만 쌓인다. 필요한 upstream 기능은 [senpi upstream 요구](docs/senpi-upstream-요구.md)에 정리했다.
+구독 lane 두 경로는 senpi가 대화에 흔적을 남기지 않는 데우기를 직접 제공할 때까지 쓰는 임시 구현이다. Claude 경로는 실행 중인 senpi의 `anthropic-subscription` 모듈로 질의 옵션을 만들어서 senpi 업데이트를 따라간다. senpi가 조립 방식을 바꾸면 첫 핑이 miss로 멈추므로, 업데이트 뒤에는 `ping` 기록의 적중을 확인한다. 구독 lane은 돈이 아니라 사용량을 쓰므로 USD 상한 대신 핑 수 상한만 둔다. 필요한 upstream 기능은 [senpi upstream 요구](docs/senpi-upstream-요구.md)에 정리했다.
 
 ## 설치, 업데이트, 제거
 
@@ -83,9 +83,9 @@ claude-subscription  TTL 60m · ping every 55m · r 0.025 · habit default (p 0.
   formula 5h30m → auto 5h · setting auto
   steps: 0 · 1h · 2h · 3h · 4h · [5h] · 6h · 8h · 12h
 
-codex-subscription:30m  TTL 30m · ping every 27m · r 0.08 · habit default (p 0.81, m 10.5m, t90 2h20m)
-  formula 1h48m → auto 2h · setting auto
-  steps: 0 · 30m · 1h · 1h30m · [2h] · 3h · 4h · 6h
+codex-subscription:30m  TTL 25m · ping every 15m · r 0.08 · habit default (p 0.81, m 10.5m, t90 2h20m)
+  formula 1h → auto 1h · setting auto
+  steps: 0 · 30m · [1h] · 1h30m · 2h · 3h · 4h · 6h
 
 anthropic-api:5m  TTL 5m · ping every 4.5m · r 0.08 · habit default (p 0.81, m 10.5m, t90 2h20m)
   formula 18m → auto 20m · setting auto

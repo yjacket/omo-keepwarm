@@ -41,7 +41,7 @@ const M = {
 };
 
 const claudeSubWhy =
-  "claude-sdk-oauth runs through the Claude Agent SDK; pi-ai warmPromptCache returns supported:false and an SDK query would append to the SDK session";
+  "forked SDK resume without persistence; measured 2026-10-16: reads 98-100% and renews the 1h cache, transcript untouched";
 
 test("GRIDS and gridClassForTtl", () => {
   assert.deepEqual(GRIDS["5m"], [0, 10, 15, 20, 30, 45, 60, 90, 120]);
@@ -58,16 +58,17 @@ test("GRIDS and gridClassForTtl", () => {
 test("claude-subscription", () => {
   assert.deepEqual(classifyLane(M.claudeSub, { piAi }), {
     id: "claude-subscription", ttlSec: 3600, intervalSec: 3300, r: 0.025, gridClass: "1h", grid: GRIDS["1h"],
-    policy: "decide", warmPath: "none", warmPathReason: claudeSubWhy, verified: false, economics: "token",
+    policy: "decide", warmPath: "claude-sdk-fork", warmPathReason: claudeSubWhy, verified: true, economics: "token",
     minContextTokens: 20000,
   });
 });
 
 test("codex-subscription", () => {
   assert.deepEqual(classifyLane(M.codexSub, { piAi }), {
-    id: "codex-subscription", ttlSec: 1800, intervalSec: 1620, r: 0.08, gridClass: "30m", grid: GRIDS["30m"],
-    policy: "decide", warmPath: "none", warmPathReason: "no prompt-cache warmer is registered for openai-codex-responses",
-    verified: false, economics: "token", minContextTokens: 20000,
+    id: "codex-subscription", ttlSec: 1500, intervalSec: 900, r: 0.08, gridClass: "30m", grid: GRIDS["30m"],
+    policy: "decide", warmPath: "codex-sse",
+    warmPathReason: "store:false re-send under the same prompt_cache_key; measured 2026-10-16: 15-minute pings kept the cache past 45 min",
+    verified: true, economics: "token", minContextTokens: 20000,
   });
 });
 
@@ -78,6 +79,7 @@ test("codex-subscription follows the pi-ai TTL when the model has no extended ca
   assert.equal(lane.gridClass, "5m");
   assert.deepEqual(lane.grid, GRIDS["5m"]);
   assert.equal(lane.policy, "decide");
+  assert.equal(lane.verified, false, "the 5-minute Codex cache is unmeasured");
 });
 
 test("github-copilot", () => {

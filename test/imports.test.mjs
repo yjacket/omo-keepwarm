@@ -58,12 +58,18 @@ test("src/ and extension/ .mjs files are found, including the entry files", () =
   assert.ok(files.flatMap((f) => specifiers(readFileSync(f, "utf8"))).length > 20, "the scan finds real imports");
 });
 
+// Loads the running senpi's own files by path (found from the CLI entry senpi was started with), so it names the
+// package directory; it still imports nothing by package specifier.
+const NAMES_HOST_PATH = new Set(["src/subscription-warm.mjs"]);
+
 for (const file of files) {
   const rel = relative(REPO, file).replaceAll("\\", "/");
   test(`${rel} names no host package and imports only node:* or relative paths`, () => {
     const text = readFileSync(file, "utf8");
-    assert.ok(!text.includes("@earendil-works"), `${rel} mentions @earendil-works`);
-    assert.ok(!text.includes("@code-yeongyu"), `${rel} mentions @code-yeongyu`);
+    if (!NAMES_HOST_PATH.has(rel)) {
+      assert.ok(!text.includes("@earendil-works"), `${rel} mentions @earendil-works`);
+      assert.ok(!text.includes("@code-yeongyu"), `${rel} mentions @code-yeongyu`);
+    }
     const bad = specifiers(text).filter((s) => !allowed(s));
     assert.deepEqual(bad, [], `${rel} imports ${bad.join(", ")}`);
   });

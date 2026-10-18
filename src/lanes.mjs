@@ -21,25 +21,32 @@ function costRatio(model, denominatorMultiplier = 1) {
   return Number.isFinite(r) && r !== 0 ? r : DEFAULT_R;
 }
 
-function base(id, ttlSec, intervalSec, r, policy, warmPath, warmPathReason, economics) {
-  return { id, ttlSec, intervalSec, r, policy, warmPath, warmPathReason, verified: false, economics };
+function base(id, ttlSec, intervalSec, r, policy, warmPath, warmPathReason, economics, verified = false) {
+  return { id, ttlSec, intervalSec, r, policy, warmPath, warmPathReason, verified, economics };
 }
 
 function classify(model, piAi) {
   if (model?.api === "claude-sdk-oauth") {
     return base(
-      "claude-subscription", 3600, 3300, 0.025, "decide", "none",
-      "claude-sdk-oauth runs through the Claude Agent SDK; pi-ai warmPromptCache returns supported:false and an SDK query would append to the SDK session",
-      "token",
+      "claude-subscription", 3600, 3300, 0.025, "decide", "claude-sdk-fork",
+      "forked SDK resume without persistence; measured 2026-10-16: reads 98-100% and renews the 1h cache, transcript untouched",
+      "token", true,
     );
   }
   if (model?.api === "openai-codex-responses") {
-    // pi-ai reports 1800 s only for extended-cache models, otherwise 300 s.
-    const ttl = piAi?.resolvePromptCacheTtlSeconds?.(model) ?? 1800;
-    return base(
-      "codex-subscription", ttl, ttl === 1800 ? 1620 : 270, 0.08, "decide", "none",
-      "no prompt-cache warmer is registered for openai-codex-responses", "token",
-    );
+    // pi-ai reports 1800 s for extended-cache models, but the subscription backend rejects prompt_cache_options and
+    // keeps the cache best-effort: measured 2026-10-16 it survived 25 min and was gone at 30. Other models: 300 s.
+    const extended = (piAi?.resolvePromptCacheTtlSeconds?.(model) ?? 1800) === 1800;
+    return extended
+      ? base(
+        "codex-subscription", 1500, 900, 0.08, "decide", "codex-sse",
+        "store:false re-send under the same prompt_cache_key; measured 2026-10-16: 15-minute pings kept the cache past 45 min",
+        "token", true,
+      )
+      : base(
+        "codex-subscription", 300, 270, 0.08, "decide", "codex-sse",
+        "store:false re-send under the same prompt_cache_key; 5-minute cache unmeasured", "token",
+      );
   }
   if (model?.provider === "github-copilot") {
     return base("github-copilot", 300, 270, null, "observe", "none", "request-billed", "request");

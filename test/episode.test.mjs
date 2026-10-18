@@ -53,7 +53,7 @@ function setup(o = {}) {
   const realConfig = createConfigSource({ home, now, statEveryMs: 0 });
   const config = o.wrapConfig ? o.wrapConfig(realConfig) : realConfig;
   const ledger = createLedger({ home, now });
-  const warmer = createWarmer({ piAi, convertToLlm: identity, now });
+  const warmer = createWarmer({ piAi, convertToLlm: identity, now, ...(o.warmer ?? {}) });
   const controller = createController({
     pi,
     deps: {
@@ -264,16 +264,19 @@ test("04 5m auto: E 20, would_warm at tAway 4.5/9/13.5/18, expire at 22.5, no ti
   assert.equal(h.snap().phase, "OBSERVING");
 });
 
-test("05 30m auto (codex): E 120, would_warm 27..108, expire at 135", async () => {
+test("05 30m auto (codex): pings every 15 min until E, then expire", async () => {
   const h = setup({ model: models.openaiCodex });
   await h.openEpisode();
   const [open] = h.records("episode_open");
   assert.equal(open.lane, "codex-subscription");
-  assert.equal(open.expiry.effectiveMin, 120);
-  await h.to(140);
-  assert.deepEqual(h.ticks(), [
-    ["would_warm", 27], ["would_warm", 54], ["would_warm", 81], ["would_warm", 108], ["expire", 135],
-  ]);
+  const E = open.expiry.effectiveMin;
+  assert.ok(E > 0);
+  await h.to(E + 20);
+  const expected = [];
+  let t = 15;
+  for (; t < E; t += 15) expected.push(["would_warm", t]);
+  expected.push(["expire", t]);
+  assert.deepEqual(h.ticks(), expected);
   assert.equal(h.clock.pendingCount(), 0);
 });
 
@@ -284,7 +287,7 @@ test("06 1h auto (claude subscription): E 300, would_warm 55..275, expire at 330
   assert.equal(open.lane, "claude-subscription");
   assert.equal(open.expiry.effectiveMin, 300);
   assert.equal(open.maxPings, 7);
-  assert.equal(open.warmPath, "none");
+  assert.equal(open.warmPath, "claude-sdk-fork");
   await h.to(340);
   assert.deepEqual(h.ticks(), [
     ["would_warm", 55], ["would_warm", 110], ["would_warm", 165], ["would_warm", 220], ["would_warm", 275],
@@ -308,7 +311,10 @@ test("07 r 0.04 gives E 30 and r 0.02 gives E 60 on the 5m lane", async () => {
 });
 
 test("08 1h manual 240: would_warm 55..220 on an unverified lane, expire at 275, hazard recorded", async () => {
-  const h = setup({ model: models.claudeSdkOauth, config: { mode: "on", expiry: { "claude-subscription": 240 } } });
+  const h = setup({
+    model: models.claudeSdkOauth,
+    config: { mode: "on", expiry: { "claude-subscription": 240 }, lanes: { "claude-subscription": { verified: false } } },
+  });
   await h.openEpisode();
   const [open] = h.records("episode_open");
   assert.equal(open.expiry.source, "manual");
@@ -321,7 +327,7 @@ test("08 1h manual 240: would_warm 55..220 on an unverified lane, expire at 275,
   ]);
   const decisions = h.records("decision");
   assert.ok(decisions.every((d) => typeof d.hazard === "number" && d.hazard >= 0 && d.hazard <= 1));
-  assert.ok(decisions.filter((d) => d.action === "would_warm").every((d) => d.reason === "no_warm_path"));
+  assert.ok(decisions.filter((d) => d.action === "would_warm").every((d) => d.reason === "unverified"));
   assert.equal(h.piAi.calls.length, 0);
 });
 
@@ -1394,4 +1400,62 @@ test("64 halt cancels the armed tick, writes nothing more and ignores later even
   assert.equal(h.snap().phase, "INERT");
   await h.shutdown("quit");
   assert.equal(h.records().length, before);
+});
+
+// ---- subscription lanes (trace-free pings) -------------------------------
+
+function fakePinger(usage) {
+  const calls = [];
+  return { calls, available: () => true, ping: async (args) => (calls.push(args), usage) };
+}
+
+test("61 claude subscription on: fork ping anchored on the assistant message, next due = ping start + 55 min", async () => {
+  const claude = fakePinger({ input: 4, output: 4, cacheRead: 50_000, cacheWrite: 0 });
+  const h = setup({ model: models.claudeSdkOauth, config: { mode: "on" }, warmer: { claude } });
+  await h.start();
+  // claude-sdk-oauth emits no before_provider_request: the assistant message is the only refresh signal.
+  await h.humanTurn({ request: false });
+  const [open] = h.records("episode_open");
+  assert.deepEqual([open.mode, open.warmPath, open.verified], ["on", "claude-sdk-fork", true]);
+  const [segment] = h.records("segment_open");
+  assert.equal(segment.disabledReason, null);
+  assert.equal(segment.anchorMs, h.at(0));
+  await h.to(55);
+  await h.drain();
+  assert.deepEqual(h.ticks(), [["warm", 55]]);
+  assert.equal(claude.calls.length, 1);
+  assert.equal(claude.calls[0].ctx, h.ctx);
+  assert.ok(claude.calls[0].signal instanceof AbortSignal);
+  const [ping] = h.records("ping");
+  assert.deepEqual([ping.ok, ping.hit, ping.stale], [true, true, false]);
+  assert.equal(h.snap().nextTickMs, h.at(55) + 55 * MIN);
+  assert.equal(h.piAi.calls.length, 0);
+});
+
+test("62 claude subscription: a fork ping that misses stops the segment", async () => {
+  const claude = fakePinger({ input: 4, output: 4, cacheRead: 500, cacheWrite: 49_000 });
+  const h = setup({ model: models.claudeSdkOauth, config: { mode: "on" }, warmer: { claude } });
+  await h.start();
+  await h.humanTurn({ request: false });
+  await h.to(55);
+  await h.drain();
+  assert.deepEqual(h.records("ping").map((p) => [p.ok, p.hit]), [[true, false]]);
+  assert.deepEqual(h.stops(), ["cache_miss"]);
+  assert.equal(h.snap().phase, "OBSERVING");
+});
+
+test("63 codex subscription on: the last real body goes to the Codex pinger every 15 min", async () => {
+  const codex = fakePinger({ input: 200, output: 5, cacheRead: 11_776, cacheWrite: 0 });
+  const h = setup({ model: models.openaiCodex, config: { mode: "on" }, warmer: { codex } });
+  await h.start();
+  const body = { model: "gpt-5-codex", prompt_cache_key: "sess-1", store: false, input: [{ role: "user", content: "u" }] };
+  await h.humanTurn({ payload: body });
+  await h.to(15);
+  await h.drain();
+  assert.deepEqual(h.ticks(), [["warm", 15]]);
+  assert.equal(codex.calls.length, 1);
+  assert.deepEqual(codex.calls[0].payload, body);
+  assert.notEqual(codex.calls[0].payload.input, body.input, "the captured input array is a copy");
+  assert.equal(codex.calls[0].model, models.openaiCodex);
+  assert.equal(h.snap().nextTickMs, h.at(15) + 15 * MIN);
 });

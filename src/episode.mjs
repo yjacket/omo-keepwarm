@@ -668,7 +668,7 @@ export function createController({ pi, deps }) {
     }
     const cfg = config.get();
     mode = cfg.mode;
-    const real = cfg.mode === "on" && lane.warmPath === "warmPromptCache" && lane.verified === true && warmer.available();
+    const real = cfg.mode === "on" && lane.warmPath !== "none" && lane.verified === true && warmer.available(lane.warmPath);
     const tokens = contextTokens(ctx);
     const stopReason = stopReasonAt(ctx, cfg, real, tokens);
     if (stopReason) return stop(stopReason);
@@ -692,7 +692,7 @@ export function createController({ pi, deps }) {
   async function tickAction({ g, ctx, lane, cfg, real, tokens, firedAt, decide, stop }) {
     if (!real) {
       const why = cfg.mode !== "on" ? "shadow"
-        : lane.warmPath !== "warmPromptCache" ? "no_warm_path"
+        : lane.warmPath === "none" ? "no_warm_path"
         : lane.verified !== true ? "unverified"
         : "warmer_unavailable";
       decide("would_warm", why);
@@ -711,8 +711,9 @@ export function createController({ pi, deps }) {
       return;
     }
 
-    // Never ping without the prefix guard.
-    if (lastRealPrefix === null) return stop("no_prefix");
+    // Never ping without the prefix guard. The Claude fork path has no request payload to compare: it resumes the
+    // bound SDK session itself, and its first miss stops the segment like any other.
+    if (lane.warmPath !== "claude-sdk-fork" && lastRealPrefix === null) return stop("no_prefix");
     decide("warm", null);
     ep.pingsSent += 1;
     ep.pings += 1;
@@ -731,6 +732,7 @@ export function createController({ pi, deps }) {
       lastMessages: ctx.sessionManager.buildSessionContext().messages,
       expectPrefix: lastRealPrefix,
       signal: ac.signal,
+      warmPath: lane.warmPath,
     });
     if (pingAbort === ac) pingAbort = null;
     // The gate went quiet during the ping (or the config file is gone now): write nothing.
@@ -876,9 +878,25 @@ export function createController({ pi, deps }) {
     else if (message?.role === "assistant") classifyTurn(provenance.resolveUnattributed("assistant_message"));
   }
 
+  // A session request (the human's or an automated turn's, not some other extension's) refreshed the cache.
+  function sessionRequest() {
+    return !ep || phase === "CLASSIFYING" || (phase === "PAUSED" && pauseReason === "automated_turn");
+  }
+
+  // Every assistant message is one provider request, timestamped when it started. Lanes whose provider emits no
+  // before_provider_request (claude-sdk-oauth) get their refresh anchor here; later anchors only move it forward.
+  function noteAssistantRequest(message) {
+    if (phase === "PINGING" || !sessionRequest()) return;
+    const t = finite(message.timestamp) ? message.timestamp : now();
+    if (anchorMs === null || t > anchorMs) anchorMs = t;
+    if (realAnchorMs === null || t > realAnchorMs) realAnchorMs = t;
+  }
+
   function onMessageEnd(ev, ctx) {
-    if (!active() || !returnUsage) return;
+    if (!active()) return;
     const message = ev?.message;
+    if (message?.role === "assistant") noteAssistantRequest(message);
+    if (!returnUsage) return;
     if (message?.role !== "assistant" || !message.usage) return;
     const u = message.usage;
     recorder.write("return_usage", {
@@ -897,9 +915,7 @@ export function createController({ pi, deps }) {
     if (!active() || phase === "PINGING") return; // PINGING: our own warm request
     ctxRef = ctx ?? ctxRef;
     if (ep && phase === "CLASSIFYING") classifyTurn(provenance.resolveUnattributed("provider_request"));
-    const sessionRequest =
-      !ep || phase === "CLASSIFYING" || (phase === "PAUSED" && pauseReason === "automated_turn");
-    if (!sessionRequest) {
+    if (!sessionRequest()) {
       // Some other extension's request while warming/observing: its prefix is unknown.
       addMarker("foreign_provider_request");
       return;

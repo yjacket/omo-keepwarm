@@ -49,7 +49,7 @@ const MODELS = {
 
 // 가능 = a warm path exists; 미확인 = unknown lane; 불가 = known lane without a usable path.
 function verdict(lane) {
-  if (lane.warmPath === "warmPromptCache") return "가능";
+  if (lane.warmPath !== "none") return "가능";
   if (lane.id === "other") return "미확인";
   return "불가";
 }
@@ -61,11 +61,13 @@ function laneTable(md) {
   const cols = lines[head].split("|").slice(1, -1).map((c) => c.trim());
   const idCol = cols.indexOf("lane id");
   const verdictCol = cols.indexOf("판정");
+  const reasonCol = cols.indexOf("근거 한 줄");
   assert.ok(verdictCol > 0, "lane table has a 판정 column");
+  assert.ok(reasonCol > 0, "lane table has a 근거 한 줄 column");
   const rows = [];
   for (let i = head + 2; i < lines.length && lines[i].startsWith("|"); i++) {
     const cells = lines[i].split("|").slice(1, -1).map((c) => c.trim());
-    rows.push({ id: cells[idCol].replace(/`/g, ""), verdict: cells[verdictCol] });
+    rows.push({ id: cells[idCol].replace(/`/g, ""), verdict: cells[verdictCol], reason: cells[reasonCol] });
   }
   return rows;
 }
@@ -77,7 +79,7 @@ test("README lane table verdicts match classifyLane()", () => {
     const lane = classifyLane(MODELS[row.id], { piAi });
     assert.equal(lane.id, row.id, `representative model for ${row.id}`);
     assert.equal(row.verdict, verdict(lane), `${row.id} verdict`);
-    if (row.verdict === "가능") assert.equal(lane.verified, false, `${row.id} is off by default`);
+    if (row.verdict === "가능") assert.equal(lane.verified, !row.reason.includes("기본 꺼짐"), `${row.id}: 기본 꺼짐 iff unverified`);
   }
 });
 

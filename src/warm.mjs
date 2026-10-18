@@ -5,6 +5,10 @@
 // piAi and convertToLlm are injected; this module never imports host packages.
 import { createHash } from "node:crypto";
 import { MISS_READ_SHARE, PING_TIMEOUT_MS } from "./policy.mjs";
+import { createClaudeForkPinger, createCodexPinger } from "./subscription-warm.mjs";
+
+// Claude Code spawns a subprocess per ping, so its budget is wider than an HTTP request's.
+const SUBSCRIPTION_PING_TIMEOUT_MS = 2 * PING_TIMEOUT_MS;
 
 export class PrefixMismatchError extends Error {
   constructor(message = "warm payload prefix does not match the last real request") {
@@ -51,6 +55,10 @@ export function captureRealPrefix(payload) {
   // property is non-enumerable so it never reaches the saved episode state; a restored prefix falls back to
   // the rebuild below.
   Object.defineProperty(prefix, "tools", { value: tools, enumerable: false });
+  // The whole body too, for the Codex ping that re-sends it (same memory-only rule). The input array is copied so a
+  // later transform of the live request cannot change what the ping sends.
+  const body = Array.isArray(payload?.input) ? { ...payload, input: [...payload.input] } : payload;
+  Object.defineProperty(prefix, "payload", { value: body, enumerable: false });
   return prefix;
 }
 
@@ -98,6 +106,7 @@ export function classifyError(err, { signal } = {}) {
   const name = String(err?.name ?? "");
   let kind;
   if (err instanceof PrefixMismatchError || name === "PrefixMismatchError") kind = "prefix_mismatch";
+  else if (err?.kind === "unsupported") kind = "unsupported";
   else if (signal?.aborted || name === "AbortError" || name === "APIUserAbortError") kind = "aborted";
   else if (/timeout/i.test(name) || /timed? ?out/i.test(message)) kind = "timeout";
   else if (status === 429 || RATE_RE.test(message)) kind = "rate_limit";
@@ -131,9 +140,34 @@ export function costUsd(model, usage) {
 
 // ---- warmer -------------------------------------------------------------
 
-export function createWarmer({ piAi, convertToLlm, now = Date.now } = {}) {
-  function available() {
+export function createWarmer({
+  piAi,
+  convertToLlm,
+  now = Date.now,
+  claude = createClaudeForkPinger({ now }),
+  codex = createCodexPinger(),
+} = {}) {
+  function available(warmPath = "warmPromptCache") {
+    if (warmPath === "claude-sdk-fork") return claude.available();
+    if (warmPath === "codex-sse") return codex.available();
     return typeof piAi?.warmPromptCache === "function" && typeof convertToLlm === "function";
+  }
+
+  // One trace-free subscription ping; the outcome has the same shape as the warmPromptCache path.
+  async function subscriptionPing({ ctx, model, expectPrefix, signal, warmPath }) {
+    const started = now();
+    const timeout = AbortSignal.timeout(SUBSCRIPTION_PING_TIMEOUT_MS);
+    const combined = signal ? AbortSignal.any([signal, timeout]) : timeout;
+    try {
+      const raw = warmPath === "claude-sdk-fork"
+        ? await claude.ping({ ctx, signal: combined })
+        : await codex.ping({ ctx, model, payload: expectPrefix?.payload, signal: combined, timeoutMs: PING_TIMEOUT_MS });
+      const usage = normalizeUsage(raw);
+      return { ok: true, hit: isHit(usage), usage, costUsd: costUsd(model, usage), durationMs: now() - started };
+    } catch (err) {
+      if (timeout.aborted && !signal?.aborted) return { ok: false, error: { kind: "timeout", message: String(err?.message ?? err).slice(0, 300), status: null } };
+      return { ok: false, error: classifyError(err, { signal }) };
+    }
   }
 
   function builtinActive(ctx, model) {
@@ -152,7 +186,10 @@ export function createWarmer({ piAi, convertToLlm, now = Date.now } = {}) {
     return (tokens(promptTokens) * (Number(c.cacheRead) || 0)) / 1e6;
   }
 
-  async function ping({ pi, ctx, model, lastMessages = [], expectPrefix, signal } = {}) {
+  async function ping({ pi, ctx, model, lastMessages = [], expectPrefix, signal, warmPath = "warmPromptCache" } = {}) {
+    if (warmPath === "claude-sdk-fork" || warmPath === "codex-sse") {
+      return subscriptionPing({ ctx, model, expectPrefix, signal, warmPath });
+    }
     const started = now();
     if (!available()) {
       return { ok: false, error: { kind: "unsupported", message: "warmPromptCache or convertToLlm unavailable", status: null } };
